@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        var tricksNumber = {{ number }};
+        $(function() {
+            $('#loadMore').click(function() {
+                $.ajax({
+                    url : '{{ path('loadmore') }}',
+                    dataType : 'html',
+                    type: 'GET',
+                    data: {
+                        tricksNumber: tricksNumber
+                    },
+                    beforeSend: function(){
+                        $('#theDiv').prepend('<img id="theImg" src="{{ asset('uploads/img/grey.gif') }}" />');
+                    },
+                    success : function(code_html, statut){ // success est toujours en place, bien sûr !
+                        $('#Tricks').html(code_html)
+                    },
+                    error : function(resultat, statut, erreur){
+                        alert('non ok')
+                    }
+                });
+            })
+        });
+    });
+</script>

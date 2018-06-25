@@ -20,6 +20,7 @@ Encore
     .addEntry('form', './assets/js/form.js')
     .addEntry('view','./assets/js/view.js')
     .addEntry('login', './assets/css/login.css')
+    .addEntry('ajax','./assets/js/ajaxLp.js')
 
     // uncomment if you use Sass/SCSS files
     // .enableSassLoader()

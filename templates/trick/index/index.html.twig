@@ -33,5 +33,16 @@
                 </div>
             </div>
         {%  endfor %}
+        <div class="col-12 row justify-content-center p-5">
+        {% if tricksLeft %}
+            {% include('trick/index/loadMoreButton.html.twig') %}
+        {% else %}
+            <p>Pas de commentaires supplémentaires</p>
+        {% endif %}
+        </div>
     </section>
+{% endblock %}
+
+{% block js %}
+    {% include('trick/index/indexAjax.html.twig') %}
 {% endblock %}

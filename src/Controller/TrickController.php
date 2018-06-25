@@ -7,6 +7,7 @@ use App\Entity\Media;
 use App\Entity\Trick;
 use App\Form\CommentType;
 use App\Form\TrickType;
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -34,13 +35,27 @@ class TrickController extends Controller
      */
     public function index()
     {
+        $tricksLeft = true;
+
+        $numberToLoad = 10;
+
         $tricks = $this->getDoctrine()
-            ->getRepository(\App\Entity\Trick::class)
-            ->findAll();
+            ->getRepository(Trick::class)
+            ->findBy([], array('date' => 'desc'));
 
+        $tricksNumber = count($tricks);
 
-        return $this->render('trick/index.html.twig', [
-            'tricks' => $tricks
+        if ($numberToLoad>$tricksNumber) {
+            $numberToLoad = $tricksNumber;
+            $tricksLeft = false;
+        }
+
+        $tricks = array_slice($tricks,0,$numberToLoad);
+
+        return $this->render('trick/index/index.html.twig', [
+            'tricks' => $tricks,
+            'number' => 10,
+            'tricksLeft' => $tricksLeft
         ]);
     }
 
@@ -191,5 +206,41 @@ class TrickController extends Controller
             'medias' => $medias,
             'trick' => $trick
         ));
+    }
+
+    /**
+     * @param Request $request
+     * @return bool|Response
+     * @Route("loadmore", name="loadmore")
+     */
+    public function loadMore(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $numberToLoad = $request->get('tricksNumber');
+            $tricksLeft = true;
+
+            $numberToLoad = $numberToLoad + 5;
+
+            $tricks = $this->getDoctrine()
+                ->getRepository(Trick::class)
+                ->findBy([], array('date' => 'desc'));
+
+            $tricksNumber = count($tricks);
+
+            if ($numberToLoad>$tricksNumber) {
+                $numberToLoad = $tricksNumber;
+                $tricksLeft = false;
+            }
+
+            $tricks = array_slice($tricks,0,$numberToLoad);
+
+            return $this->render('trick/index/loadmore.html.twig', [
+                'tricks' => $tricks,
+                'number' => $numberToLoad,
+                'tricksLeft' => $tricksLeft
+            ]);
+        }
+
+        return false;
     }
 }

@@ -5,9 +5,10 @@ namespace App\DataFixtures;
 use App\Entity\Media;
 use App\Entity\Trick;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class MediaFixtures extends Fixture
+class MediaFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
