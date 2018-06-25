@@ -1,0 +1,58 @@
+
+{% block menu %}
+    <div class="row col-12">
+        <nav class="col-12 navbar navbar-expand-lg fixed-top pr-5 pl-5 d-none d-lg-flex  menu">
+            <a class="navbar-brand pl-5" href="/">SnowTricks</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end mr-5 pr-5" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/add">Add a new tricks</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/logout">Disconnect</a>
+                        </li>
+                    {% endif %}
+                    {% if not is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Sign in</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="menu navbar fixed-bottom d-lg-none justif-content-around align-items-cente row bg-light">
+        <div class="bg-black col-3 text-center">
+            <a href="/">Home</a>
+        </div>
+        {% if is_granted('ROLE_USER') %}
+        <div class="bg-black col-3 text-center">
+            <a href="/add">Add</a>
+        </div>
+        <div class="bg-black col-3 text-center">
+            <a href="/logout">Disconnect</a>
+        </div>
+        {% endif %}
+        {% if not is_granted('ROLE_USER') %}
+        <div class="bg-black col-3 text-center">
+            <a href="/login">Sign In</a>
+        </div>
+        <div class="bg-black col-3 text-center">
+            <a href="/register">Sign Up</a>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

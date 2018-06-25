@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SnowTricks{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/index.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <section id="Landpage" class="align-items-center row">
+        <h2 class="col-12 text-center">Phrase d'accroche</h2>
+        <a class="position-absolute arrow-down pb-5 pr-5" href="#Tricks"><i class="fas fa-arrow-down"></i></a>
+    </section>
+    <section id ="Tricks" class="row justify-content-center">
+        {% if tricks == null %}
+            <div class="col-12 row align-items-center justify-content-center">
+                <div class="text-center">Pas de tricks publiés</div>
+            </div>
+        {% endif %}
+        {% for trick in tricks %}
+            <div class="col-12 col-sm-8 col-md-5 col-lg-3 col-xl-2 p-4 row mb-4 m-xl-1">
+                <div class="col-12 tricks row justify-content-center align-items-center p-0 rounded">
+                    <div class="col-12 img-trick m-0 p-0"
+                         style="{% if trick.mainMedia.url is defined  %}
+                                 background-image: url('{{ asset(trick.mainMedia.url) }}');
+                                 background-repeat: no-repeat;
+                                 background-size: cover;
+                         {% endif %}
+                                 "></div>
+                    <div class="link-tricks align-self-end col-12 text-center align-items-center row">
+                        <a class="col-12" href="{{ path('view', {'trick':trick.id,'slug':trick.name|slugify}) }}">{{ trick.name }}</a>
+                    </div>
+                </div>
+            </div>
+        {%  endfor %}
+    </section>
+{% endblock %}

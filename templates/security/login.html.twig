@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/login.css') }}" />
+{% endblock %}
+
+{% block body %}
+    {% if error is defined %}
+        <div>{{ error.messageKey|trans(error.messageData,'security') }}</div>
+    {% endif %}
+
+
+<section class="row justify-content-center align-items-center">
+
+    <form action="{{ path('login') }}" method="post" class="row justify-content-center">
+        <h3 class="col-12 text-center">Registration</h3>
+        <div class="col-6 form-row align-items-center justify-content-center">
+            <div class="col-12">
+                <label class="sr-only" for="inlineFormInput">Username</label>
+                <input type="text" class="form-control mb-2" id="username inlineFormInput" name="_username" placeholder="Username" value="{% if last_username is defined %}{{ last_username }}{% endif %}">
+            </div>
+            <div class="col-12">
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                    </div>
+                    <input type="password" name="_password" class="form-control" id="password inlineFormInputGroup" placeholder="Password">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                </div>
+            </div>
+            <div class="col-12 row justify-content-center">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/addTrickForm.css') }}" />
+{% endblock %}
+
+{% block body %}
+        {{ form_start(form) }}
+        <div class="col-12 row justify-content-center m-0 p-0">
+
+            <div class="col-8 text-center">
+                {{ form_row(form.name) }}
+            </div>
+
+            <div class="col-8 text-center">
+                {{ form_row(form.description) }}
+            </div>
+
+            <div class="col-12 row row justify-content-center">
+                <div class="col-6 row justify-content-center">
+                    <div class="col-12">
+                        {{ form_row(form.medias) }}
+                    </div>
+                    <a href="#" id="add_media" class="btn btn-outline-primary">Ajouter un media</a>
+                </div>
+                <div class="col-6 row justify-content-center">
+                    <div class="col-12">
+                        {{ form_row(form.videos) }}
+                    </div>
+                    <a href="#" id="add_videos" class="btn btn-outline-primary">Ajouter une vidéo</a>
+                </div>
+            </div>
+
+        </div>
+        {{ form_end(form) }}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ asset('build/form.js') }}">   </script>
+{% endblock %}

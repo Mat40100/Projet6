@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ trick.Name }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/trick.css') }}" />
+{% endblock %}
+
+
+{% block body %}
+    <section class="row col-9 justify-content-center align-items-center p-0 m-0 mb-5">
+        <div class="col-12 undermenu d-none d-lg-block"></div>
+        <div class="col-12 row align-self-baseline justify-content-center p-0">
+            <div class="img-fluid col-12 img-trick-main row justify-content-center align-items-center"
+                style="{% if trick.mainMedia.url is defined  %}
+                        background-image: url('{{ asset(trick.mainMedia.url) }}');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        {% endif %}
+                        ">
+
+                {% if is_granted('ROLE_USER') %}
+                <div class="position-absolute user-link m-5 p-1 rounded bg-light">
+                    <a href="/delete/{{ trick.id }}"><i class="far fa-trash-alt"></i></a>
+                    <a href="/modify/{{ trick.id }}"><i class="fas fa-pencil-alt"></i></a>
+                </div>
+                {%  endif %}
+                <div class="col-12 text-center">{{ trick.name }}</div>
+            </div>
+            <div class="col-12 row m-3 justify-content-center align-items-center">
+                <a id="seeMediaList" class="col-12 text-center d-lg-none" href="#">See medias</a>
+                <div id="mediasList" class="d-none row col-12 justify-content-center align-items-center">
+                    <h4>Liens multimédias :</h4>
+                    <ul>
+                    {% for media in medias %}
+                        <li><a class="col-auto" href="{{  asset(media.url) }}">{{ media.alt }}</a></li>
+                    {% endfor %}
+                    {% for video in videos %}
+                        <li><a class="col-auto" href="{{ video.url }}">{{ video.type }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-12 d-none d-lg-flex row justify-content-around align-items-center">
+                    {% for media in medias %}
+                        <img class="vignettes m-2" src="{{ asset(media.url) }}" alt="{{ media.alt }}">
+                    {% endfor %}
+                    {% for video in videos %}
+                        <div class="vignettes m-2">
+                            {{ video.video()|raw }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-12 row justify-content-center align-items-center p-5">
+                <div class="col-12 text-justify">{{ trick.description }}</div>
+            </div>
+            <div class="col-12 row justify-content-center">
+                <div class="col-auto border rounded m-2">Autheur : {{ trick.author.username }}</div>
+                <div class="col-auto border rounded m-2">Date de création : {{ trick.date|date("d/m/Y h:i")}}</div>
+                {% if trick.dateLastMod is defined %}
+                    <div class="col-auto border rounded m-2">Dernière modification : {{ trick.dateLastMod|date("d/m/Y") }}</div>
+                {% endif %}
+            </div>
+            <div class="col-12 m-4 border border-bottom"></div>
+            {% if is_granted('ROLE_USER') %}
+                <div class="col-12 row justify-content-center align-items-center">
+                    <div class="col-12 col-md-6 justify-content-center align_items-center text-center border-bottom">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="col-12 row justify-content-center align-items-center">
+                {% for comment in comments %}
+                    <div class="col-12 col-md-10 col-lg-7 row p-2">
+                        <div class="col-auto img-user-comments">
+                            {% if comment.user.image is defined %}
+                                <img class="col-12" src="{{ comment.user.image }}">
+                            {% else %}
+                                <img class="col-12" src="{{ asset('pics/default-user.png') }}">
+                            {% endif %}
+                            <div class="col-12 text-center">{{ comment.author.username }}</div>
+                        </div>
+
+                        <div class="col row border rounded p-3">
+                            <div class="col-6 text-justify">{{ comment.date|date('d-m-Y h:i') }}</div>
+                            <div class="col-12 text-center">{{ comment.content }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ asset('build/view.js') }}"></script>
+{% endblock %}
