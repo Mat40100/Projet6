@@ -1,3 +1,9 @@
+#Landpage{
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
 .tricks{
     height:210px;
     border:black 1px solid;

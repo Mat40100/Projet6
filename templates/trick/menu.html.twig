@@ -35,22 +35,22 @@
 
     <div class="menu navbar fixed-bottom d-lg-none justif-content-around align-items-cente row bg-light">
         <div class="bg-black col-3 text-center">
-            <a href="/">Home</a>
+            <a href="{{ path('home') }}"><i class="fas fa-home"></i></a>
         </div>
         {% if is_granted('ROLE_USER') %}
         <div class="bg-black col-3 text-center">
-            <a href="/add">Add</a>
+            <a href="{{ path('add') }}"><i class="fas fa-plus"></i></a>
         </div>
         <div class="bg-black col-3 text-center">
-            <a href="/logout">Disconnect</a>
+            <a href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
         </div>
         {% endif %}
         {% if not is_granted('ROLE_USER') %}
         <div class="bg-black col-3 text-center">
-            <a href="/login">Sign In</a>
+            <a href="{{ path('login') }}"><i class="fas fa-sign-in-alt"></i></a>
         </div>
         <div class="bg-black col-3 text-center">
-            <a href="/register">Sign Up</a>
+            <a href="{{ path('register') }}"><i class="fas fa-user-plus"></i></a>
         </div>
         {% endif %}
     </div>

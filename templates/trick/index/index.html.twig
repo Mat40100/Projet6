@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-    <section id="Landpage" class="align-items-center row">
+    <section id="Landpage" class="align-items-center row" style="background-image: url('{{ asset('uploads/img/Landpage.jpg') }}')">
         <h2 class="col-12 text-center">Phrase d'accroche</h2>
         <a class="position-absolute arrow-down pb-5 pr-5" href="#Tricks"><i class="fas fa-arrow-down"></i></a>
     </section>
@@ -18,7 +18,7 @@
             </div>
         {% endif %}
         {% for trick in tricks %}
-            <div class="col-12 col-sm-8 col-md-5 col-lg-3 col-xl-2 p-4 row mb-4 m-xl-1">
+            <div class="col-12 col-sm-8 col-md-5 col-lg-3 col-xl-2 p-4 row mb-4 m-xl-1 justify-content-center">
                 <div class="col-12 tricks row justify-content-center align-items-center p-0 rounded">
                     <div class="col-12 img-trick m-0 p-0"
                          style="{% if trick.mainMedia.url is defined  %}
@@ -27,8 +27,12 @@
                                  background-size: cover;
                          {% endif %}
                                  "></div>
-                    <div class="link-tricks align-self-end col-12 text-center align-items-center row">
-                        <a class="col-12" href="{{ path('view', {'trick':trick.id,'slug':trick.name|slugify}) }}">{{ trick.name }}</a>
+                    <div class="link-tricks justify-content-center align-self-end col-12 text-center align-items-center row">
+                        <a class="col-auto" href="{{ path('view', {'trick':trick.id,'slug':trick.name|slugify}) }}">{{ trick.name }}</a>
+                        {% if is_granted('ROLE_USER') %}
+                                <a href="/delete/{{ trick.id }}"><i class="far fa-trash-alt m-1"></i></a>
+                                <a href="/modify/{{ trick.id }}"><i class="fas fa-pencil-alt m-1"></i></a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

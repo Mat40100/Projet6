@@ -45,7 +45,7 @@ class TrickController extends Controller
 
         $tricksNumber = count($tricks);
 
-        if ($numberToLoad>$tricksNumber) {
+        if ($numberToLoad>=$tricksNumber) {
             $numberToLoad = $tricksNumber;
             $tricksLeft = false;
         }
@@ -219,18 +219,18 @@ class TrickController extends Controller
             $numberToLoad = $request->get('tricksNumber');
             $tricksLeft = true;
 
-            $numberToLoad = $numberToLoad + 5;
-
             $tricks = $this->getDoctrine()
                 ->getRepository(Trick::class)
                 ->findBy([], array('date' => 'desc'));
 
             $tricksNumber = count($tricks);
+            $numberToLoad = $numberToLoad + 5;
 
-            if ($numberToLoad>$tricksNumber) {
+            if ($numberToLoad>=$tricksNumber) {
                 $numberToLoad = $tricksNumber;
                 $tricksLeft = false;
             }
+
 
             $tricks = array_slice($tricks,0,$numberToLoad);
 
