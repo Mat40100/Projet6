@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\RecoveryType;
 use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,4 +45,40 @@ class RegistrationController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     * @param \Swift_Mailer $mailer
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route("/recovery", name="recovery")
+     */
+    public function passwordRecovery(Request $request, \Swift_Mailer $mailer)
+    {
+        $form = $this->createForm(RecoveryType::class);
+        $em = $this->getDoctrine()->getRepository(User::class);
+
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+            if($form->isValid()){
+                $username =  $form->getData()['username'];
+                $user = $em->findOneBy(['username' => $username]);
+
+                $token = $user->getRecoveryToken();
+                $message =(new \Swift_Message('SnowTricks password recovery'))
+                    ->setFrom('mathieu.dolhen@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'registration/RecoveryMail.html.twig',array(
+                                'token' => $token
+                            )
+                        ),'text/html'
+                    );
+
+                $mailer->send($message);
+
+                return $this->redirectToRoute('home');
+            }
+        }
+        return $this->render('registration/forgotten.html.twig',array('form'=>$form->createView()));
+    }
 }
