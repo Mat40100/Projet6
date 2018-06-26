@@ -23,6 +23,7 @@ class Trick
     /**
      * One Author can have Many Tricks
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tricks")
+     * @ORM\JoinColumn(name="author", referencedColumnName="id", onDelete="SET NULL")
      */
     private $author;
 

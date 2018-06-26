@@ -20,6 +20,8 @@ class UserFixtures extends Fixture
             $user->setUsername($name);
             $user->setPassword($name);
             $user->setLastName($name);
+            $randomNum = random_bytes(10);
+            $user->setRecoveryToken(hash('sha256',$randomNum));
             $user->setFirstName($name);
             $user->setEmail($name);
             $user->setRoles('ROLE_USER');

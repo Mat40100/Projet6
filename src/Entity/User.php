@@ -69,6 +69,12 @@ class User implements UserInterface, \Serializable
     private $isActive;
 
     /**
+     * @ORM\Column(type="string", unique=true, nullable=false)
+     * @var string
+     */
+    private $RecoveryToken;
+
+    /**
      * @ORM\Column(type="json")
      */
     private $roles= [];
@@ -285,6 +291,30 @@ class User implements UserInterface, \Serializable
     public function setRoles($roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getRecoveryToken(): ?string
+    {
+        return $this->RecoveryToken;
+    }
+
+    public function setRecoveryToken(string $RecoveryToken): self
+    {
+        $this->RecoveryToken = $RecoveryToken;
 
         return $this;
     }

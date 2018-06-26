@@ -137,7 +137,7 @@ class TrickController extends Controller
                 return $this->redirectToRoute('view',array('trick' => $trick->getId(),"slug"=>$trick->getName()));
             }
         }
-        return $this->render('trick/addTrickForm.html.twig', [
+        return $this->render('trick/Forms/addTrickForm.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -167,7 +167,7 @@ class TrickController extends Controller
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('trick/deleteForm.html.twig', [
+        return $this->render('trick/Forms/deleteForm.html.twig', [
             'form' => $form->createView(),
             'trick' => $trick
         ]);
@@ -200,7 +200,7 @@ class TrickController extends Controller
             }
         }
 
-        return $this->render('trick/modTrick.html.twig', array(
+        return $this->render('trick/Forms/modTrick.html.twig', array(
             'form' => $form->createView(),
             'videos'=> $videos,
             'medias' => $medias,

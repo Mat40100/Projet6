@@ -14,6 +14,7 @@ class RegistrationController extends Controller
 {
     /**
      * @Route("/register", name="register")
+     * @throws \Exception
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -26,6 +27,8 @@ class RegistrationController extends Controller
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
             $user->setRoles('ROLE_USER');
+            $randomNum = random_bytes(10);
+            $user->setRecoveryToken(hash('sha256',$randomNum));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -40,4 +43,5 @@ class RegistrationController extends Controller
             )
         );
     }
+
 }
