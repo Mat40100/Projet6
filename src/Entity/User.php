@@ -72,7 +72,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", unique=true, nullable=false)
      * @var string
      */
-    private $RecoveryToken;
+    private $recoveryToken;
 
     /**
      * @ORM\Column(type="json")
@@ -309,12 +309,12 @@ class User implements UserInterface, \Serializable
 
     public function getRecoveryToken(): ?string
     {
-        return $this->RecoveryToken;
+        return $this->recoveryToken;
     }
 
-    public function setRecoveryToken(string $RecoveryToken): self
+    public function setRecoveryToken(string $recoveryToken): self
     {
-        $this->RecoveryToken = $RecoveryToken;
+        $this->recoveryToken = $recoveryToken;
 
         return $this;
     }

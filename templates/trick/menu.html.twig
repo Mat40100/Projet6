@@ -1,7 +1,7 @@
 
 {% block menu %}
-    <div class="row col-12">
-        <nav class="col-12 navbar navbar-expand-lg fixed-top pr-5 pl-5 d-none d-lg-flex  menu">
+    <div class="row col-12 d-none d-lg-flex">
+        <nav class="col-12 navbar navbar-expand-lg fixed-top pr-5 pl-5 menu">
             <a class="navbar-brand pl-5" href="/">SnowTricks</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,6 +31,16 @@
                 </ul>
             </div>
         </nav>
+        {% for type,messages in app.session.flashbag.all %}
+            {% for message in messages %}
+                <div class="flashBag alert alert-success alert-dismissible fade show">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
     </div>
 
     <div class="menu navbar fixed-bottom d-lg-none justif-content-around align-items-cente row bg-light">

@@ -144,7 +144,6 @@ class TrickController extends Controller
 
     /**
      * @param Request $request
-     * @param $id
      * @Route("/delete/{trick}" ,name="delete")
      * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
