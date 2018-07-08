@@ -21,6 +21,8 @@ class MediaController extends Controller
         $em->persist($trick);
         $em->flush();
 
+        $this->addFlash('success','L\'image a été supprimé');
+
         return $this->redirectToRoute('modify', [
             'trick' => $trick->getId()
         ]);
@@ -37,6 +39,8 @@ class MediaController extends Controller
         $trick->removeVideo($video);
         $em->persist($trick);
         $em->flush();
+
+        $this->addFlash('success','La vidéo a été supprimé');
 
         return $this->redirectToRoute('modify', [
             'trick' => $trick->getId()

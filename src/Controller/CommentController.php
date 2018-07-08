@@ -23,16 +23,14 @@ class CommentController extends Controller
 
         $id = $request->request->get('comment')['id'];
 
-        if(gettype($id)=='integer'){
-            throw $this->createNotFoundException("id must be an integer");
-        }
-
         $trick = $this->getDoctrine()
             ->getRepository(Trick::class)
             ->find($id);
 
         if(!$trick){
-            throw $this->createNotFoundException("No Trick found for this id : ".$id);
+            $this->addFlash('warning','Le trick pour lequel vous voulez poster un commentaire est introuvable');
+
+            return $this->redirectToRoute('home');
         }
 
         $comment = new Comment();
@@ -42,18 +40,25 @@ class CommentController extends Controller
         if($request->isMethod('POST')){
             $form->handleRequest($request);
             if($form->isValid()) {
+                if(empty($comment->getContent())){
+                    $this->addFlash('warning','Vous devez mettre un contenu dans votre commentaire');
+
+                    return $this->redirectToRoute('view', array('trick' => $trick->getId(),"slug"=>$trick->getName()));
+                }
                 $em = $this->getDoctrine()->getManager();
                 $comment->setDate(new \DateTime());
                 $comment->setAuthor($this->getUser());
-                $comment->setTrick($trick);
 
-                $em->persist($comment);
+                $trick->addComment($comment);
+                $em->persist($trick);
                 $em->flush();
 
                 return $this->redirectToRoute('view', array('trick' => $trick->getId(),"slug"=>$trick->getName()));
             }
         }
 
-        throw $this->createNotFoundException("Problem while registering your comment");
+        $this->addFlash('warning','Le formulaire n\'est pas correctement rempli');
+
+        return $this->redirectToRoute('view', array('trick' => $trick->getId(),"slug"=>$trick->getName()));
     }
 }

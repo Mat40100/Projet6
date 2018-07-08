@@ -109,20 +109,28 @@ class TrickController extends Controller
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class,$trick);
-
+        $repo = $this->getDoctrine()->getRepository(Trick::class);
 
         if($request->isMethod('POST')){
             $form->handleRequest($request);
             if($form->isValid()){
+                if($repo->findOneBy(['name' => $trick->getName()])!= null){
+                    $this->addFlash('warning','Ce trick est déjà existant');
+
+                    return $this->render('trick/Forms/addTrickForm.html.twig', [
+                        'form' => $form->createView()
+                    ]);
+                }
+
                 foreach($form['medias']->getData() as $key => $value){
                     if($value->getFile() === null ){
-                        $this->addFlash('notice','L\'image n\'etait pas au bon format, et n\'a pas été enregistrée');
+                        $this->addFlash('warning','L\'image n\'etait pas au bon format, et n\'a pas été enregistrée');
                         $trick->removeMedia($value);
                     }
                 }
                 foreach($form['videos']->getData() as $key => $value){
                     if($value->getUrl() === null ){
-                        $this->addFlash('notice','La vidéo n\'etait pas au bon format, et n\'a pas été enregistrée');
+                        $this->addFlash('warning','La vidéo n\'etait pas au bon format, et n\'a pas été enregistrée');
                         $trick->removeVideo($value);
                     }
                 }
@@ -132,11 +140,12 @@ class TrickController extends Controller
                 $em->persist($trick);
                 $em->flush();
 
-                $this->addFlash('notice','Votre nouveau Trick est bien enregistré!');
+                $this->addFlash('success','Votre nouveau Trick est bien enregistré!');
 
                 return $this->redirectToRoute('view',array('trick' => $trick->getId(),"slug"=>$trick->getName()));
             }
         }
+
         return $this->render('trick/Forms/addTrickForm.html.twig', [
             'form' => $form->createView()
         ]);
@@ -154,7 +163,9 @@ class TrickController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         if (!$trick) {
-            throw $this->createNotFoundException("No Trick found for this id : " . $trick->getId());
+            $this->addFlash('danger','Vous essayez de supprimer un trick introuvable ...');
+
+            $this->redirectToRoute('home');
         }
 
         $form = $this->get('form.factory')->create();
@@ -162,6 +173,8 @@ class TrickController extends Controller
         if ($request->isMethod('POST')) {
             $em->remove($trick);
             $em->flush();
+
+            $this->addFlash('success','Le trick a été supprimé!');
 
             return $this->redirectToRoute('home');
         }
@@ -195,8 +208,18 @@ class TrickController extends Controller
                 $em->persist($trick);
                 $em->flush();
 
+                $this->addFlash('success','Le trick a été modifié!');
+
                 return $this->redirectToRoute('view',array('trick'=>$trick->getId(), 'slug'=> $trick->getName()));
             }
+            $this->addFlash('danger','Un problème est survenu pendant l\'enregistrement du trick :(');
+
+            return $this->render('trick/Forms/modTrick.html.twig', array(
+                'form' => $form->createView(),
+                'videos'=> $videos,
+                'medias' => $medias,
+                'trick' => $trick
+            ));
         }
 
         return $this->render('trick/Forms/modTrick.html.twig', array(

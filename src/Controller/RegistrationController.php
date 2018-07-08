@@ -24,21 +24,34 @@ class RegistrationController extends Controller
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
+        $repo = $this->getDoctrine()->getRepository(User::class);
 
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+            if($form->isValid()){
+                if($repo->findOneBy(['username'=>$user->getUsername()])!=null || $repo->findOneBy(['email'=>$user->getEmail()])!=null){
+                    $this->addFlash('warning','Mail ou Utilisateur déjà existant');
 
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-            $user->setRoles('ROLE_USER');
-            $randomNum = random_bytes(10);
-            $user->setRecoveryToken(hash('sha256',$randomNum));
+                    return $this->render(
+                        'registration/register.html.twig', array(
+                            'form' => $form->createView()
+                        )
+                    );
+                }
+                $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($password);
+                $user->setRoles('ROLE_USER');
+                $randomNum = random_bytes(10);
+                $user->setRecoveryToken(hash('sha256',$randomNum));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
 
-            return $this->redirectToRoute('home');
+                $this->addFlash('success','Votre compte a été enregistrer!');
+
+                return $this->redirectToRoute('home');
+            }
         }
 
         return $this->render(
@@ -63,7 +76,8 @@ class RegistrationController extends Controller
             $form->handleRequest($request);
             if($form->isValid()){
                 if($em->findOneBy(['username'=>$form->getData()['username']])==null){
-                    $this->addFlash('error','This username doesn\'t exists');
+                    $this->addFlash('warning','This username doesn\'t exists');
+
                     return $this->render('registration/forgotten.html.twig',array('form'=>$form->createView()));
                 }
                 $username =  $form->getData()['username'];
@@ -83,7 +97,7 @@ class RegistrationController extends Controller
 
                 $mailer->send($message);
 
-                $this->addFlash('notice','A mail has been sent to reset your password');
+                $this->addFlash('success','Un e-mail pour creer un nouveau mot de passe a été envoyé !');
                 return $this->redirectToRoute('home');
             }
         }
@@ -119,17 +133,20 @@ class RegistrationController extends Controller
                 $em->persist($userToUpdate);
                 $em->flush();
 
-                $this->addFlash('notice','Password has been reset');
+                $this->addFlash('success','Le mot de passe à été réinitialisé');
+
                 return $this->redirectToRoute('home');
             }
-            $this->addFlash('notice','Passwords must match');
+            $this->addFlash('warning','Les mots de passe doivent correspondre');
         }
 
         $user = $em->getRepository(User::class)
-                ->findOneBy(['recoveryToken' => $token]);
+            ->findOneBy(['recoveryToken' => $token]);
 
         if($user == null ){
-            throw new HttpException('404','We got a problem during process, please ask for a new password again');
+            $this->addFlash('danger','Ce token n\'éxiste pas');
+
+            return $this->redirectToRoute('home');
         }
 
         $form = $this->createForm(NewPasswordType::class, $user);

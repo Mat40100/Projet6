@@ -10,6 +10,7 @@
 {% block body %}
     <section class="row col-9 justify-content-center align-items-center p-0 m-0 mb-5">
         <div class="col-12 undermenu d-none d-lg-block"></div>
+        {% include('flash.html.twig') %}
         <div class="col-12 row align-self-baseline justify-content-center p-0">
             <div class="img-fluid col-12 img-trick-main row justify-content-center align-items-center"
                  style="{% if trick.mainMedia.url is defined  %}

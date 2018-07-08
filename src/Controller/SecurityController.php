@@ -30,6 +30,8 @@ class SecurityController extends Controller
      * @Route("/logout", name="logout")
      */
     public function logout(){
+        $this->addFlash('success','Vous êtes maintenant déconnecté !');
+
         $this->redirectToRoute('home');
     }
 }
