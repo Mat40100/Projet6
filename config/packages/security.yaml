@@ -4,7 +4,6 @@ security:
         db_provider:
             entity:
                 class: App\Entity\User
-                property: username
     encoders:
         App\Entity\User:
             algorithm: bcrypt
@@ -39,3 +38,6 @@ security:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/add , roles: ROLE_USER}
          - { path: ^/delete , roles: ROLE_USER}
+         - { path: ^/videodel , roles: ROLE_USER}
+         - { path: ^/mediadel , roles: ROLE_USER}
+         - { path: ^/addcomment , roles: ROLE_USER}
