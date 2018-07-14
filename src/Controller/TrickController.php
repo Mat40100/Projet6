@@ -11,8 +11,6 @@ use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,42 +58,31 @@ class TrickController extends Controller
     }
 
     /**
-     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/view/{trick}-{slug}",name="view")
      */
-    public function viewTrick(Trick $trick, AuthorizationCheckerInterface $authChecker)
+    public function viewTrick(Request $request, Trick $trick)
     {
+        $em = $this->getDoctrine()->getManager();
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class,$comment);
 
-        $author = $trick->getAuthor();
-        $comments = $trick->getComments();
-        $medias = $trick->getMedias();
-        $videos = $trick->getVideos();
+        if($request->isMethod('POST')){
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid()){
+                $comment->setAuthor($this->getUser());
+                $trick->addComment($comment);
+                $em->persist($trick);
+                $em->flush();
 
-
-        if ($authChecker->isGranted('ROLE_USER')){
-            $comment = new Comment();
-            $form = $this->createForm(CommentType::class,$comment, array(
-                'action' => $this->generateUrl('addcomment'),
-            ));
-            $form->add('id',HiddenType::class, array('data'=>$trick->getId(), 'mapped' => false));
-
-            return $this->render('trick/view.html.twig',[
-                "trick" => $trick,
-                "author" => $author,
-                "comments" => $comments,
-                "medias" => $medias,
-                'videos' => $videos,
-                'form' => $form->createView()
-            ]);
+                $comment = new Comment();
+                $form = $this->createForm(CommentType::class,$comment);
+            }
         }
 
         return $this->render('trick/view.html.twig',[
             "trick" => $trick,
-            "author" => $author,
-            "comments" => $comments,
-            "medias" => $medias,
-            'videos' => $videos
+            'form' => isset($form) ? $form->createView() : null,
         ]);
     }
 
@@ -114,7 +101,7 @@ class TrickController extends Controller
         if($request->isMethod('POST')){
             $form->handleRequest($request);
             if($form->isValid()){
-                if($repo->findOneBy(['name' => $trick->getName()])!= null){
+                if($repo->findOneBy(['name' => $trick->getName()])){
                     $this->addFlash('warning','Ce trick est déjà existant');
 
                     return $this->render('trick/Forms/addTrickForm.html.twig', [
@@ -122,18 +109,6 @@ class TrickController extends Controller
                     ]);
                 }
 
-                foreach($form['medias']->getData() as $key => $value){
-                    if($value->getFile() === null ){
-                        $this->addFlash('warning','L\'image n\'etait pas au bon format, et n\'a pas été enregistrée');
-                        $trick->removeMedia($value);
-                    }
-                }
-                foreach($form['videos']->getData() as $key => $value){
-                    if($value->getUrl() === null ){
-                        $this->addFlash('warning','La vidéo n\'etait pas au bon format, et n\'a pas été enregistrée');
-                        $trick->removeVideo($value);
-                    }
-                }
                 $trick->setDate(new \DateTime());
                 $trick->setAuthor($this->getUser());
                 $em = $this->getDoctrine()->getManager();
@@ -152,7 +127,6 @@ class TrickController extends Controller
     }
 
     /**
-     * @param Request $request
      * @Route("/delete/{trick}" ,name="delete")
      * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -261,7 +235,7 @@ class TrickController extends Controller
                 'number' => $numberToLoad,
                 'tricksLeft' => $tricksLeft
             ]);
-        }
+    }
 
         return false;
     }

@@ -61,6 +61,7 @@ class Trick
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="App\Entity\MediaVideo", mappedBy="trick", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $videos;
 
@@ -74,6 +75,7 @@ class Trick
     /**
      * @ORM\Column(type="text")
      * @Assert\Type("string")
+     * @Assert\NotBlank()
      */
     private $description;
 
