@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class MediaController extends Controller
 {
     /**
+     * @param Media $media
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/mediaDel/{media}", name="mediaDel")
      */
     public function MediaDel(Media $media)
@@ -30,6 +32,8 @@ class MediaController extends Controller
 
     /**
      * @Route("/videoDel/{video}", name="videoDel")
+     * @param MediaVideo $video
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function VideoDel(MediaVideo $video){
 

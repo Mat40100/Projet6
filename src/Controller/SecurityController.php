@@ -13,17 +13,19 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends Controller
 {
     /**
+     * @return array
      * @Route("/login", name="login")
+     * @Template("Security/login.html.twig")
      */
     public function login(Request $request, AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUserName = $authenticationUtils->getLastUsername();
 
-        return $this->render('Security/login.html.twig', array([
+        return array([
             'lastUserName' => $lastUserName,
             'error' => $error
-        ]));
+        ]);
     }
 
     /**

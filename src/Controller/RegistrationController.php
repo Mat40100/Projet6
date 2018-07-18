@@ -17,8 +17,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class RegistrationController extends Controller
 {
     /**
-     * @Route("/register", name="register")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
+     * @Template("registration/register.html.twig")
      * @throws \Exception
+     * @Route("/register", name="register")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -32,10 +36,8 @@ class RegistrationController extends Controller
                 if($repo->findOneBy(['username'=>$user->getUsername()])!=null || $repo->findOneBy(['email'=>$user->getEmail()])!=null){
                     $this->addFlash('warning','Mail ou Utilisateur déjà existant');
 
-                    return $this->render(
-                        'registration/register.html.twig', array(
-                            'form' => $form->createView()
-                        )
+                    return array(
+                        'form' => $form->createView()
                     );
                 }
                 $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
@@ -48,23 +50,22 @@ class RegistrationController extends Controller
                 $em->persist($user);
                 $em->flush();
 
-                $this->addFlash('success','Votre compte a été enregistrer!');
+                $this->addFlash('success','Votre compte a été enregistré!');
 
                 return $this->redirectToRoute('home');
             }
         }
 
-        return $this->render(
-            'registration/register.html.twig', array(
-                'form' => $form->createView()
-            )
+        return array(
+            'form' => $form->createView()
         );
     }
 
     /**
      * @param Request $request
      * @param \Swift_Mailer $mailer
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
+     * @Template("registration/forgotten.html.twig")
      * @Route("/recovery", name="recovery")
      */
     public function passwordRecovery(Request $request, \Swift_Mailer $mailer)
@@ -78,7 +79,9 @@ class RegistrationController extends Controller
                 if($em->findOneBy(['username'=>$form->getData()['username']])==null){
                     $this->addFlash('warning','This username doesn\'t exists');
 
-                    return $this->render('registration/forgotten.html.twig',array('form'=>$form->createView()));
+                    return array(
+                        'form'=>$form->createView()
+                    );
                 }
                 $username =  $form->getData()['username'];
                 $user = $em->findOneBy(['username' => $username]);
@@ -98,18 +101,23 @@ class RegistrationController extends Controller
                 $mailer->send($message);
 
                 $this->addFlash('success','Un e-mail pour creer un nouveau mot de passe a été envoyé !');
+
                 return $this->redirectToRoute('home');
             }
         }
-        return $this->render('registration/forgotten.html.twig',array('form'=>$form->createView()));
+
+        return array(
+            'form'=>$form->createView()
+        );
     }
 
     /**
      * @param $token
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @return Response
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Exception
+     * @Template("registration/forgotten.html.twig")
      * @Route("token/{token}", name="recoveryToken", requirements={"token"="[a-zA-Z0-9]*"})
      */
     public function tokenRecovery($token, Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -151,7 +159,9 @@ class RegistrationController extends Controller
 
         $form = $this->createForm(NewPasswordType::class, $user);
 
-        return $this->render('registration/forgotten.html.twig',array('form'=>$form->createView()));
+        return array(
+            'form'=>$form->createView()
+        );
     }
 
 }

@@ -12,6 +12,7 @@ use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -26,9 +27,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TrickController extends Controller
 {
-
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array
+     * @Template("base.html.twig")
      * @Route("/", name="home")
      */
     public function index()
@@ -50,15 +51,18 @@ class TrickController extends Controller
 
         $tricks = array_slice($tricks,0,$numberToLoad);
 
-        return $this->render('trick/index/index.html.twig', [
+        return array(
             'tricks' => $tricks,
             'number' => 10,
             'tricksLeft' => $tricksLeft
-        ]);
+        );
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @param Trick $trick
+     * @return array
+     * @Template("trick/view.html.twig")
      * @Route("/view/{trick}-{slug}",name="view")
      */
     public function viewTrick(Request $request, Trick $trick)
@@ -80,17 +84,18 @@ class TrickController extends Controller
             }
         }
 
-        return $this->render('trick/view.html.twig',[
+        return array(
             "trick" => $trick,
             'form' => isset($form) ? $form->createView() : null,
-        ]);
+        );
     }
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @Template("'trick/Forms/addTrickForm.html.twig")
      * @Route("/add",name="add")
      * @Security("has_role('ROLE_USER')")
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function addTrick(Request $request)
     {
@@ -104,9 +109,9 @@ class TrickController extends Controller
                 if($repo->findOneBy(['name' => $trick->getName()])){
                     $this->addFlash('warning','Ce trick est déjà existant');
 
-                    return $this->render('trick/Forms/addTrickForm.html.twig', [
+                    return array(
                         'form' => $form->createView()
-                    ]);
+                    );
                 }
 
                 $trick->setDate(new \DateTime());
@@ -121,15 +126,18 @@ class TrickController extends Controller
             }
         }
 
-        return $this->render('trick/Forms/addTrickForm.html.twig', [
+        return array(
             'form' => $form->createView()
-        ]);
+        );
     }
 
     /**
+     * @param Request $request
+     * @param Trick $trick
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/delete/{trick}" ,name="delete")
      * @Security("has_role('ROLE_USER')")
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Template('trick/Forms/deleteTrickForm.html.twig)
      */
     public function deleteTrick(Request $request, Trick $trick)
     {
@@ -153,17 +161,18 @@ class TrickController extends Controller
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('trick/Forms/deleteForm.html.twig', [
+        return array(
             'form' => $form->createView(),
             'trick' => $trick
-        ]);
+        );
     }
 
     /**
      * @param Request $request
      * @param Trick $trick
-     * @return Response
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("modify/{trick}", name="modify")
+     * @Template("trick/forms/modTrick.html.twig")
      */
     public function modifyTrick(Request $request, Trick $trick)
     {
@@ -196,18 +205,19 @@ class TrickController extends Controller
             ));
         }
 
-        return $this->render('trick/Forms/modTrick.html.twig', array(
+        return array(
             'form' => $form->createView(),
             'videos'=> $videos,
             'medias' => $medias,
             'trick' => $trick
-        ));
+        );
     }
 
     /**
      * @param Request $request
-     * @return bool|Response
-     * @Route("loadmore", name="loadmore")
+     * @return bool|array
+     * @Route("loadore", name="loadMore")
+     * @Template("trick/index/loadMore.html.twig")
      */
     public function loadMore(Request $request)
     {
@@ -230,11 +240,11 @@ class TrickController extends Controller
 
             $tricks = array_slice($tricks,0,$numberToLoad);
 
-            return $this->render('trick/index/loadmore.html.twig', [
+            return array(
                 'tricks' => $tricks,
                 'number' => $numberToLoad,
                 'tricksLeft' => $tricksLeft
-            ]);
+            );
     }
 
         return false;
