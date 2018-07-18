@@ -30,13 +30,13 @@
                         {% for media in medias %}
                             <li>
                                 <a class="col-auto" href="{{  asset(media.url) }}">{{ media.alt }}</a>
-                                <a href="{{ path('mediaDel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{ path('app_media_mediadel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
                             </li>
                         {% endfor %}
                         {% for video in videos %}
                             <li>
                                 <a class="col-auto" href="{{ video.url }}">{{ video.type }}</a>
-                                <a href="{{ path('videoDel', {'video':video.id }) }}"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{ path('app_media_videodel', {'video':video.id }) }}"><i class="far fa-trash-alt"></i></a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -46,7 +46,7 @@
                         <div class="img-fluid col-3 row justify-content-center m-3">
                             <img class="vignettes" src="{{ asset(media.url) }}" alt="{{ media.alt }}">
                             <div class="col-12 row justify-content-center">
-                                <a href="{{ path('mediaDel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{ path('app_media_mediadel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
                             </div>
                         </div>
                     {% endfor %}
@@ -54,7 +54,7 @@
                         <div class="img-fluid col-3 row justify-content-center m-3">
                             {{ video.video()|raw }}
                             <div class="col-12 row justify-content-center">
-                                <a href="{{ path('videoDel', {'video':video.id }) }}"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{ path('app_media_videodel', {'video':video.id }) }}"><i class="far fa-trash-alt"></i></a>
                             </div>
                         </div>
                     {% endfor %}

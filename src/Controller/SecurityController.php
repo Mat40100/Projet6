@@ -14,27 +14,26 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends Controller
 {
     /**
-     * @return array
-     * @Route("/login", name="login")
-     * @Template("Security/login.html.twig")
+     * @Route("/login")
+     * @Template()
      */
     public function login(Request $request, AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUserName = $authenticationUtils->getLastUsername();
 
-        return array([
+        return [
             'lastUserName' => $lastUserName,
             'error' => $error
-        ]);
+        ];
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout")
      */
     public function logout(){
         $this->addFlash('success','Vous êtes maintenant déconnecté !');
 
-        $this->redirectToRoute('home');
+        $this->redirectToRoute('app_trick_index');
     }
 }

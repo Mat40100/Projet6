@@ -4,7 +4,7 @@
         $(function() {
             $('#loadMore').click(function() {
                 $.ajax({
-                    url : '{{ path('loadmore') }}',
+                    url : '{{ path('app_trick_loadmore') }}',
                     dataType : 'html',
                     type: 'GET',
                     data: {
@@ -17,7 +17,7 @@
                         $('#Tricks').html(code_html)
                     },
                     error : function(resultat, statut, erreur){
-                        alert('non ok')
+                        console.log(resultat)
                     }
                 });
             })

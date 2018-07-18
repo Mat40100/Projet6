@@ -7,14 +7,14 @@
 {% endblock %}
 
 {% block body %}
-    {% if error is defined %}
+    {% if error is not null %}
         <div>{{ error.messageKey|trans(error.messageData,'security') }}</div>
     {% endif %}
 
 
 <section class="row justify-content-center align-items-center">
 
-    <form action="{{ path('login') }}" method="post" class="row justify-content-center">
+    <form action="{{ path('app_security_login') }}" method="post" class="row justify-content-center">
         <h3 class="col-12 text-center">Registration</h3>
         <div class="col-6 form-row align-items-center justify-content-center">
             <div class="col-12">
@@ -35,10 +35,10 @@
                 <button type="submit" class="btn btn-primary mb-2">Submit</button>
             </div>
             <div class="col-12 row justify-content-center">
-                <a href="{{ path('recovery') }}">Forgot password?</a>
+                <a href="{{ path('app_registration_passwordforgotten') }}">Forgot password?</a>
             </div>
             <div class="col-12 row justify-content-center">
-                <a href="{{ path('register') }}">Create account</a>
+                <a href="{{ path('app_registration_register') }}">Create account</a>
             </div>
         </div>
     </form>

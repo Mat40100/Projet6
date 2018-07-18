@@ -14,14 +14,14 @@
                      {% endif %}
                              "></div>
                 <div class="link-tricks align-self-end col-12 text-center align-items-center row">
-                    <a class="col-12" href="{{ path('view', {'trick':trick.id,'slug':trick.name|slugify}) }}">{{ trick.name }}</a>
+                    <a class="col-12" href="{{ path('app_trick_view', {'trick':trick.id,'slug':trick.name|slugify}) }}">{{ trick.name }}</a>
                 </div>
             </div>
         </div>
     {%  endfor %}
 
-    {% include('trick/index/loadMoreButton.html.twig') %}
+    {% include('trick/loadMoreButton.html.twig') %}
 
     {% block js %}
-        {% include('trick/index/indexAjax.html.twig') %}
+        {% include('trick/indexAjax.html.twig') %}
     {% endblock %}

@@ -21,16 +21,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Class TrickController
- * @package App\Controller
- */
 class TrickController extends Controller
 {
     /**
-     * @return array
-     * @Template("trick/index/index.html.twig")
-     * @Route("/", name="home")
+     * @Template()
+     * @Route("/")
      */
     public function index()
     {
@@ -51,21 +46,18 @@ class TrickController extends Controller
 
         $tricks = array_slice($tricks,0,$numberToLoad);
 
-        return array(
+        return [
             'tricks' => $tricks,
             'number' => 10,
             'tricksLeft' => $tricksLeft
-        );
+        ];
     }
 
     /**
-     * @param Request $request
-     * @param Trick $trick
-     * @return array
-     * @Template("trick/view.html.twig")
-     * @Route("/view/{trick}-{slug}",name="view")
+     * @Template()
+     * @Route("/view/{trick}-{slug}")
      */
-    public function viewTrick(Request $request, Trick $trick)
+    public function view(Request $request, Trick $trick)
     {
         $em = $this->getDoctrine()->getManager();
         $comment = new Comment();
@@ -84,20 +76,18 @@ class TrickController extends Controller
             }
         }
 
-        return array(
+        return [
             "trick" => $trick,
             'form' => isset($form) ? $form->createView() : null,
-        );
+        ];
     }
 
     /**
-     * @param Request $request
-     * @Template("'trick/Forms/addTrickForm.html.twig")
-     * @Route("/add",name="add")
+     * @Template()
+     * @Route("/add")
      * @Security("has_role('ROLE_USER')")
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function addTrick(Request $request)
+    public function add(Request $request)
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class,$trick);
@@ -122,24 +112,21 @@ class TrickController extends Controller
 
                 $this->addFlash('success','Votre nouveau Trick est bien enregistré!');
 
-                return $this->redirectToRoute('view',array('trick' => $trick->getId(),"slug"=>$trick->getName()));
+                return $this->redirectToRoute('app_trick_view',array('trick' => $trick->getId(),"slug"=>$trick->getName()));
             }
         }
 
-        return array(
+        return [
             'form' => $form->createView()
-        );
+        ];
     }
 
     /**
-     * @param Request $request
-     * @param Trick $trick
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @Route("/delete/{trick}" ,name="delete")
+     * @Route("/delete/{trick}")
      * @Security("has_role('ROLE_USER')")
-     * @Template("trick/Forms/deleteTrickForm.html.twig")
+     * @Template()
      */
-    public function deleteTrick(Request $request, Trick $trick)
+    public function delete(Request $request, Trick $trick)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -158,23 +145,20 @@ class TrickController extends Controller
 
             $this->addFlash('success','Le trick a été supprimé!');
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_trick_index');
         }
 
-        return array(
+        return [
             'form' => $form->createView(),
             'trick' => $trick
-        );
+        ];
     }
 
     /**
-     * @param Request $request
-     * @param Trick $trick
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route("modify/{trick}", name="modify")
-     * @Template("trick/forms/modTrick.html.twig")
+     * @Route("modify/{trick}")
+     * @Template()
      */
-    public function modifyTrick(Request $request, Trick $trick)
+    public function modify(Request $request, Trick $trick)
     {
         $em = $this->getDoctrine()->getManager();
         $medias = $trick->getMedias();
@@ -193,60 +177,58 @@ class TrickController extends Controller
 
                 $this->addFlash('success','Le trick a été modifié!');
 
-                return $this->redirectToRoute('view',array('trick'=>$trick->getId(), 'slug'=> $trick->getName()));
+                return $this->redirectToRoute('app_trick_view',array('trick'=>$trick->getId(), 'slug'=> $trick->getName()));
             }
             $this->addFlash('danger','Un problème est survenu pendant l\'enregistrement du trick :(');
 
-            return $this->render('trick/Forms/modTrick.html.twig', array(
+            return [
                 'form' => $form->createView(),
                 'videos'=> $videos,
                 'medias' => $medias,
                 'trick' => $trick
-            ));
+            ];
         }
 
-        return array(
+        return [
             'form' => $form->createView(),
             'videos'=> $videos,
             'medias' => $medias,
             'trick' => $trick
-        );
+        ];
     }
 
     /**
-     * @param Request $request
-     * @return bool|array
-     * @Route("loadMore", name="loadmore")
-     * @Template("trick/index/loadMore.html.twig")
+     * @Route("loadMore")
+     * @Template()
      */
     public function loadMore(Request $request)
     {
-        if($request->isXmlHttpRequest()) {
-            $numberToLoad = $request->get('tricksNumber');
-            $tricksLeft = true;
+        if (!$request->isXmlHttpRequest()) {
+            return false;
+        }
 
-            $tricks = $this->getDoctrine()
-                ->getRepository(Trick::class)
-                ->findBy([], array('date' => 'desc'));
+        $numberToLoad = $request->get('tricksNumber');
+        $tricksLeft = true;
 
-            $tricksNumber = count($tricks);
-            $numberToLoad = $numberToLoad + 5;
+        $tricks = $this->getDoctrine()
+            ->getRepository(Trick::class)
+            ->findBy([], array('date' => 'desc'));
 
-            if ($numberToLoad>=$tricksNumber) {
-                $numberToLoad = $tricksNumber;
-                $tricksLeft = false;
-            }
+        $tricksNumber = count($tricks);
+        $numberToLoad = $numberToLoad + 5;
+
+        if ($numberToLoad >= $tricksNumber) {
+            $numberToLoad = $tricksNumber;
+            $tricksLeft = false;
+        }
 
 
-            $tricks = array_slice($tricks,0,$numberToLoad);
+        $tricks = array_slice($tricks, 0, $numberToLoad);
 
-            return array(
-                'tricks' => $tricks,
-                'number' => $numberToLoad,
-                'tricksLeft' => $tricksLeft
-            );
-    }
-
-        return false;
+        return [
+            'tricks' => $tricks,
+            'number' => $numberToLoad,
+            'tricksLeft' => $tricksLeft
+        ];
     }
 }

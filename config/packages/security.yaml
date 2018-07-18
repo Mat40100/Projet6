@@ -17,11 +17,11 @@ security:
             pattern: ^/
             anonymous: ~
             form_login:
-                login_path: login
-                check_path: login
+                login_path: app_security_login
+                check_path: app_security_login
                 csrf_token_generator: security.csrf.token_manager
             logout:
-                path:                 /logout
+                path:                 app_security_logout
                 target:               /
 
             # activate different ways to authenticate

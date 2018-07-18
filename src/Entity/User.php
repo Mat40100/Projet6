@@ -90,6 +90,12 @@ class User implements UserInterface, \Serializable
         $this->isActive = true;
         $this->tricks = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->generateToken();
+    }
+
+    public function generateToken()
+    {
+        $this->setRecoveryToken(hash('sha256',random_bytes(10)));
     }
 
     public function getId()

@@ -14,18 +14,21 @@
                     </li>
                     {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/add">Add a new tricks</a>
+                            <a class="nav-link" href="{{ path('app_user_account') }}">Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_trick_add') }}">Add a new tricks</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="/logout">Disconnect</a>
+                            <a class="nav-link" href="{{ path('app_security_logout') }}">Disconnect</a>
                         </li>
                     {% endif %}
                     {% if not is_granted('ROLE_USER') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/register">Sign up</a>
+                            <a class="nav-link" href="{{ path('app_registration_register') }}">Sign up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">Sign in</a>
+                            <a class="nav-link" href="{{ path('app_security_login') }}">Sign in</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -35,22 +38,22 @@
 
     <div class="menu navbar fixed-bottom d-lg-none justif-content-around align-items-cente row bg-light">
         <div class="bg-black col-3 text-center">
-            <a href="{{ path('home') }}"><i class="fas fa-home"></i></a>
+            <a href="{{ path('app_trick_index') }}"><i class="fas fa-home"></i></a>
         </div>
         {% if is_granted('ROLE_USER') %}
         <div class="bg-black col-3 text-center">
-            <a href="{{ path('add') }}"><i class="fas fa-plus"></i></a>
+            <a href="{{ path('app_trick_add') }}"><i class="fas fa-plus"></i></a>
         </div>
         <div class="bg-black col-3 text-center">
-            <a href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+            <a href="{{ path('app_security_logout') }}"><i class="fas fa-sign-out-alt"></i></a>
         </div>
         {% endif %}
         {% if not is_granted('ROLE_USER') %}
         <div class="bg-black col-3 text-center">
-            <a href="{{ path('login') }}"><i class="fas fa-sign-in-alt"></i></a>
+            <a href="{{ path('app_security_login') }}"><i class="fas fa-sign-in-alt"></i></a>
         </div>
         <div class="bg-black col-3 text-center">
-            <a href="{{ path('register') }}"><i class="fas fa-user-plus"></i></a>
+            <a href="{{ path('app_registration_register') }}"><i class="fas fa-user-plus"></i></a>
         </div>
         {% endif %}
     </div>

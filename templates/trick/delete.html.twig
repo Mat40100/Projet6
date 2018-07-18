@@ -4,8 +4,8 @@
 {% block body %}
 <div class="col-12 row justify-content-center align-items-center">
     <h3 class="col-12 text-center">Vous allez supprimer l'article << {{ trick.name }} >>, êtes vous sur?</h3>
-    <form class="col-12 row justify-content-center align-items-center" action="{{ path('delete', {'trick': trick.id}) }}" method="post">
-        <a href="{{ path('view', {'trick': trick.id , 'slug': trick.name}) }}" class="btn btn-default">
+    <form class="col-12 row justify-content-center align-items-center" action="{{ path('app_trick_delete', {'trick': trick.id}) }}" method="post">
+        <a href="{{ path('app_trick_view', {'trick': trick.id , 'slug': trick.name}) }}" class="btn btn-default">
             <i class="glyphicon glyphicon-chevron-left"></i>
             Retour à l'annonce
         </a>

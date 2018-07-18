@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\NewPasswordType;
 use App\Form\RecoveryType;
 use App\Form\UserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -18,34 +19,28 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class RegistrationController extends Controller
 {
     /**
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
-     * @Template("registration/register.html.twig")
-     * @throws \Exception
-     * @Route("/register", name="register")
+     * @Template()
+     * @Route("/register")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
-        $repo = $this->getDoctrine()->getRepository(User::class);
 
-        if($request->isMethod('POST')){
+        if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if($form->isValid()){
+                $repo = $this->getDoctrine()->getRepository(User::class);
                 if($repo->findOneBy(['username'=>$user->getUsername()])!=null || $repo->findOneBy(['email'=>$user->getEmail()])!=null){
                     $this->addFlash('warning','Mail ou Utilisateur déjà existant');
 
-                    return array(
+                    return [
                         'form' => $form->createView()
-                    );
+                    ];
                 }
                 $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
                 $user->setRoles('ROLE_USER');
-                $randomNum = random_bytes(10);
-                $user->setRecoveryToken(hash('sha256',$randomNum));
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
@@ -53,23 +48,20 @@ class RegistrationController extends Controller
 
                 $this->addFlash('success','Votre compte a été enregistré!');
 
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('app_trick_index');
             }
         }
 
-        return array(
+        return [
             'form' => $form->createView()
-        );
+        ];
     }
 
     /**
-     * @param Request $request
-     * @param \Swift_Mailer $mailer
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
-     * @Template("registration/forgotten.html.twig")
-     * @Route("/recovery", name="recovery")
+     * @Template()
+     * @Route("/recovery")
      */
-    public function passwordRecovery(Request $request, \Swift_Mailer $mailer)
+    public function passwordForgotten(Request $request, \Swift_Mailer $mailer)
     {
         $form = $this->createForm(RecoveryType::class);
         $em = $this->getDoctrine()->getRepository(User::class);
@@ -77,12 +69,12 @@ class RegistrationController extends Controller
         if($request->isMethod('POST')){
             $form->handleRequest($request);
             if($form->isValid()){
-                if($em->findOneBy(['username'=>$form->getData()['username']])==null){
+                if ($em->findOneBy(['username'=>$form->getData()['username']]) === null){
                     $this->addFlash('warning','This username doesn\'t exists');
 
-                    return array(
+                    return [
                         'form'=>$form->createView()
-                    );
+                    ];
                 }
                 $username =  $form->getData()['username'];
                 $user = $em->findOneBy(['username' => $username]);
@@ -103,66 +95,44 @@ class RegistrationController extends Controller
 
                 $this->addFlash('success','Un e-mail pour creer un nouveau mot de passe a été envoyé !');
 
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('app_trick_index');
             }
         }
 
-        return array(
+        return [
             'form'=>$form->createView()
-        );
+        ];
     }
 
     /**
-     * @param $token
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \Exception
-     * @Template("registration/forgotten.html.twig")
-     * @Route("token/{token}", name="recoveryToken", requirements={"token"="[a-zA-Z0-9]*"})
+     * @Template("registration/password_forgotten.html.twig")
+     * @Route("token/{token}", requirements={"token"="[a-zA-Z0-9]*"})
+     * @ParamConverter("user", options={"mapping": {"recovery_token" : "token"} })
      */
-    public function tokenRecovery($token, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function tokenRecovery(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = new User();
-        $form = $this->createForm(NewPasswordType::class,$user);
+        $form = $this->createForm(NewPasswordType::class);
 
         if($request->isMethod('POST')){
             $form->handleRequest($request);
             if($form->isValid()){
-                $userToUpdate = $em->getRepository(User::class)
-                    ->findOneBy(['recoveryToken' => $user->getRecoveryToken()]);
+                $password = $passwordEncoder->encodePassword($user, $form->get('plainPassword')->getData());
+                $user->setPassword($password);
+                $user->generateToken();
 
-                $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-                $userToUpdate->setPassword($password);
-
-                $randomNum = random_bytes(10);
-                $userToUpdate->setRecoveryToken(hash('sha256',$randomNum));
-
-                $em->persist($userToUpdate);
                 $em->flush();
 
                 $this->addFlash('success','Le mot de passe à été réinitialisé');
 
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('app_trick_index');
             }
             $this->addFlash('warning','Les mots de passe doivent correspondre');
         }
 
-        $user = $em->getRepository(User::class)
-            ->findOneBy(['recoveryToken' => $token]);
-
-        if($user == null ){
-            $this->addFlash('danger','Ce token n\'éxiste pas');
-
-            return $this->redirectToRoute('home');
-        }
-
-        $form = $this->createForm(NewPasswordType::class, $user);
-
-        return array(
+        return [
             'form'=>$form->createView()
-        );
+        ];
     }
 
 }

@@ -17,7 +17,6 @@ class NewPasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('recoveryToken', HiddenType::class)
             ->add('plainPassword', RepeatedType::class,array(
                 'type'=> PasswordType::class,
                 'invalid_message' => 'Password must match',
@@ -26,12 +25,5 @@ class NewPasswordType extends AbstractType
             ))
             ->add('save', SubmitType::class)
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
     }
 }

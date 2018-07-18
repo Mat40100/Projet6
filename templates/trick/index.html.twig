@@ -29,7 +29,7 @@
                          {% endif %}
                                  "></div>
                     <div class="link-tricks justify-content-center align-self-end col-12 text-center align-items-center row">
-                        <a class="col-auto" href="{{ path('view', {'trick':trick.id,'slug':trick.name|slugify}) }}">{{ trick.name }}</a>
+                        <a class="col-auto" href="{{ path('app_trick_view', {'trick':trick.id,'slug':trick.name|slugify}) }}">{{ trick.name }}</a>
                         {% if is_granted('ROLE_USER') %}
                                 <a href="/delete/{{ trick.id }}"><i class="far fa-trash-alt m-1"></i></a>
                                 <a href="/modify/{{ trick.id }}"><i class="fas fa-pencil-alt m-1"></i></a>
@@ -39,10 +39,10 @@
             </div>
         {%  endfor %}
 
-        {% include('trick/index/loadMoreButton.html.twig') %}
+        {% include('trick/loadMoreButton.html.twig') %}
     </section>
 {% endblock %}
 
 {% block js %}
-    {% include('trick/index/indexAjax.html.twig') %}
+    {% include('trick/indexAjax.html.twig') %}
 {% endblock %}
