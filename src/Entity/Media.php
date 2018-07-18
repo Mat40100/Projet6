@@ -41,6 +41,9 @@ class Media
      */
     private $extension;
 
+    /**
+     * @Assert\NotNull()
+     */
     private $file;
     private $tempFilename;
 

@@ -24,6 +24,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
+     * @Assert\Type("string", length=100)
      */
     private $username;
 
@@ -40,16 +41,21 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Email(
+     *     checkMX = true
+     * )
      */
     private $email;
 
