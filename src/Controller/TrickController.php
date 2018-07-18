@@ -29,7 +29,7 @@ class TrickController extends Controller
 {
     /**
      * @return array
-     * @Template("base.html.twig")
+     * @Template("trick/index/index.html.twig")
      * @Route("/", name="home")
      */
     public function index()
@@ -137,7 +137,7 @@ class TrickController extends Controller
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/delete/{trick}" ,name="delete")
      * @Security("has_role('ROLE_USER')")
-     * @Template('trick/Forms/deleteTrickForm.html.twig)
+     * @Template("trick/Forms/deleteTrickForm.html.twig")
      */
     public function deleteTrick(Request $request, Trick $trick)
     {
@@ -216,7 +216,7 @@ class TrickController extends Controller
     /**
      * @param Request $request
      * @return bool|array
-     * @Route("loadore", name="loadMore")
+     * @Route("loadMore", name="loadmore")
      * @Template("trick/index/loadMore.html.twig")
      */
     public function loadMore(Request $request)
