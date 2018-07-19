@@ -76,9 +76,13 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", unique=true, nullable=false)
-     * @var string
      */
     private $recoveryToken;
+
+    /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    private $userPicture;
 
     /**
      * @ORM\Column(type="json")

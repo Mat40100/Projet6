@@ -37,6 +37,7 @@ class Media
     private $trick;
 
     /**
+     * @Assert\Regex("/^jpg/")
      * @ORM\Column(type="string")
      */
     private $extension;
@@ -93,9 +94,6 @@ class Media
 
     public function setFile(UploadedFile $file = null)
     {
-        if(!preg_match("#jpeg$|jpg$#",$file->guessExtension())){
-            return null;
-        }
         $this->file = $file;
         $this->setExtension($this->file->guessExtension());
         $this->tempFilename = uniqid();

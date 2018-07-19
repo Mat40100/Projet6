@@ -7,15 +7,17 @@
 {% endblock %}
 
 {% block body %}
-    {% if error is not null %}
-        <div>{{ error.messageKey|trans(error.messageData,'security') }}</div>
-    {% endif %}
-
 
 <section class="row justify-content-center align-items-center">
 
     <form action="{{ path('app_security_login') }}" method="post" class="row justify-content-center">
         <h3 class="col-12 text-center">Registration</h3>
+        {% if error is not null %}
+            <div class="col-12 row justify-content-center p-2">
+               {# <div class="col-6 alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div> #}
+                <div class="col-6 alert-danger rounded text-center">Login and/or password are incorrect</div>
+            </div>
+        {% endif %}
         <div class="col-6 form-row align-items-center justify-content-center">
             <div class="col-12">
                 <label class="sr-only" for="inlineFormInput">Username</label>

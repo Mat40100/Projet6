@@ -107,7 +107,7 @@ class RegistrationController extends Controller
     /**
      * @Template("registration/password_forgotten.html.twig")
      * @Route("token/{token}", requirements={"token"="[a-zA-Z0-9]*"})
-     * @ParamConverter("user", options={"mapping": {"recovery_token" : "token"} })
+     * @ParamConverter("user", options={"mapping": {"token": "recoveryToken"}})
      */
     public function tokenRecovery(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder)
     {
