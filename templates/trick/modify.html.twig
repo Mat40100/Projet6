@@ -27,13 +27,13 @@
                 <div id="mediasList" class="d-none row col-12 justify-content-center align-items-center">
                     <h4>Liens multimédias :</h4>
                     <ul>
-                        {% for media in medias %}
+                        {% for media in trick.medias %}
                             <li>
                                 <a class="col-auto" href="{{  asset(media.url) }}">{{ media.alt }}</a>
                                 <a href="{{ path('app_media_mediadel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
                             </li>
                         {% endfor %}
-                        {% for video in videos %}
+                        {% for video in trick.videos %}
                             <li>
                                 <a class="col-auto" href="{{ video.url }}">{{ video.type }}</a>
                                 <a href="{{ path('app_media_videodel', {'video':video.id }) }}"><i class="far fa-trash-alt"></i></a>
@@ -42,7 +42,7 @@
                     </ul>
                 </div>
                 <div class="col-12 d-none d-lg-flex row justify-content-around align-items-center">
-                    {% for media in medias %}
+                    {% for media in trick.medias %}
                         <div class="img-fluid col-3 row justify-content-center m-3">
                             <img class="vignettes" src="{{ asset(media.url) }}" alt="{{ media.alt }}">
                             <div class="col-12 row justify-content-center">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     {% endfor %}
-                    {% for video in videos %}
+                    {% for video in trick.videos %}
                         <div class="img-fluid col-3 row justify-content-center m-3">
                             {{ video.video()|raw }}
                             <div class="col-12 row justify-content-center">

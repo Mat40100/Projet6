@@ -37,7 +37,7 @@ class Media
     private $trick;
 
     /**
-     * @Assert\Regex("/^jpg/")
+     * @Assert\Regex("/^jpg|jpeg/")
      * @ORM\Column(type="string")
      */
     private $extension;

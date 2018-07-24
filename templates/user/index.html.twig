@@ -1,8 +1,38 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/account.css') }}" />
+{% endblock %}
+
 {% block body %}
-    {{ user.firstName }}
-    {{ user.lastName }}
-    {{ user.username }}
-    {{ if user. }}
+    {% include('flash.html.twig') %}
+
+    <section class="row col-9 justify-content-center align-items-center p-0 m-0 mb-5">
+
+        {% if user.picture is not null %}
+            <div class="col-12 text-center justify-content-center">
+                <img class="user-picture rounded-circle p-0" src="{{ asset(user.picture.url) }}" alt="{{ user.picture.alt }}">
+            </div>
+            <div class="col-12 text-center justify-content-center">
+                <a href="{{ path('app_user_delpicture') }}">Supprimer la photo</a>
+                <a href="{{ path('app_user_addpicture') }}">Modifier une photo</a>
+            </div>
+        {% else %}
+            <div class="col-12 text-center justify-content-center">
+                <a href="{{ path('app_user_addpicture') }}">Ajouter une photo</a>
+            </div>
+        {% endif %}
+
+
+        <div class="col-12 text-center">
+            {{ user.firstName }}
+        </div>
+        <div class="col-12 text-center">
+        {{ user.lastName }}
+        </div>
+        <div class="col-12 text-center">
+        {{ user.username }}
+        </div>
+    </section>
+
 {% endblock %}

@@ -80,9 +80,10 @@ class User implements UserInterface, \Serializable
     private $recoveryToken;
 
     /**
-     * @ORM\Column(type="string", unique=true, nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Picture", mappedBy="user")
+     * @Assert\Valid()
      */
-    private $userPicture;
+    private $picture;
 
     /**
      * @ORM\Column(type="json")
@@ -311,18 +312,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getToken(): ?string
-    {
-        return $this->token;
-    }
-
-    public function setToken(string $token): self
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
     public function getRecoveryToken(): ?string
     {
         return $this->recoveryToken;
@@ -335,15 +324,16 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    public function getPicture(): ?Picture
+    {
+        return $this->picture;
+    }
 
+    public function setPicture(?Picture $picture): self
+    {
+        $this->picture = $picture;
 
-    // to delete for prod
-
-    /**
-     * @param mixed $username
-     */
-
-
-
+        return $this;
+    }
 
 }

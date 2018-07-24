@@ -15,6 +15,7 @@ Encore
     // uncomment to define the assets of the project
     .addEntry('index', './assets/css/index.css')
     .addEntry('trick', './assets/css/trick.css')
+    .addEntry('account', './assets/css/account.css')
     .addEntry('addTrickForm', './assets/css/addTrickForm.css')
     .addEntry('layout', './assets/css/layout.css')
     .addEntry('form', './assets/js/form.js')

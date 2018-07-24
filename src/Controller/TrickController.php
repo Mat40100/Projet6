@@ -7,6 +7,7 @@ use App\Entity\Media;
 use App\Entity\Trick;
 use App\Form\CommentType;
 use App\Form\TrickType;
+use App\Services\TrickServices;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\Mapping\Entity;
@@ -87,16 +88,20 @@ class TrickController extends Controller
      * @Route("/add")
      * @Security("has_role('ROLE_USER')")
      */
-    public function add(Request $request)
+    public function add(Request $request, TrickServices $trickServices)
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class,$trick);
         $repo = $this->getDoctrine()->getRepository(Trick::class);
 
         if($request->isMethod('POST')){
+
             $form->handleRequest($request);
+
             if($form->isValid()){
-                if($repo->findOneBy(['name' => $trick->getName()])){
+
+                if($trickServices->isExists($repo, $trick)){
+
                     $this->addFlash('warning','Ce trick est déjà existant');
 
                     return array(
@@ -104,16 +109,15 @@ class TrickController extends Controller
                     );
                 }
 
-                $trick->setDate(new \DateTime());
-                $trick->setAuthor($this->getUser());
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($trick);
-                $em->flush();
+                if ($trickServices->add($this->getUser(),$trick)) {
 
-                $this->addFlash('success','Votre nouveau Trick est bien enregistré!');
+                    $this->addFlash('success','Votre nouveau Trick est bien enregistré!');
 
-                return $this->redirectToRoute('app_trick_view',array('trick' => $trick->getId(),"slug"=>$trick->getName()));
-            }
+                    return $this->redirectToRoute(
+                        'app_trick_view',
+                        array('trick' => $trick->getId(),"slug"=>$trick->getName()));
+                }
+             }
         }
 
         return [
@@ -126,11 +130,8 @@ class TrickController extends Controller
      * @Security("has_role('ROLE_USER')")
      * @Template()
      */
-    public function delete(Request $request, Trick $trick)
+    public function delete(Request $request, Trick $trick, TrickServices $trickServices)
     {
-
-        $em = $this->getDoctrine()->getManager();
-
         if (!$trick) {
             $this->addFlash('danger','Vous essayez de supprimer un trick introuvable ...');
 
@@ -140,9 +141,8 @@ class TrickController extends Controller
         $form = $this->get('form.factory')->create();
 
         if ($request->isMethod('POST')) {
-            $em->remove($trick);
-            $em->flush();
 
+            $trickServices->remove($trick);
             $this->addFlash('success','Le trick a été supprimé!');
 
             return $this->redirectToRoute('app_trick_index');
@@ -160,10 +160,6 @@ class TrickController extends Controller
      */
     public function modify(Request $request, Trick $trick)
     {
-        $em = $this->getDoctrine()->getManager();
-        $medias = $trick->getMedias();
-        $videos = $trick->getVideos();
-
         $form= $this->createForm(TrickType::class, $trick);
         $form->remove('medias');
         $form->remove('videos');
@@ -171,28 +167,24 @@ class TrickController extends Controller
         if($request->isMethod('POST')){
             $form->handleRequest($request);
             if($form->isValid()){
-                $trick->setDateLastMod(new \DateTime());
-                $em->persist($trick);
-                $em->flush();
 
                 $this->addFlash('success','Le trick a été modifié!');
 
-                return $this->redirectToRoute('app_trick_view',array('trick'=>$trick->getId(), 'slug'=> $trick->getName()));
+                return $this->redirectToRoute(
+                    'app_trick_view',
+                    array('trick'=>$trick->getId(), 'slug'=> $trick->getName())
+                );
             }
             $this->addFlash('danger','Un problème est survenu pendant l\'enregistrement du trick :(');
 
             return [
                 'form' => $form->createView(),
-                'videos'=> $videos,
-                'medias' => $medias,
                 'trick' => $trick
             ];
         }
 
         return [
             'form' => $form->createView(),
-            'videos'=> $videos,
-            'medias' => $medias,
             'trick' => $trick
         ];
     }

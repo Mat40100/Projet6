@@ -75,17 +75,17 @@
                 <div class="col-12 row justify-content-center align-items-center">
                     {% for comment in trick.comments %}
                         <div class="col-12 col-md-10 col-lg-9 row p-2 m-2">
-                            <div class="col-auto img-user-comments">
-                                {% if comment.user.image is defined %}
-                                    <img class="col-12" src="{{ comment.user.image }}">
+                            <div class="col-auto img-user-comments justify-content-center row">
+                                {% if comment.author.picture is not null %}
+                                    <img class="rounded-circle user-picture p-0" src="{{ asset(comment.author.picture.url) }}">
                                 {% else %}
-                                    <img class="col-12" src="{{ asset('pics/default-user.png') }}">
+                                    <img class="rounded-circle user-picture p-0" src="{{ asset('uploads/pic/default-user.png') }}">
                                 {% endif %}
                                 <div class="col-12 text-center">{{ comment.author.username }}</div>
                             </div>
 
                             <div class="col row border rounded p-3">
-                                <div class="col-6 text-justify">{{ comment.date|date('d-m-Y h:i') }}</div>
+                                <div class="col-auto text-justify border-bottom">{{ comment.date|date('d-m-Y h:i') }}</div>
                                 <div class="col-12 text-center">{{ comment.content }}</div>
                             </div>
                         </div>

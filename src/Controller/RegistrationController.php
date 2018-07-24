@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\NewPasswordType;
 use App\Form\RecoveryType;
 use App\Form\UserType;
+use App\Services\UserServices;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,31 +23,28 @@ class RegistrationController extends Controller
      * @Template()
      * @Route("/register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function register(Request $request, UserServices $userServices)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
+
             if($form->isValid()){
                 $repo = $this->getDoctrine()->getRepository(User::class);
-                if($repo->findOneBy(['username'=>$user->getUsername()])!=null || $repo->findOneBy(['email'=>$user->getEmail()])!=null){
+
+                if($userServices->isUserExists($repo, $user)){
                     $this->addFlash('warning','Mail ou Utilisateur déjà existant');
 
                     return [
                         'form' => $form->createView()
                     ];
                 }
-                $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-                $user->setPassword($password);
-                $user->setRoles('ROLE_USER');
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
-                $em->flush();
-
-                $this->addFlash('success','Votre compte a été enregistré!');
+                if ($userServices->createUser($user)){
+                    $this->addFlash('success','Votre compte a été enregistré avec succès!');
+                };
 
                 return $this->redirectToRoute('app_trick_index');
             }
@@ -61,42 +59,30 @@ class RegistrationController extends Controller
      * @Template()
      * @Route("/recovery")
      */
-    public function passwordForgotten(Request $request, \Swift_Mailer $mailer)
+    public function passwordForgotten(Request $request, \Swift_Mailer $mailer, UserServices $userServices)
     {
         $form = $this->createForm(RecoveryType::class);
-        $em = $this->getDoctrine()->getRepository(User::class);
+        $repo = $this->getDoctrine()->getRepository(User::class);
 
-        if($request->isMethod('POST')){
-            $form->handleRequest($request);
-            if($form->isValid()){
-                if ($em->findOneBy(['username'=>$form->getData()['username']]) === null){
-                    $this->addFlash('warning','This username doesn\'t exists');
+        $form->handleRequest($request);
 
-                    return [
-                        'form'=>$form->createView()
-                    ];
-                }
-                $username =  $form->getData()['username'];
-                $user = $em->findOneBy(['username' => $username]);
+        if ($form->isSubmitted() && $form->isValid()){
+            $user = new User;
+            $user->setUsername($form->getData()['username']);
 
-                $token = $user->getRecoveryToken();
-                $message =(new \Swift_Message('SnowTricks password recovery'))
-                    ->setFrom('mathieu.dolhen@gmail.com')
-                    ->setTo($user->getEmail())
-                    ->setBody(
-                        $this->renderView(
-                            'registration/RecoveryMail.html.twig',array(
-                                'token' => $token
-                            )
-                        ),'text/html'
-                    );
+            if (!$userServices->isUserExists($repo, $user)){
+                $this->addFlash('warning','This username doesn\'t exists');
 
-                $mailer->send($message);
-
-                $this->addFlash('success','Un e-mail pour creer un nouveau mot de passe a été envoyé !');
-
-                return $this->redirectToRoute('app_trick_index');
+                return [
+                    'form'=>$form->createView()
+                ];
             }
+
+            if ($userServices->sendRecoveryMail($repo, $user)){
+                $this->addFlash('success','Un e-mail pour creer un nouveau mot de passe a été envoyé !');
+            }
+
+            return $this->redirectToRoute('app_trick_index');
         }
 
         return [
@@ -109,30 +95,26 @@ class RegistrationController extends Controller
      * @Route("token/{token}", requirements={"token"="[a-zA-Z0-9]*"})
      * @ParamConverter("user", options={"mapping": {"token": "recoveryToken"}})
      */
-    public function tokenRecovery(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder)
+    public function tokenRecovery(Request $request, User $user, UserServices $userServices)
     {
-        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(NewPasswordType::class);
 
-        if($request->isMethod('POST')){
-            $form->handleRequest($request);
-            if($form->isValid()){
-                $password = $passwordEncoder->encodePassword($user, $form->get('plainPassword')->getData());
-                $user->setPassword($password);
-                $user->generateToken();
+        $form->handleRequest($request);
 
-                $em->flush();
+        if($form->isSubmitted() && $form->isValid()) {
+            $user->setPlainPassword($form->get('plainPassword')->getData());
 
+            if ($userServices->updateUser($user)) {
                 $this->addFlash('success','Le mot de passe à été réinitialisé');
-
-                return $this->redirectToRoute('app_trick_index');
             }
-            $this->addFlash('warning','Les mots de passe doivent correspondre');
+
+            return $this->redirectToRoute('app_trick_index');
         }
+
+        $this->addFlash('warning','Les mots de passe doivent correspondre');
 
         return [
             'form'=>$form->createView()
         ];
     }
-
 }
