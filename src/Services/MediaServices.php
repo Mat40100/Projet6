@@ -24,6 +24,27 @@ class MediaServices
         $this->em = $em;
     }
 
+    public function mediaAdd(Media $media)
+    {
+        $this->em->persist($media);
+        $this->em->flush();
+
+        return true;
+    }
+
+    public function videoAdd(MediaVideo $mediaVideo)
+    {
+        $this->em->persist($mediaVideo);
+        $this->em->flush();
+
+        return true;
+    }
+
+    public function saveMedia()
+    {
+        $this->em->flush();
+    }
+
     public function mediaDel(Media $media)
     {
         $trick = $media->getTrick();

@@ -50,13 +50,17 @@
                             </div>
                         </div>
                     {% endfor %}
-                    {% for video in trick.videos %}
-                        <div class="img-fluid col-3 row justify-content-center m-3">
-                            {{ video.video()|raw }}
-                            <div class="col-12 row justify-content-center">
-                                <a href="{{ path('app_media_videodel', {'video':video.id }) }}"><i class="far fa-trash-alt"></i></a>
-                            </div>
+                    {% for videoField in form.videos %}
+                    <div class="img-fluid col-3 row justify-content-center m-3">
+                        <iframe class='vignettes' width='100%' height='100%' src='{{ videoField.vars.data.embedUrl }}'  frameborder='0'  allowfullscreen></iframe>
+
+                        {{ form_errors(videoField) }}
+                        {{ form_widget(videoField) }}
+
+                        <div class="col-12 row justify-content-center">
+                            <a href="{{ path('app_media_videodel', {'video':videoField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
                         </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>

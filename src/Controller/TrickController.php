@@ -158,30 +158,25 @@ class TrickController extends Controller
      * @Route("modify/{trick}")
      * @Template()
      */
-    public function modify(Request $request, Trick $trick)
+    public function modify(Request $request, Trick $trick, TrickServices $trickServices)
     {
         $form= $this->createForm(TrickType::class, $trick);
         $form->remove('medias');
-        $form->remove('videos');
+        //$form->remove('videos');
 
-        if($request->isMethod('POST')){
-            $form->handleRequest($request);
-            if($form->isValid()){
+        $form->handleRequest($request);
 
-                $this->addFlash('success','Le trick a été modifié!');
+        if($form->isSubmitted() && $form->isValid()){
+            $this->addFlash('success','Le trick a été modifié!');
 
-                return $this->redirectToRoute(
-                    'app_trick_view',
-                    array('trick'=>$trick->getId(), 'slug'=> $trick->getName())
-                );
-            }
-            $this->addFlash('danger','Un problème est survenu pendant l\'enregistrement du trick :(');
+            $trickServices->update($trick);
 
-            return [
-                'form' => $form->createView(),
-                'trick' => $trick
-            ];
+            return $this->redirectToRoute(
+                'app_trick_view',
+                array('trick'=>$trick->getId(), 'slug'=> $trick->getName())
+            );
         }
+
 
         return [
             'form' => $form->createView(),
