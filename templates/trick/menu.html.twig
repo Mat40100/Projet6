@@ -10,25 +10,25 @@
             <div class="collapse navbar-collapse justify-content-end mr-5 pr-5" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
                     </li>
                     {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_user_index') }}">Account</a>
+                            <a class="nav-link" href="{{ path('app_user_index') }}">Mon compte</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_trick_add') }}">Add a new tricks</a>
+                            <a class="nav-link" href="{{ path('app_trick_add') }}">Ajouter une nouvelle figure</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="{{ path('app_security_logout') }}">Disconnect</a>
+                            <a class="nav-link" href="{{ path('app_security_logout') }}">Se déconnecter</a>
                         </li>
                     {% endif %}
                     {% if not is_granted('ROLE_USER') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_registration_register') }}">Sign up</a>
+                            <a class="nav-link" href="{{ path('app_registration_register') }}">S'inscrire</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_security_login') }}">Sign in</a>
+                            <a class="nav-link" href="{{ path('app_security_login') }}">Se connecter</a>
                         </li>
                     {% endif %}
                 </ul>

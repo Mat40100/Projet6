@@ -19,11 +19,10 @@ class NewPasswordType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class,array(
                 'type'=> PasswordType::class,
-                'invalid_message' => 'Password must match',
-                'first_options' => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password')
+                'invalid_message' => 'Les mots de passes doivent-être identiques',
+                'first_options' => array('label' => 'Mot de passe'),
+                'second_options' => array('label' => 'Répetez le mot de passe')
             ))
-            ->add('save', SubmitType::class)
         ;
     }
 }

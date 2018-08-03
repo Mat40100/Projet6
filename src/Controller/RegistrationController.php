@@ -67,18 +67,17 @@ class RegistrationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $user = new User;
-            $user->setUsername($form->getData()['username']);
+            $user = $userService->isUserExists($repo, $form->getData()['username']);
 
-            if (!$userService->isUserExists($repo, $user)){
-                $this->addFlash('warning','This username doesn\'t exists');
+            if($user === null) {
+                $this->addFlash('warning','Cet utilisateur n\'éxiste pas');
 
                 return [
                     'form'=>$form->createView()
                 ];
-            }
+            };
 
-            if ($userService->sendRecoveryMail($repo, $user)){
+            if ($userService->sendRecoveryMail($user)){
                 $this->addFlash('success','Un e-mail pour creer un nouveau mot de passe a été envoyé !');
             }
 
@@ -110,8 +109,6 @@ class RegistrationController extends Controller
 
             return $this->redirectToRoute('app_trick_index');
         }
-
-        $this->addFlash('warning','Les mots de passe doivent correspondre');
 
         return [
             'form'=>$form->createView()

@@ -63,18 +63,21 @@ class UserService
 
         return true;
     }
+
     /**
      * @param EntityRepository $repo
-     * @param User $user
-     * @return bool
+     * @param $data
+     * @return null || User $user
      */
-    public function isUserExists(EntityRepository $repo, User $user)
+    public function isUserExists(EntityRepository $repo, $data)
     {
-        if($repo->findOneBy(['username'=>$user->getUsername()])!=null ||
-            $repo->findOneBy(['email'=>$user->getEmail()])!=null){
+        $user = $repo->findOneBy(['username'=>$data])?:null;
 
-            return true;
+        if($user === null) {
+            $user = $repo->findOneBy(['email' => $data])?:null;
         }
+
+        return $user;
     }
 
     /**
@@ -85,16 +88,14 @@ class UserService
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function sendRecoveryMail(EntityRepository $repo, User $user)
+    public function sendRecoveryMail(User $user)
     {
-        $user = $repo->findOneBy(['username' => $user->getUsername()]);
-
         $token = $user->getRecoveryToken();
         $message =(new \Swift_Message('SnowTricks password recovery'))
             ->setFrom('mathieu.dolhen@gmail.com')
             ->setTo($user->getEmail())
             ->setBody(
-                $this->twig->render('registration/RecoveryMail.html.twig',['token' => $token]),
+                $this->twig->render('registration/RecoveryMail.html.twig',['token' => $token, 'user' => $user]),
                 'text/html'
             );
 

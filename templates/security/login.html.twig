@@ -15,16 +15,16 @@
         {% if error is not null %}
             <div class="col-12 row justify-content-center p-2">
                {# <div class="col-6 alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div> #}
-                <div class="col-6 alert-danger rounded text-center">Login and/or password are incorrect</div>
+                <div class="col-6 alert-danger rounded text-center">Le login/mot de passe est incorrecte</div>
             </div>
         {% endif %}
         <div class="col-6 form-row align-items-center justify-content-center">
             <div class="col-12">
-                <label class="sr-only" for="inlineFormInput">Username</label>
-                <input type="text" class="form-control mb-2" id="username inlineFormInput" name="_username" placeholder="Username" value="{% if last_username is defined %}{{ last_username }}{% endif %}">
+                <label class="sr-only" for="inlineFormInput">Nom d'utilisateur ou Email</label>
+                <input type="text" class="form-control mb-2" id="username inlineFormInput" name="_username" placeholder="Username / Email" value="{% if last_username is defined %}{{ last_username }}{% endif %}">
             </div>
             <div class="col-12">
-                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <label class="sr-only" for="inlineFormInputGroup">Nom d'utilisateur ou Email</label>
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text">@</div>
@@ -34,13 +34,13 @@
                 </div>
             </div>
             <div class="col-12 row justify-content-center">
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <button type="submit" class="btn btn-primary mb-2">Se connecter</button>
             </div>
             <div class="col-12 row justify-content-center">
-                <a href="{{ path('app_registration_passwordforgotten') }}">Forgot password?</a>
+                <a href="{{ path('app_registration_passwordforgotten') }}">Mot de passe oublié?</a>
             </div>
             <div class="col-12 row justify-content-center">
-                <a href="{{ path('app_registration_register') }}">Create account</a>
+                <a href="{{ path('app_registration_register') }}">Créer un compte</a>
             </div>
         </div>
     </form>

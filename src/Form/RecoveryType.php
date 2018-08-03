@@ -15,7 +15,6 @@ class RecoveryType extends AbstractType
     {
         $builder
             ->add('username', TextType::class)
-            ->add('save', SubmitType::class)
         ;
     }
 
