@@ -80,7 +80,7 @@ class User implements UserInterface, \Serializable
     private $recoveryToken;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Picture", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="App\Entity\Picture", mappedBy="user", cascade={"persist"})
      * @Assert\Valid()
      */
     private $picture;
@@ -334,6 +334,11 @@ class User implements UserInterface, \Serializable
         $this->picture = $picture;
 
         return $this;
+    }
+
+    public function hasPicture()
+    {
+        return ($this->getPicture()) ? $this->getPicture()->getUrl() : Picture::getDefault();
     }
 
 }

@@ -6,24 +6,32 @@
  * Time: 19:50
  */
 
-namespace App\Services;
+namespace App\Service;
 
 
 use App\Entity\Media;
 use App\Entity\MediaVideo;
 use Doctrine\ORM\EntityManagerInterface;
 
-class MediaServices
+class MediaService
 {
 
     private $em;
 
 
+    /**
+     * MediaService constructor.
+     * @param EntityManagerInterface $em
+     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
+    /**
+     * @param Media $media
+     * @return bool
+     */
     public function mediaAdd(Media $media)
     {
         $this->em->persist($media);
@@ -32,6 +40,10 @@ class MediaServices
         return true;
     }
 
+    /**
+     * @param MediaVideo $mediaVideo
+     * @return bool
+     */
     public function videoAdd(MediaVideo $mediaVideo)
     {
         $this->em->persist($mediaVideo);
@@ -40,11 +52,11 @@ class MediaServices
         return true;
     }
 
-    public function saveMedia()
-    {
-        $this->em->flush();
-    }
 
+    /**
+     * @param Media $media
+     * @return bool
+     */
     public function mediaDel(Media $media)
     {
         $trick = $media->getTrick();
@@ -55,6 +67,10 @@ class MediaServices
         return true;
     }
 
+    /**
+     * @param MediaVideo $mediaVideo
+     * @return bool
+     */
     public function videoDel(MediaVideo $mediaVideo)
     {
         $trick = $mediaVideo->getTrick();

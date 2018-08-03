@@ -34,7 +34,10 @@ class Picture
     private $user;
 
     /**
-     * @Assert\Regex("/^jpg||jpeg/")
+     * @Assert\Regex(
+     *     pattern="/^jpg|jpeg|png/",
+     *     message="Le format réquis est jpeg, jpg, png"
+     * )
      * @ORM\Column(type="string")
      */
     private $extension;
@@ -125,6 +128,11 @@ class Picture
         $this->user = $user;
 
         return $this;
+    }
+
+    static function getDefault()
+    {
+        return 'uploads/pic/default-user.png';
     }
 
 }

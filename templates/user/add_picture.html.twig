@@ -6,6 +6,7 @@
     <div class="col-12 row justify-content-center">
 
         {{ form_start(form) }}
+            {{ form_errors(form) }}
             {{ form_row(form.file) }}
             {{ form_row(form.alt) }}
             <input type="submit" value="Valider">

@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\Picture;
 use App\Form\PictureType;
 use App\Form\UserType;
-use App\Services\PictureServices;
-use App\Services\UserServices;
+use App\Service\PictureService;
+use App\Service\UserService;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -23,9 +23,13 @@ class UserController extends Controller
      * @Template()
      * @Security("has_role('ROLE_USER')")
      */
-    public function addPicture(Request $request, UserServices $userServices, PictureServices $pictureServices)
+    public function addPicture(Request $request, PictureService $pictureService)
     {
         $user = $this->getUser();
+
+        if($user->getPicture()) {
+            $pictureService->delete($user->getPicture());
+        }
 
         $picture = new Picture();
 
@@ -35,8 +39,9 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form -> isSubmitted() && $form ->isValid() ) {
+
             $picture->setUser($user);
-            $pictureServices->save($picture);
+            $pictureService->save($picture);
 
             $this->addFlash('success', "La photo a été correctement ajoutée");
 
@@ -53,12 +58,12 @@ class UserController extends Controller
      * @Route("/account/delPicture")
      * @Security("has_role('ROLE_USER')")
      */
-    public function delPicture(PictureServices $pictureServices, UserServices $userServices)
+    public function delPicture(PictureService $pictureService, UserService $userService)
     {
         $user = $this->getUser();
-        $pictureServices->delete($user->getPicture());
+        $pictureService->delete($user->getPicture());
         $user->setPicture(null);
-        $userServices->updateUser($user);
+        $userService->updateUser($user);
 
         $this->addFlash('success', "La photo a été correctement supprimée");
 

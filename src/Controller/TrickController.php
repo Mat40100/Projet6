@@ -7,7 +7,7 @@ use App\Entity\Media;
 use App\Entity\Trick;
 use App\Form\CommentType;
 use App\Form\TrickType;
-use App\Services\TrickServices;
+use App\Service\TrickService;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\ORM\Mapping\Entity;
@@ -88,7 +88,7 @@ class TrickController extends Controller
      * @Route("/add")
      * @Security("has_role('ROLE_USER')")
      */
-    public function add(Request $request, TrickServices $trickServices)
+    public function add(Request $request, TrickService $trickService)
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class,$trick);
@@ -100,18 +100,18 @@ class TrickController extends Controller
 
             if($form->isValid()){
 
-                if($trickServices->isExists($repo, $trick)){
+                if($trickService->isExists($repo, $trick)){
 
-                    $this->addFlash('warning','Ce trick est déjà existant');
+                    $this->addFlash('warning','Ce trick '.$trick->getName().' est déjà existant');
 
                     return array(
                         'form' => $form->createView()
                     );
                 }
 
-                if ($trickServices->add($this->getUser(),$trick)) {
+                if ($trickService->add($this->getUser(),$trick)) {
 
-                    $this->addFlash('success','Votre nouveau Trick est bien enregistré!');
+                    $this->addFlash('success','Votre nouveau Trick '.$trick->getName().' est bien enregistré!');
 
                     return $this->redirectToRoute(
                         'app_trick_view',
@@ -130,7 +130,7 @@ class TrickController extends Controller
      * @Security("has_role('ROLE_USER')")
      * @Template()
      */
-    public function delete(Request $request, Trick $trick, TrickServices $trickServices)
+    public function delete(Request $request, Trick $trick, TrickService $trickServices)
     {
         if (!$trick) {
             $this->addFlash('danger','Vous essayez de supprimer un trick introuvable ...');
@@ -143,7 +143,7 @@ class TrickController extends Controller
         if ($request->isMethod('POST')) {
 
             $trickServices->remove($trick);
-            $this->addFlash('success','Le trick a été supprimé!');
+            $this->addFlash('success',$trick->getName().' a été supprimé!');
 
             return $this->redirectToRoute('app_trick_index');
         }
@@ -158,7 +158,7 @@ class TrickController extends Controller
      * @Route("modify/{trick}")
      * @Template()
      */
-    public function modify(Request $request, Trick $trick, TrickServices $trickServices)
+    public function modify(Request $request, Trick $trick, TrickService $trickServices)
     {
         $form= $this->createForm(TrickType::class, $trick);
         $form->remove('medias');
@@ -167,7 +167,7 @@ class TrickController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $this->addFlash('success','Le trick a été modifié!');
+            $this->addFlash('success',$trick->getName().' a été modifié!');
 
             $trickServices->update($trick);
 

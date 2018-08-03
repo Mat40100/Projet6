@@ -76,11 +76,7 @@
                     {% for comment in trick.comments %}
                         <div class="col-12 col-md-10 col-lg-9 row p-2 m-2">
                             <div class="col-auto img-user-comments justify-content-center row">
-                                {% if comment.author.picture is not null %}
-                                    <img class="rounded-circle user-picture p-0" src="{{ asset(comment.author.picture.url) }}">
-                                {% else %}
-                                    <img class="rounded-circle user-picture p-0" src="{{ asset('uploads/pic/default-user.png') }}">
-                                {% endif %}
+                                <img class="rounded-circle user-picture p-0" src="{{ asset(comment.author.hasPicture) }}">
                                 <div class="col-12 text-center">{{ comment.author.username }}</div>
                             </div>
 

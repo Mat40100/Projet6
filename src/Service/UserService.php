@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Service;
 
 
 use App\Entity\User;
@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserServices
+class UserService
 {
     private $em;
     private $passwordEncoder;
@@ -52,6 +52,10 @@ class UserServices
         return $user;
     }
 
+    /**
+     * @param $user
+     * @return bool
+     */
     public function updateUser($user)
     {
         $user = $this->EncodePassword($user);

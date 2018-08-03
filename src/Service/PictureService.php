@@ -6,21 +6,28 @@
  * Time: 18:05
  */
 
-namespace App\Services;
+namespace App\Service;
 
 
 use App\Entity\Picture;
 use Doctrine\ORM\EntityManagerInterface;
 
-class PictureServices
+class PictureService
 {
     private $em;
 
+    /**
+     * PictureService constructor.
+     * @param EntityManagerInterface $em
+     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
+    /**
+     * @param Picture $picture
+     */
     public function save(Picture $picture)
     {
         $this->em->persist($picture);
@@ -28,6 +35,9 @@ class PictureServices
         $this->em->flush();
     }
 
+    /**
+     * @param Picture $picture
+     */
     public function delete(Picture $picture)
     {
         $this->em->remove($picture);
