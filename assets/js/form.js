@@ -9,9 +9,7 @@ $(document).ready(function () {
         return false;
     });
 
-    if (index == 0) {
-        addMediaForm($container);
-    } else {
+    if (index != 0) {
         $container.children('div').each(function () {
             addDeleteLink($(this));
         })
@@ -63,9 +61,8 @@ $(document).ready(function () {
         return false;
     });
 
-    if (index == 0) {
-        addVideoForm($container);
-    } else {
+    if (index != 0) {
+
         $container.children('div').each(function () {
             addDeleteLink($(this));
         })
