@@ -22,7 +22,9 @@ class TrickTypeModify extends AbstractType
                 'entry_type' => MediaType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'required' => false
+                'prototype' => false,
+                'required' => false,
+                'label' => false,
             ))
             ->add('videos', CollectionType::class, array(
                 'by_reference' => false,

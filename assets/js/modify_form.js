@@ -1,6 +1,7 @@
 $(document).ready(function () {
-    var $container = $('div#trick_medias');
-    let index = $container.find(':input').length;
+    var $prototype = $('div#trick_medias');
+    var $container = $('#medias');
+    let index = ($('#medias').find(':input').length)/2;
 
     $('#add_media').click(function (e) {
         addMediaForm($container);
@@ -9,7 +10,7 @@ $(document).ready(function () {
         return false;
     });
 
-    if (index != 0) {
+    if (index !== 0) {
         $container.children('div').each(function () {
             addDeleteLink($(this));
         })
@@ -17,9 +18,10 @@ $(document).ready(function () {
 
     function addMediaForm($container) {
         try {
-            var template = $container.attr('data-prototype')
-                .replace("__name__label__", '')
+            var template = $prototype.attr('data-prototype')
+                .replace("___name__", '_'+index)
                 .replace("[__name__]",'['+index+']')
+                .replace("___name___", '_'+index+'_')
                 .replace("[__name__]",'['+index+']')
             ;
         } catch (e) {
@@ -27,11 +29,11 @@ $(document).ready(function () {
         }
 
 
-        var $prototype = $(template);
+        var $newform = $(template);
 
-        addDeleteLink($prototype);
+        addDeleteLink($newform);
 
-        $container.append($prototype);
+        $container.append($newform);
 
         index++;
     }
@@ -61,7 +63,7 @@ $(document).ready(function () {
         return false;
     });
 
-    if (index != 0) {
+    if (index !== 0) {
 
         $container.children('div').each(function () {
             addDeleteLink($(this));

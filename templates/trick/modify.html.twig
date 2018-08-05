@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('build/trick.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/buttons.css') }}" />
 {% endblock %}
 
 
@@ -42,16 +43,8 @@
                     </ul>
                 </div>
                 <div class="col-12 d-none d-lg-flex row justify-content-around align-items-center">
-                    <div class="col-12 row row justify-content-center">
-                        <div class="col-6 row justify-content-center">
-                            <a href="#" id="add_media" class="add-btn btn btn-outline-primary">Ajouter un media</a>
-                        </div>
-                        <div class="col-6 row justify-content-center">
-                            <a href="#" id="add_videos" class="add-btn btn btn-outline-primary">Ajouter une vidéo</a>
-                        </div>
-                    </div>
                     {% for mediaField in form.medias %}
-                        <div class="img-fluid col-3 row justify-content-center m-3">
+                    <div class="img-fluid col-3 row justify-content-center m-3">
                             <img class="vignettes" src="{{ asset(mediaField.vars.data.url) }}" alt="{{ mediaField.vars.data.alt }}">
                             <div class="col-12 row justify-content-center">
                                 <a class="m-1" href="{{ path('app_media_mediadel', {'media':mediaField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
@@ -59,7 +52,7 @@
                             </div>
                             {{ form_row(mediaField.children.alt) }}
                             {{ form_row(mediaField.children.file) }}
-                        </div>
+                    </div>
                     {% endfor %}
                     {% for videoField in form.videos %}
                     <div class="img-fluid col-3 row justify-content-center m-3">
@@ -79,7 +72,7 @@
                 <div class="col-12 text-center">{{ form_row(form.description) }}</div>
             </div>
             <div class="col-12 row justify-content-center">
-                <div class="col-auto border rounded m-2">Autheur : {{ trick.author.username }}</div>
+                <div class="col-auto border rounded m-2">Auteur : {{ trick.author.username }}</div>
                 <div class="col-auto border rounded m-2">Date de création : {{ trick.date|date("d/m/Y h:i")}}</div>
                 {% if trick.dateLastMod is defined %}
                     <div class="col-auto border rounded m-2">Dernière modification : {{ trick.dateLastMod|date("d/m/Y") }}</div>
@@ -89,10 +82,26 @@
             <input class="m-3" type="submit" value="Valider">
             {{ form_end(form) }}
         </div>
+
+        <div class="col-12 col-lg-6 row justify-content-around" >
+            {{ form_start(mediaform) }}
+
+            {{ form_row(mediaform.file) }}
+            {{ form_widget(mediaform.alt) }}
+            <input type="submit" value="Ajouter">
+            {{ form_end(mediaform) }}
+        </div>
+
+        <div class="col-12 col-lg-6 row justify-content-around" >
+            {{ form_start(videoform) }}
+
+            {{ form_widget(videoform.url) }}
+            <input type="submit" value="Ajouter">
+            {{ form_end(videoform) }}
+        </div>
     </section>
 {% endblock %}
 
 {% block js %}
     <script type="text/javascript" src="{{ asset('build/view.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('build/modify_form.js') }}">   </script>
 {% endblock %}

@@ -4,11 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Media;
+use App\Entity\MediaVideo;
 use App\Entity\Trick;
 use App\Form\CommentType;
+use App\Form\MediaType;
+use App\Form\MediaVideoType;
 use App\Form\ModifyTrickFormType;
 use App\Form\TrickType;
 use App\Form\TrickTypeModify;
+use App\Service\MediaService;
 use App\Service\TrickService;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -148,12 +152,44 @@ class TrickController extends Controller
      * @Security("has_role('ROLE_USER')")
      * @Template()
      */
-    public function modify(Request $request, Trick $trick, TrickService $trickServices)
+    public function modify(Request $request, Trick $trick, TrickService $trickServices, MediaService $mediaService)
     {
         $form = $this->createForm(TrickTypeModify::class, $trick);
 
-        $form->handleRequest($request);
+        $media = new Media();
+        $mediaForm = $this->createForm(MediaType::class, $media);
 
+        $video = new MediaVideo();
+        $videoForm = $this->createForm(MediaVideoType::class, $video);
+
+        $videoForm->handleRequest($request);
+        if ($videoForm->isSubmitted() && $videoForm->isValid()) {
+            $this->addFlash('success', 'Votre image a été ajoutée');
+
+            $video->setTrick($trick);
+            $mediaService->videoAdd($video);
+
+            return $this->redirectToRoute(
+                'app_trick_modify',
+                ['trick' => $trick->getId()]
+            );
+        }
+
+
+        $mediaForm->handleRequest($request);
+        if ($mediaForm->isSubmitted() && $mediaForm->isValid()) {
+            $this->addFlash('success', 'Votre image a été ajoutée');
+
+            $media->setTrick($trick);
+            $mediaService->mediaAdd($media);
+
+            return $this->redirectToRoute(
+                'app_trick_modify',
+                ['trick' => $trick->getId()]
+            );
+        }
+
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->addFlash('success', $trick->getName().' a été modifié!');
 
@@ -168,6 +204,8 @@ class TrickController extends Controller
         return [
             'form' => $form->createView(),
             'trick' => $trick,
+            'mediaform' => $mediaForm->createView(),
+            'videoform' => $videoForm->createView(),
         ];
     }
 
