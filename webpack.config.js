@@ -19,6 +19,7 @@ Encore
     .addEntry('addTrickForm', './assets/css/addTrickForm.css')
     .addEntry('layout', './assets/css/layout.css')
     .addEntry('form', './assets/js/form.js')
+    .addEntry('modify_form', './assets/js/modify_form.js')
     .addEntry('view','./assets/js/view.js')
     .addEntry('login', './assets/css/login.css')
     .addEntry('ajax','./assets/js/ajaxLp.js')

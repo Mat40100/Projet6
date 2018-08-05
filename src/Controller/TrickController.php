@@ -6,7 +6,9 @@ use App\Entity\Comment;
 use App\Entity\Media;
 use App\Entity\Trick;
 use App\Form\CommentType;
+use App\Form\ModifyTrickFormType;
 use App\Form\TrickType;
+use App\Form\TrickTypeModify;
 use App\Service\TrickService;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -148,9 +150,7 @@ class TrickController extends Controller
      */
     public function modify(Request $request, Trick $trick, TrickService $trickServices)
     {
-        $form = $this->createForm(TrickType::class, $trick);
-        $form->getData();
-        //$form->remove('videos');
+        $form = $this->createForm(TrickTypeModify::class, $trick);
 
         $form->handleRequest($request);
 

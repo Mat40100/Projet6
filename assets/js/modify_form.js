@@ -18,7 +18,7 @@ $(document).ready(function () {
     function addMediaForm($container) {
         try {
             var template = $container.attr('data-prototype')
-                .replace(/__name__label__/, '')
+                .replace("__name__label__", '')
                 .replace("[__name__]",'['+index+']')
                 .replace("[__name__]",'['+index+']')
             ;

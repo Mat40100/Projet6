@@ -58,6 +58,7 @@
                                 <a class="m-1" href="{{ path('app_trick_thisismainmedia', {'media':mediaField.vars.data.id}) }}"><i class="far fa-image"></i></a>
                             </div>
                             {{ form_row(mediaField.children.alt) }}
+                            {{ form_row(mediaField.children.file) }}
                         </div>
                     {% endfor %}
                     {% for videoField in form.videos %}
@@ -93,5 +94,5 @@
 
 {% block js %}
     <script type="text/javascript" src="{{ asset('build/view.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('build/form.js') }}">   </script>
+    <script type="text/javascript" src="{{ asset('build/modify_form.js') }}">   </script>
 {% endblock %}
