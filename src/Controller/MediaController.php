@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Media;
 use App\Entity\MediaVideo;
 use App\Service\MediaService;
+use App\Service\TrickService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -12,6 +14,7 @@ class MediaController extends Controller
 {
     /**
      * @Route("/mediaDel/{media}")
+     * @Security("has_role('ROLE_USER')")
      */
     public function mediaDel(Media $media, MediaService $mediaService)
     {
@@ -28,6 +31,7 @@ class MediaController extends Controller
 
     /**
      * @Route("/videoDel/{video}")
+     * @Security("has_role('ROLE_USER')")
      */
     public function VideoDel(MediaVideo $video, MediaService $mediaService)
     {

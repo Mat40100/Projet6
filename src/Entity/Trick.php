@@ -137,9 +137,6 @@ class Trick
         return $this;
     }
 
-    /**
-     * @return Collection|Category[]
-     */
     public function getCategories(): Collection
     {
         return $this->Categories;

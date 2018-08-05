@@ -54,7 +54,8 @@
                         <div class="img-fluid col-3 row justify-content-center m-3">
                             <img class="vignettes" src="{{ asset(mediaField.vars.data.url) }}" alt="{{ mediaField.vars.data.alt }}">
                             <div class="col-12 row justify-content-center">
-                                <a href="{{ path('app_media_mediadel', {'media':mediaField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
+                                <a class="m-1" href="{{ path('app_media_mediadel', {'media':mediaField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
+                                <a class="m-1" href="{{ path('app_trick_thisismainmedia', {'media':mediaField.vars.data.id}) }}"><i class="far fa-image"></i></a>
                             </div>
                             {{ form_row(mediaField.children.alt) }}
                         </div>

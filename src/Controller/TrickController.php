@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Media;
 use App\Entity\Trick;
 use App\Form\CommentType;
 use App\Form\TrickType;
@@ -142,6 +143,7 @@ class TrickController extends Controller
 
     /**
      * @Route("modify/{trick}")
+     * @Security("has_role('ROLE_USER')")
      * @Template()
      */
     public function modify(Request $request, Trick $trick, TrickService $trickServices)
@@ -167,6 +169,23 @@ class TrickController extends Controller
             'form' => $form->createView(),
             'trick' => $trick,
         ];
+    }
+
+    /**
+     * @Route("/thisIsMainMedia/{media}")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function thisIsMainMedia(Media $media, TrickService $trickService)
+    {
+        $trick = $media->getTrick();
+
+        $trick ->setMainMedia($media);
+
+        $trickService->update($trick);
+
+        return $this->redirectToRoute('app_trick_modify', [
+            'trick' => $trick->getId(),
+        ]);
     }
 
     /**
