@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,7 +20,8 @@ class Trick
     private $id;
 
     /**
-     * One Author can have Many Tricks
+     * One Author can have Many Tricks.
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tricks")
      * @ORM\JoinColumn(name="author", referencedColumnName="id", onDelete="SET NULL")
      */
@@ -282,12 +282,12 @@ class Trick
 
     public function getMainMedia(): ?Media
     {
-        if ($this->mainMedia != null){
+        if (null != $this->mainMedia) {
             return $this->mainMedia;
         }
         $medias = $this->getMedias();
 
-        if (empty($medias->toArray())){
+        if (empty($medias->toArray())) {
             return $this->mainMedia;
         }
 
@@ -296,12 +296,10 @@ class Trick
         return $selected;
     }
 
-
     public function setMainMedia(?Media $mainMedia): self
     {
         $this->mainMedia = $mainMedia;
 
         return $this;
     }
-
 }

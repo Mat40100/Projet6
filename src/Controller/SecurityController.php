@@ -2,14 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
 
 class SecurityController extends Controller
 {
@@ -24,15 +21,16 @@ class SecurityController extends Controller
 
         return [
             'lastUserName' => $lastUserName,
-            'error' => $error
+            'error' => $error,
         ];
     }
 
     /**
      * @Route("/logout")
      */
-    public function logout(){
-        $this->addFlash('success','Vous êtes maintenant déconnecté !');
+    public function logout()
+    {
+        $this->addFlash('success', 'Vous êtes maintenant déconnecté !');
 
         $this->redirectToRoute('app_trick_index');
     }

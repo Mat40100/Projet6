@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: Mathieu
  * Date: 24/07/2018
- * Time: 19:33
+ * Time: 19:33.
  */
 
 namespace App\Service;
-
 
 use App\Entity\Trick;
 use App\Entity\User;
@@ -16,12 +15,11 @@ use Doctrine\ORM\EntityRepository;
 
 class TrickService
 {
-
     private $em;
-
 
     /**
      * TrickService constructor.
+     *
      * @param EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em)
@@ -30,11 +28,12 @@ class TrickService
     }
 
     /**
-     * @param User $user
+     * @param User  $user
      * @param Trick $trick
+     *
      * @return bool
      */
-    public function add(User $user,Trick $trick)
+    public function add(User $user, Trick $trick)
     {
         $trick->setDate(new \DateTime());
         $trick->setAuthor($user);
@@ -46,6 +45,7 @@ class TrickService
 
     /**
      * @param Trick $trick
+     *
      * @return bool
      */
     public function remove(Trick $trick)
@@ -67,12 +67,13 @@ class TrickService
 
     /**
      * @param EntityRepository $repo
-     * @param Trick $trick
+     * @param Trick            $trick
+     *
      * @return bool
      */
     public function isExists(EntityRepository $repo, Trick $trick)
     {
-        if($repo->findOneBy(['name' => $trick->getName()])){
+        if ($repo->findOneBy(['name' => $trick->getName()])) {
             return true;
         }
     }

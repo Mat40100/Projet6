@@ -18,10 +18,10 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username', TextType::class)
-            ->add('plainPassword', RepeatedType::class,array(
-                'type'=> PasswordType::class,
+            ->add('plainPassword', RepeatedType::class, array(
+                'type' => PasswordType::class,
                 'first_options' => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password')
+                'second_options' => array('label' => 'Repeat Password'),
             ))
             ->add('lastName', TextType::class)
             ->add('firstName', TextType::class)
@@ -37,7 +37,7 @@ class UserType extends AbstractType
             'data_class' => User::class,
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'task_item',
+            'csrf_token_id' => 'task_item',
         ]);
     }
 }

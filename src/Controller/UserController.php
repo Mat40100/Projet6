@@ -4,17 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Picture;
 use App\Form\PictureType;
-use App\Form\UserType;
 use App\Service\PictureService;
 use App\Service\UserService;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
 
 class UserController extends Controller
 {
@@ -27,7 +23,7 @@ class UserController extends Controller
     {
         $user = $this->getUser();
 
-        if($user->getPicture()) {
+        if ($user->getPicture()) {
             $pictureService->delete($user->getPicture());
         }
 
@@ -35,15 +31,13 @@ class UserController extends Controller
 
         $form = $this->createForm(PictureType::class, $picture);
 
-
         $form->handleRequest($request);
 
-        if ($form -> isSubmitted() && $form ->isValid() ) {
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $picture->setUser($user);
             $pictureService->save($picture);
 
-            $this->addFlash('success', "La photo a été correctement ajoutée");
+            $this->addFlash('success', 'La photo a été correctement ajoutée');
 
             return $this->redirectToRoute('app_user_index');
         }
@@ -65,7 +59,7 @@ class UserController extends Controller
         $user->setPicture(null);
         $userService->updateUser($user);
 
-        $this->addFlash('success', "La photo a été correctement supprimée");
+        $this->addFlash('success', 'La photo a été correctement supprimée');
 
         return $this->redirectToRoute('app_user_index');
     }

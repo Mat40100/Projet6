@@ -53,7 +53,7 @@ class Picture
         $this->setExtension($this->file->guessExtension());
         $this->setIdentif(md5(uniqid()).'.'.$this->getExtension());
 
-        $this->file->move(__DIR__.'/../../public/uploads/pic' , $this->getIdentif());
+        $this->file->move(__DIR__.'/../../public/uploads/pic', $this->getIdentif());
     }
 
     /**
@@ -130,9 +130,8 @@ class Picture
         return $this;
     }
 
-    static function getDefault()
+    public static function getDefault()
     {
         return 'uploads/pic/default-user.png';
     }
-
 }

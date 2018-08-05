@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: Mathieu
  * Date: 24/07/2018
- * Time: 18:05
+ * Time: 18:05.
  */
 
 namespace App\Service;
-
 
 use App\Entity\Picture;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,6 +17,7 @@ class PictureService
 
     /**
      * PictureService constructor.
+     *
      * @param EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em)
@@ -44,5 +44,4 @@ class PictureService
 
         $this->em->flush();
     }
-
 }

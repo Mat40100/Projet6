@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
@@ -88,7 +87,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="json")
      */
-    private $roles= [];
+    private $roles = [];
 
     public function __construct()
     {
@@ -100,7 +99,7 @@ class User implements UserInterface, \Serializable
 
     public function generateToken()
     {
-        $this->setRecoveryToken(hash('sha256',random_bytes(10)));
+        $this->setRecoveryToken(hash('sha256', random_bytes(10)));
     }
 
     public function getId()
@@ -256,9 +255,9 @@ class User implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-        $roles [] = $this->roles;
+        $roles[] = $this->roles;
 
-        if(!in_array('ROLE_USER', $roles)){
+        if (!in_array('ROLE_USER', $roles)) {
             $roles[] = 'ROLE_USER';
         }
 
@@ -284,7 +283,7 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
-        list (
+        list(
             $this->id,
             $this->username,
             $this->password,
@@ -340,5 +339,4 @@ class User implements UserInterface, \Serializable
     {
         return ($this->getPicture()) ? $this->getPicture()->getUrl() : Picture::getDefault();
     }
-
 }

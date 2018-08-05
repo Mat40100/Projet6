@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -29,12 +28,14 @@ class MediaVideo
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $videoId;
@@ -45,7 +46,6 @@ class MediaVideo
      * @ORM\JoinColumn(name="trick_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $trick;
-
 
     public function getId(): ?int
     {
@@ -79,7 +79,7 @@ class MediaVideo
 
     private function youtubeId($url)
     {
-        $tableaux = explode("=", $url);  // découpe l’url en deux  avec le signe ‘=’
+        $tableaux = explode('=', $url);  // découpe l’url en deux  avec le signe ‘=’
 
         $this->setVideoId($tableaux[1]);  // ajoute l’identifiant à l’attribut identif
         $this->setType('youtube');  // signale qu’il s’agit d’une video youtube et l’inscrit dans l’attribut $type
@@ -87,11 +87,11 @@ class MediaVideo
 
     private function dailymotionId($url)
     {
-        $cas = explode("/", $url); // On sépare la première partie de l'url des 2 autres
+        $cas = explode('/', $url); // On sépare la première partie de l'url des 2 autres
 
         $idb = $cas[4];  // On récupère la partie qui nous intéressent
 
-        $bp = explode("_", $idb);  // On sépare l'identifiant du reste
+        $bp = explode('_', $idb);  // On sépare l'identifiant du reste
 
         $id = $bp[0]; // On récupère l'identifiant
 
@@ -102,12 +102,9 @@ class MediaVideo
 
     public function extractIdentif($url)
     {
-        if (preg_match("#^(http|https)://www.youtube.com/#", $url))  // Si c’est une url Youtube on execute la fonction correspondante
-        {
+        if (preg_match('#^(http|https)://www.youtube.com/#', $url)) {  // Si c’est une url Youtube on execute la fonction correspondante
             $this->youtubeId($url);
-        }
-        else if((preg_match("#^(http|https)://www.dailymotion.com/#", $url))) // Si c’est une url Dailymotion on execute la fonction correspondante
-        {
+        } elseif ((preg_match('#^(http|https)://www.dailymotion.com/#', $url))) { // Si c’est une url Dailymotion on execute la fonction correspondante
             $this->dailymotionId($url);
         }
     }
@@ -136,24 +133,22 @@ class MediaVideo
         return $this;
     }
 
-    public function getEmbedUrl(){
-
+    public function getEmbedUrl()
+    {
         $control = $this->getType();  // on récupère le type de la vidéo
         $id = strip_tags($this->getVideoId()); // on récupère son identifiant
 
-        if($control == 'youtube')
-        {
-            $embed = "https://www.youtube.com/embed/".$id;
+        if ('youtube' == $control) {
+            $embed = 'https://www.youtube.com/embed/'.$id;
+
             return $embed;
-        }
-        else if ($control == 'dailymotion')
-        {
-            $embed = "https://www.dailymotion.com/embed/video/".$id;
+        } elseif ('dailymotion' == $control) {
+            $embed = 'https://www.dailymotion.com/embed/video/'.$id;
+
             return $embed;
-        }
-        else if($control == 'vimeo')
-        {
-            $embed = "https://player.vimeo.com/video/".$id;
+        } elseif ('vimeo' == $control) {
+            $embed = 'https://player.vimeo.com/video/'.$id;
+
             return $embed;
         }
     }
@@ -161,6 +156,7 @@ class MediaVideo
     public function video()
     {
         $video = "<iframe class='vignettes' width='100%' height='100%' src='".$this->getEmbedUrl()."'  frameborder='0'  allowfullscreen></iframe>";
+
         return $video;
     }
 }

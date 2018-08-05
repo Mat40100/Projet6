@@ -19,10 +19,10 @@ class MediaController extends Controller
 
         $mediaService->mediaDel($media);
 
-        $this->addFlash('success','L\'image a été supprimé');
+        $this->addFlash('success', 'L\'image a été supprimé');
 
         return $this->redirectToRoute('app_trick_modify', [
-            'trick' => $trick->getId()
+            'trick' => $trick->getId(),
         ]);
     }
 
@@ -35,10 +35,10 @@ class MediaController extends Controller
 
         $mediaService->videoDel($video);
 
-        $this->addFlash('success','La vidéo a été supprimé');
+        $this->addFlash('success', 'La vidéo a été supprimé');
 
         return $this->redirectToRoute('app_trick_modify', [
-            'trick' => $trick->getId()
+            'trick' => $trick->getId(),
         ]);
     }
 }

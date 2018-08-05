@@ -25,9 +25,9 @@
             <div class="col-12 row m-3 justify-content-center align-items-center">
                 <a id="seeMediaList" class="col-12 text-center d-lg-none" href="#">See medias</a>
                 <div id="mediasList" class="d-none row col-12 justify-content-center align-items-center">
-                    <h4>Liens multimédias :</h4>
+                    <h4>Liens multimédias : {# @TODO #}</h4>
                     <ul>
-                        {% for media in trick.medias %}
+                        {% for media in trick.medias %} {# @TODO #}
                             <li>
                                 <a class="col-auto" href="{{  asset(media.url) }}">{{ media.alt }}</a>
                                 <a href="{{ path('app_media_mediadel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
@@ -42,12 +42,21 @@
                     </ul>
                 </div>
                 <div class="col-12 d-none d-lg-flex row justify-content-around align-items-center">
-                    {% for media in trick.medias %}
+                    <div class="col-12 row row justify-content-center">
+                        <div class="col-6 row justify-content-center">
+                            <a href="#" id="add_media" class="add-btn btn btn-outline-primary">Ajouter un media</a>
+                        </div>
+                        <div class="col-6 row justify-content-center">
+                            <a href="#" id="add_videos" class="add-btn btn btn-outline-primary">Ajouter une vidéo</a>
+                        </div>
+                    </div>
+                    {% for mediaField in form.medias %}
                         <div class="img-fluid col-3 row justify-content-center m-3">
-                            <img class="vignettes" src="{{ asset(media.url) }}" alt="{{ media.alt }}">
+                            <img class="vignettes" src="{{ asset(mediaField.vars.data.url) }}" alt="{{ mediaField.vars.data.alt }}">
                             <div class="col-12 row justify-content-center">
-                                <a href="{{ path('app_media_mediadel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{ path('app_media_mediadel', {'media':mediaField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
                             </div>
+                            {{ form_row(mediaField.children.alt) }}
                         </div>
                     {% endfor %}
                     {% for videoField in form.videos %}

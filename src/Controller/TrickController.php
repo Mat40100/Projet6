@@ -3,24 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
-use App\Entity\Media;
 use App\Entity\Trick;
 use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Service\TrickService;
-use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
-use Doctrine\DBAL\Types\IntegerType;
-use Doctrine\ORM\Mapping\Entity;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
-use Symfony\Component\HttpFoundation\Response;
 
 class TrickController extends Controller
 {
@@ -40,17 +31,17 @@ class TrickController extends Controller
 
         $tricksNumber = count($tricks);
 
-        if ($numberToLoad>=$tricksNumber) {
+        if ($numberToLoad >= $tricksNumber) {
             $numberToLoad = $tricksNumber;
             $tricksLeft = false;
         }
 
-        $tricks = array_slice($tricks,0,$numberToLoad);
+        $tricks = array_slice($tricks, 0, $numberToLoad);
 
         return [
             'tricks' => $tricks,
             'number' => 10,
-            'tricksLeft' => $tricksLeft
+            'tricksLeft' => $tricksLeft,
         ];
     }
 
@@ -62,23 +53,23 @@ class TrickController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $comment = new Comment();
-        $form = $this->createForm(CommentType::class,$comment);
+        $form = $this->createForm(CommentType::class, $comment);
 
-        if($request->isMethod('POST')){
+        if ($request->isMethod('POST')) {
             $form->handleRequest($request);
-            if($form->isSubmitted() && $form->isValid()){
+            if ($form->isSubmitted() && $form->isValid()) {
                 $comment->setAuthor($this->getUser());
                 $trick->addComment($comment);
                 $em->persist($trick);
                 $em->flush();
 
                 $comment = new Comment();
-                $form = $this->createForm(CommentType::class,$comment);
+                $form = $this->createForm(CommentType::class, $comment);
             }
         }
 
         return [
-            "trick" => $trick,
+            'trick' => $trick,
             'form' => isset($form) ? $form->createView() : null,
         ];
     }
@@ -91,37 +82,33 @@ class TrickController extends Controller
     public function add(Request $request, TrickService $trickService)
     {
         $trick = new Trick();
-        $form = $this->createForm(TrickType::class,$trick);
+        $form = $this->createForm(TrickType::class, $trick);
         $repo = $this->getDoctrine()->getRepository(Trick::class);
 
-        if($request->isMethod('POST')){
-
+        if ($request->isMethod('POST')) {
             $form->handleRequest($request);
 
-            if($form->isValid()){
-
-                if($trickService->isExists($repo, $trick)){
-
-                    $this->addFlash('warning','Ce trick '.$trick->getName().' est déjà existant');
+            if ($form->isValid()) {
+                if ($trickService->isExists($repo, $trick)) {
+                    $this->addFlash('warning', 'Ce trick '.$trick->getName().' est déjà existant');
 
                     return array(
-                        'form' => $form->createView()
+                        'form' => $form->createView(),
                     );
                 }
 
-                if ($trickService->add($this->getUser(),$trick)) {
-
-                    $this->addFlash('success','Votre nouveau Trick '.$trick->getName().' est bien enregistré!');
+                if ($trickService->add($this->getUser(), $trick)) {
+                    $this->addFlash('success', 'Votre nouveau Trick '.$trick->getName().' est bien enregistré!');
 
                     return $this->redirectToRoute(
                         'app_trick_view',
-                        array('trick' => $trick->getId(),"slug"=>$trick->getName()));
+                        array('trick' => $trick->getId(), 'slug' => $trick->getName()));
                 }
-             }
+            }
         }
 
         return [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ];
     }
 
@@ -133,7 +120,7 @@ class TrickController extends Controller
     public function delete(Request $request, Trick $trick, TrickService $trickServices)
     {
         if (!$trick) {
-            $this->addFlash('danger','Vous essayez de supprimer un trick introuvable ...');
+            $this->addFlash('danger', 'Vous essayez de supprimer un trick introuvable ...');
 
             $this->redirectToRoute('home');
         }
@@ -141,16 +128,15 @@ class TrickController extends Controller
         $form = $this->get('form.factory')->create();
 
         if ($request->isMethod('POST')) {
-
             $trickServices->remove($trick);
-            $this->addFlash('success',$trick->getName().' a été supprimé!');
+            $this->addFlash('success', $trick->getName().' a été supprimé!');
 
             return $this->redirectToRoute('app_trick_index');
         }
 
         return [
             'form' => $form->createView(),
-            'trick' => $trick
+            'trick' => $trick,
         ];
     }
 
@@ -160,27 +146,26 @@ class TrickController extends Controller
      */
     public function modify(Request $request, Trick $trick, TrickService $trickServices)
     {
-        $form= $this->createForm(TrickType::class, $trick);
-        $form->remove('medias');
+        $form = $this->createForm(TrickType::class, $trick);
+        $form->getData();
         //$form->remove('videos');
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $this->addFlash('success',$trick->getName().' a été modifié!');
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', $trick->getName().' a été modifié!');
 
             $trickServices->update($trick);
 
             return $this->redirectToRoute(
                 'app_trick_view',
-                array('trick'=>$trick->getId(), 'slug'=> $trick->getName())
+                array('trick' => $trick->getId(), 'slug' => $trick->getName())
             );
         }
 
-
         return [
             'form' => $form->createView(),
-            'trick' => $trick
+            'trick' => $trick,
         ];
     }
 
@@ -209,13 +194,12 @@ class TrickController extends Controller
             $tricksLeft = false;
         }
 
-
         $tricks = array_slice($tricks, 0, $numberToLoad);
 
         return [
             'tricks' => $tricks,
             'number' => $numberToLoad,
-            'tricksLeft' => $tricksLeft
+            'tricksLeft' => $tricksLeft,
         ];
     }
 }

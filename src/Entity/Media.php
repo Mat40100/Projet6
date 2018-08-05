@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -52,9 +51,10 @@ class Media
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
      */
-    public function PostUpload(){
-        if($this->getFile()!=null){
-            $this->getFile()->move($this->getUploadRootDir(),$this->tempFilename.'.'.$this->getExtension());
+    public function PostUpload()
+    {
+        if (null != $this->getFile()) {
+            $this->getFile()->move($this->getUploadRootDir(), $this->tempFilename.'.'.$this->getExtension());
         }
     }
 
@@ -85,7 +85,6 @@ class Media
             unlink($this->tempFilename);
         }
     }
-
 
     public function getFile()
     {

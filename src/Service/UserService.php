@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -15,7 +14,6 @@ class UserService
     private $mailer;
     private $twig;
 
-
     public function __construct(UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, \Swift_Mailer $mailer, \Twig_Environment $twig)
     {
         $this->em = $em;
@@ -26,6 +24,7 @@ class UserService
 
     /**
      * @param User $user
+     *
      * @return bool
      */
     public function createUser(User $user)
@@ -40,8 +39,10 @@ class UserService
     }
 
     /**
-     * Encode password for user sent in
+     * Encode password for user sent in.
+     *
      * @param User $user
+     *
      * @return User
      */
     public function EncodePassword(User $user)
@@ -54,6 +55,7 @@ class UserService
 
     /**
      * @param $user
+     *
      * @return bool
      */
     public function updateUser($user)
@@ -67,14 +69,13 @@ class UserService
     /**
      * @param EntityRepository $repo
      * @param $data
-     * @return null || User $user
      */
     public function isUserExists(EntityRepository $repo, $data)
     {
-        $user = $repo->findOneBy(['username'=>$data])?:null;
+        $user = $repo->findOneBy(['username' => $data]) ?: null;
 
-        if($user === null) {
-            $user = $repo->findOneBy(['email' => $data])?:null;
+        if (null === $user) {
+            $user = $repo->findOneBy(['email' => $data]) ?: null;
         }
 
         return $user;
@@ -82,8 +83,10 @@ class UserService
 
     /**
      * @param EntityRepository $repo
-     * @param User $user
+     * @param User             $user
+     *
      * @return bool
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -91,11 +94,11 @@ class UserService
     public function sendRecoveryMail(User $user)
     {
         $token = $user->getRecoveryToken();
-        $message =(new \Swift_Message('SnowTricks password recovery'))
+        $message = (new \Swift_Message('SnowTricks password recovery'))
             ->setFrom('mathieu.dolhen@gmail.com')
             ->setTo($user->getEmail())
             ->setBody(
-                $this->twig->render('registration/RecoveryMail.html.twig',['token' => $token, 'user' => $user]),
+                $this->twig->render('registration/RecoveryMail.html.twig', ['token' => $token, 'user' => $user]),
                 'text/html'
             );
 

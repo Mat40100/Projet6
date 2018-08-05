@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -24,7 +23,8 @@ class Comment
     private $date;
 
     /**
-     * One Author can have Many comments comment
+     * One Author can have Many comments comment.
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      */
     private $author;

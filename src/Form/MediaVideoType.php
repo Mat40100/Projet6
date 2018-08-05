@@ -13,7 +13,7 @@ class MediaVideoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url', TextType::class, array('label'=> false, 'empty_data'=> 'Url'))
+            ->add('url', TextType::class, array('label' => false, 'empty_data' => 'Url'))
         ;
     }
 

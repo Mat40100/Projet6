@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: Mathieu
  * Date: 24/07/2018
- * Time: 19:50
+ * Time: 19:50.
  */
 
 namespace App\Service;
-
 
 use App\Entity\Media;
 use App\Entity\MediaVideo;
@@ -15,12 +14,11 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class MediaService
 {
-
     private $em;
-
 
     /**
      * MediaService constructor.
+     *
      * @param EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em)
@@ -30,6 +28,7 @@ class MediaService
 
     /**
      * @param Media $media
+     *
      * @return bool
      */
     public function mediaAdd(Media $media)
@@ -42,6 +41,7 @@ class MediaService
 
     /**
      * @param MediaVideo $mediaVideo
+     *
      * @return bool
      */
     public function videoAdd(MediaVideo $mediaVideo)
@@ -52,9 +52,9 @@ class MediaService
         return true;
     }
 
-
     /**
      * @param Media $media
+     *
      * @return bool
      */
     public function mediaDel(Media $media)
@@ -69,6 +69,7 @@ class MediaService
 
     /**
      * @param MediaVideo $mediaVideo
+     *
      * @return bool
      */
     public function videoDel(MediaVideo $mediaVideo)
@@ -80,5 +81,4 @@ class MediaService
 
         return true;
     }
-
 }
