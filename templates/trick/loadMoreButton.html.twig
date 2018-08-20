@@ -1,9 +1,9 @@
-<div class="col-12 row justify-content-center align-items-center p-2">
+<div class="col-12 row justify-content-center align-items-baseline p-2">
     {% if number > 10 %}
         <a href="#Landpage" class="position-absolute d-flex arrow justify-content-center align-items-center" href="#Tricks"><i class="fas fa-arrow-up"></i></a>
     {% endif %}
     {% if tricksLeft %}
-        <button id="loadMore" class="rounded bg-light">Voir plus</button>
+        <a id="loadMore" class="col-auto text-center p-3 rounded">Voir plus</a>
     {% else %}
     {% endif %}
 </div>
