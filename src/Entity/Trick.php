@@ -48,7 +48,7 @@ class Trick
     private $comments;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Media")
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", mappedBy="trick", cascade={"persist"})
      */
     private $mainMedia;
 
