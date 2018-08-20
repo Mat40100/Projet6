@@ -4,12 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/Entity/MediaVideo.php" line="21" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c46d3bdc-3bb7-4d23-9f20-0387050d5907" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/assets/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/trick/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/trick/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/trick/load_More.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/trick/load_More.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="c46d3bdc-3bb7-4d23-9f20-0387050d5907" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +71,8 @@
           <entry key="dummy" value="3" />
           <entry key="js" value="232" />
           <entry key="php" value="3553" />
-          <entry key="twig" value="2231" />
+          <entry key="twig" value="2260" />
+          <entry key="txt" value="55" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -84,18 +80,18 @@
           <entry key="CSS" value="324" />
           <entry key="JavaScript" value="231" />
           <entry key="PHP" value="3553" />
-          <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Twig" value="2231" />
+          <entry key="PLAIN_TEXT" value="58" />
+          <entry key="Twig" value="2260" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
+            <state relative-caret-position="867">
               <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
             </state>
           </provider>
@@ -164,11 +160,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+              <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -251,8 +247,8 @@
         <option value="$PROJECT_DIR$/templates/trick/modify.html.twig" />
         <option value="$PROJECT_DIR$/templates/trick/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/trick/load_More.html.twig" />
-        <option value="$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig" />
         <option value="$PROJECT_DIR$/assets/css/index.css" />
+        <option value="$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig" />
       </list>
     </option>
   </component>
@@ -673,12 +669,12 @@
       <workItem from="1533296639791" duration="8105000" />
       <workItem from="1533363138948" duration="524000" />
       <workItem from="1533464045409" duration="12242000" />
-      <workItem from="1534752590712" duration="5782000" />
+      <workItem from="1534752590712" duration="6188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284953000" />
+    <option name="totallyTimeSpent" value="285359000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -707,7 +703,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286334" />
       <window_info anchor="bottom" id="Database Console" order="10" sideWeight="0.49946696" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.35820895" side_tool="true" weight="0.8812636" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.64179105" visible="true" weight="0.19956616" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.64179105" visible="true" weight="0.164859" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32897604" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -740,6 +736,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -1051,16 +1073,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/trick/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding>
-            <element signature="e#692#717#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/trick/load_More.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1071,17 +1083,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig">
+    <entry file="file://$PROJECT_DIR$/assets/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state relative-caret-position="867">
+          <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/index.css">
+    <entry file="file://$PROJECT_DIR$/templates/trick/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+        <state relative-caret-position="357">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <folding>
+            <element signature="e#692#717#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
         </state>
       </provider>
     </entry>

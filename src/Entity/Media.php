@@ -161,6 +161,6 @@ class Media
 
     public static function getDefault()
     {
-        return 'uploads/img/default.png';
+        return 'uploads/img/default.jpg';
     }
 }
