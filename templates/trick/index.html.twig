@@ -10,7 +10,7 @@
     <section id="Landpage" class="align-items-center row" style="background-image: url('{{ asset('uploads/img/Landpage.jpg') }}')">
         {% include('flash.html.twig') %}
         <h1 class="col-12 text-center text-light">As smooth as the Snow</h1>
-        <a class="position-absolute arrow-down pb-5 pr-5" href="#Tricks"><i class="fas fa-arrow-down"></i></a>
+        <a class="position-absolute d-flex arrow justify-content-center align-items-center" href="#Tricks"><i class="fas fa-arrow-down"></i></a>
     </section>
     <section id ="Tricks" class="row justify-content-center">
         {% if tricks == null %}
@@ -19,20 +19,21 @@
             </div>
         {% endif %}
         {% for trick in tricks %}
-            <div class="col-12 col-sm-8 col-md-5 col-lg-3 col-xl-2 p-4 row mb-4 m-xl-1 justify-content-center">
+            <div class="col-12 col-sm-8 col-md-5 col-lg-3 col-xl-2 p-4 row mb-4 m-xl-1 justify-content-center align-items-center">
                 <div class="col-12 tricks row justify-content-center align-items-center p-0 rounded">
                     <div class="col-12 img-trick m-0 p-0"
-                         style="{% if trick.mainMedia.url is defined  %}
-                                 background-image: url('{{ asset(trick.mainMedia.url) }}');
+                         style="
+                                 background-image: url('{{ asset(trick.hasMainMedia) }}');
                                  background-repeat: no-repeat;
                                  background-size: cover;
-                         {% endif %}
                                  "></div>
                     <div class="link-tricks justify-content-center align-self-end col-12 text-center align-items-center row">
                         <a class="col-auto" href="{{ path('app_trick_view', {'trick':trick.id,'slug':trick.name|slugify}) }}">{{ trick.name }}</a>
                         {% if is_granted('ROLE_USER') %}
+                            <div class="col-12">
                                 <a href="/delete/{{ trick.id }}"><i class="far fa-trash-alt m-1"></i></a>
                                 <a href="/modify/{{ trick.id }}"><i class="fas fa-pencil-alt m-1"></i></a>
+                            </div>
                         {% endif %}
                     </div>
                 </div>

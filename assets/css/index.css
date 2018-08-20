@@ -18,17 +18,25 @@
     height:50px;
 }
 
-.arrow-down{
-    right:0px;
-    bottom:0px;
+.arrow{
+    right:1rem;
+    bottom:1rem;
     font-size: 2rem;
+
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    height:64px;
+    width:60px;
 }
 
-.arrow-up{
-    right:0px;
-    bottom:0px;
-    font-size: 2rem;
+.arrow:hover{
+    background-color:#007bff;
+    color:white;
+    text-decoration: none;
 }
+
 #loadMore{
     height:40px;
     width:120px;

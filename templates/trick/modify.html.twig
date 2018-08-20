@@ -14,11 +14,10 @@
         {% include('flash.html.twig') %}
         <div class="col-12 row align-self-baseline justify-content-center p-0">
             <div class="img-fluid col-12 img-trick-main row justify-content-center align-items-center"
-                 style="{% if trick.mainMedia.url is defined  %}
-                         background-image: url('{{ asset(trick.mainMedia.url) }}');
+                 style="
+                         background-image: url('{{ asset(trick.hasMainMedia) }}');
                          background-repeat: no-repeat;
                          background-size: cover;
-                 {% endif %}
                          ">
                 {{ form_start(form) }}
                 <div class="col-12 text-center">{{ form_row(form.name) }}</div>

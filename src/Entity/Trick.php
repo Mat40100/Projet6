@@ -277,20 +277,21 @@ class Trick
         return $this;
     }
 
-    public function getMainMedia(): ?Media
+    public function getMainMedia()
     {
-        if (null != $this->mainMedia) {
-            return $this->mainMedia;
-        }
-        $medias = $this->getMedias();
+        return $this->mainMedia ? $this->mainMedia->getUrl() : null;
+    }
 
+    public function getDefaultMedia()
+    {
+        $medias = $this->getMedias();
         if (empty($medias->toArray())) {
-            return $this->mainMedia;
+            return Media::getDefault();
         }
 
         $selected = $medias->get(array_rand($medias->toArray()), 1);
 
-        return $selected;
+        return $selected->getUrl();
     }
 
     public function setMainMedia(?Media $mainMedia): self
@@ -298,5 +299,10 @@ class Trick
         $this->mainMedia = $mainMedia;
 
         return $this;
+    }
+
+    public function hasMainMedia()
+    {
+        return ($this->getMainMedia()) ? : $this->getDefaultMedia();
     }
 }

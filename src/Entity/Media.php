@@ -158,4 +158,9 @@ class Media
     {
         return 'uploads/img/'.$this->getIdentif().'.'.$this->getExtension();
     }
+
+    public static function getDefault()
+    {
+        return 'uploads/img/default.png';
+    }
 }
