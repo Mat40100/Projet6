@@ -8,6 +8,10 @@
     height:210px;
     border:black 1px solid;
 }
+.tricks:hover{
+    background-color:#007bff;
+    color:white;
+}
 
 .img-trick{
     height:160px;
@@ -34,6 +38,10 @@
 .arrow:hover{
     background-color:#007bff;
     color:white;
+    text-decoration: none;
+}
+
+.tricks-link{
     text-decoration: none;
 }
 
