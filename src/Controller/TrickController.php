@@ -2,18 +2,23 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Media;
 use App\Entity\MediaVideo;
 use App\Entity\Trick;
+use App\Form\CategoryType;
 use App\Form\CommentType;
 use App\Form\MediaType;
 use App\Form\MediaVideoType;
 use App\Form\ModifyTrickFormType;
 use App\Form\TrickType;
 use App\Form\TrickTypeModify;
+use App\Service\CategoryService;
 use App\Service\MediaService;
 use App\Service\TrickService;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -89,8 +94,10 @@ class TrickController extends Controller
     public function add(Request $request, TrickService $trickService)
     {
         $trick = new Trick();
+
         $form = $this->createForm(TrickType::class, $trick);
-        $repo = $this->getDoctrine()->getRepository(Trick::class);
+                $repo = $this->getDoctrine()->getRepository(Trick::class);
+
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -152,60 +159,27 @@ class TrickController extends Controller
      * @Security("has_role('ROLE_USER')")
      * @Template()
      */
-    public function modify(Request $request, Trick $trick, TrickService $trickServices, MediaService $mediaService)
+    public function modify(Request $request, Trick $trick, TrickService $trickService)
     {
-        $form = $this->createForm(TrickTypeModify::class, $trick);
+        $form = $this->createForm(TrickType::class, $trick);
 
-        $media = new Media();
-        $mediaForm = $this->createForm(MediaType::class, $media);
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
 
-        $video = new MediaVideo();
-        $videoForm = $this->createForm(MediaVideoType::class, $video);
+            if ($form->isValid()) {
+               if ($trickService->update($trick)) {
+                   $this->addFlash('success', 'La modification de ' . $trick->getName() . ' est bien enregistrée!');
 
-        $videoForm->handleRequest($request);
-        if ($videoForm->isSubmitted() && $videoForm->isValid()) {
-            $this->addFlash('success', 'Votre image a été ajoutée');
-
-            $video->setTrick($trick);
-            $mediaService->videoAdd($video);
-
-            return $this->redirectToRoute(
-                'app_trick_modify',
-                ['trick' => $trick->getId()]
-            );
-        }
-
-
-        $mediaForm->handleRequest($request);
-        if ($mediaForm->isSubmitted() && $mediaForm->isValid()) {
-            $this->addFlash('success', 'Votre image a été ajoutée');
-
-            $media->setTrick($trick);
-            $mediaService->mediaAdd($media);
-
-            return $this->redirectToRoute(
-                'app_trick_modify',
-                ['trick' => $trick->getId()]
-            );
-        }
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->addFlash('success', $trick->getName().' a été modifié!');
-
-            $trickServices->update($trick);
-
-            return $this->redirectToRoute(
-                'app_trick_view',
-                array('trick' => $trick->getId(), 'slug' => $trick->getName())
-            );
+                   return $this->redirectToRoute(
+                       'app_trick_view',
+                       array('trick' => $trick->getId(), 'slug' => $trick->getName()));
+               }
+            }
         }
 
         return [
             'form' => $form->createView(),
             'trick' => $trick,
-            'mediaform' => $mediaForm->createView(),
-            'videoform' => $videoForm->createView(),
         ];
     }
 
@@ -219,7 +193,11 @@ class TrickController extends Controller
 
         $trick ->setMainMedia($media);
 
-        $trickService->update($trick);
+        if(!$trickService->update($trick)) {
+            $this->addFlash('warning', 'Un problème est survenu pendant la modification de la tête d\'affiche.'.$trick->getMainMedia());
+        }else {
+            $this->addFlash('success', 'Modification enregistrée !');
+        }
 
         return $this->redirectToRoute('app_trick_modify', [
             'trick' => $trick->getId(),

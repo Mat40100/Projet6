@@ -53,7 +53,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    var $container = $('div#trick_videos');
+    var $container = $('div#videos');
     let index = $container.find(':input').length;
 
     $('#add_videos').click(function (e) {
@@ -72,10 +72,9 @@ $(document).ready(function () {
 
     function addVideoForm($container) {
         try {
-            var template = $container.attr('data-prototype')
-                .replace(/__name__label__/, '')
+            var template = $('#videos').attr('data-prototype')
                 .replace(/trick_videos___name__/,'trick_videos_'+ index )
-                .replace(/trick_videos___name___url/,'trick_videos_url" placeholder="Url"'+ index )
+                .replace(/trick_videos___name___url/,'trick_videos_'+ index +'_url')
                 .replace("[__name__]",'['+index+']')
                 .replace("[__name__]",'['+index+']')
             ;

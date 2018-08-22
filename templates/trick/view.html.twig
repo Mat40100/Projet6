@@ -56,6 +56,12 @@
             <div class="col-12 row justify-content-center">
                 <div class="col-auto border rounded m-2">Auteur : {{ trick.author.username }}</div>
                 <div class="col-auto border rounded m-2">Date de création : {{ trick.date|date("d/m/Y h:i")}}</div>
+                <div class="col-auto border rounded m-2">
+                    Catégories :
+                    {% for category in trick.categories %}
+                        {{ category.name }}
+                    {% endfor %}
+                </div>
                 {% if trick.dateLastMod is not null %}
                     <div class="col-auto border rounded m-2">Dernière modification : {{ trick.dateLastMod|date("d/m/Y") }}</div>
                 {% endif %}

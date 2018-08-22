@@ -62,7 +62,10 @@ class TrickService
     public function update(Trick $trick)
     {
         $trick->setDateLastMod(new \DateTime());
+        $this->em->persist($trick);
         $this->em->flush();
+
+        return true;
     }
 
     /**

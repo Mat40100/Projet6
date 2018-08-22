@@ -27,7 +27,7 @@
                 <div id="mediasList" class="d-none row col-12 justify-content-center align-items-center">
                     <h4>Liens multimédias : {# @TODO #}</h4>
                     <ul>
-                        {% for media in trick.medias %} {# @TODO #}
+                        {% for media in trick.medias %}
                             <li>
                                 <a class="col-auto" href="{{  asset(media.url) }}">{{ media.alt }}</a>
                                 <a href="{{ path('app_media_mediadel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
@@ -53,23 +53,30 @@
                             {{ form_row(mediaField.children.file) }}
                     </div>
                     {% endfor %}
-                    {% for videoField in form.videos %}
-                    <div class="img-fluid col-3 row justify-content-center m-3">
-                        <iframe class='vignettes' width='100%' height='100%' src='{{ videoField.vars.data.embedUrl }}'  frameborder='0'  allowfullscreen></iframe>
+                    <a href="#" id="add_media" class="add-btn btn btn-outline-primary">Ajouter un media</a>
 
-                        {{ form_errors(videoField) }}
-                        {{ form_widget(videoField) }}
+                    <div id="videos" class="col-12 row" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
+                        {% for videoField in form.videos %}
+                            <div class="img-fluid col-3 row justify-content-center m-3 video">
+                                <iframe class='vignettes' width='100%' height='100%' src='{{ videoField.vars.data.embedUrl }}'  frameborder='0'  allowfullscreen></iframe>
 
-                        <div class="col-12 row justify-content-center">
-                            <a href="{{ path('app_media_videodel', {'video':videoField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
-                        </div>
+                                {{ form_errors(videoField) }}
+                                {{ form_widget(videoField) }}
+
+                                <div class="col-12 row justify-content-center">
+                                    <a href="{{ path('app_media_videodel', {'video':videoField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <a href="#" id="add_videos" class="add-btn btn btn-outline-primary">Ajouter une vidéo</a>
                     </div>
-                    {% endfor %}
+
                 </div>
             </div>
             <div class="col-12 row justify-content-center align-items-center p-5">
                 <div class="col-12 text-center">{{ form_row(form.description) }}</div>
             </div>
+            {{ form(form.categories) }}
             <div class="col-12 row justify-content-center">
                 <div class="col-auto border rounded m-2">Auteur : {{ trick.author.username }}</div>
                 <div class="col-auto border rounded m-2">Date de création : {{ trick.date|date("d/m/Y h:i")}}</div>
@@ -79,28 +86,13 @@
             </div>
             <div class="col-12 m-4 border border-bottom"></div>
             <input class="m-3" type="submit" value="Valider">
+
+            </div>
             {{ form_end(form) }}
-        </div>
-
-        <div class="col-12 col-lg-6 row justify-content-around" >
-            {{ form_start(mediaform) }}
-
-            {{ form_row(mediaform.file) }}
-            {{ form_widget(mediaform.alt) }}
-            <input type="submit" value="Ajouter">
-            {{ form_end(mediaform) }}
-        </div>
-
-        <div class="col-12 col-lg-6 row justify-content-around" >
-            {{ form_start(videoform) }}
-
-            {{ form_widget(videoform.url) }}
-            <input type="submit" value="Ajouter">
-            {{ form_end(videoform) }}
-        </div>
     </section>
 {% endblock %}
 
 {% block js %}
     <script type="text/javascript" src="{{ asset('build/view.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('build/modify_form.js') }}"></script>
 {% endblock %}
