@@ -10,13 +10,13 @@
 {% block body %}
     <section class="row col-9 justify-content-center align-items-center p-0 m-0 mb-5">
         <div class="col-12 undermenu d-none d-lg-block"></div>
-        {% include('flash.html.twig') %}
         <div class="col-12 row align-self-baseline justify-content-center p-0">
             <div class="img-fluid col-12 img-trick-main row justify-content-center align-items-center"
                 style="
-                        background-image: url('{{ asset(trick.hasMainMedia) }}');
+                        background-image: url('{{ asset(trick.hasMainMedia) }}');{#TODO#}
                         background-repeat: no-repeat;
                         background-size: cover;
+                        background-position: center;
                         ">
                 {% if is_granted('ROLE_USER') %}
                 <div class="position-absolute user-link m-5 p-1 rounded bg-light">
@@ -24,7 +24,7 @@
                     <a href="{{ path('app_trick_modify', {'trick' : trick.id}) }}"><i class="fas fa-pencil-alt"></i></a>
                 </div>
                 {%  endif %}
-                <div class="col-12 text-center">{{ trick.name }}</div>
+                <div class="col-12 text-center display-2">{{ trick.name }}</div>
             </div>
             <div class="col-12 row m-3 justify-content-center align-items-center">
                 <a id="seeMediaList" class="col-12 text-center d-lg-none" href="#">See medias</a>
@@ -51,6 +51,7 @@
                 </div>
             </div>
             <div class="col-12 row justify-content-center align-items-center p-5">
+                <div class="col-12 text-capitalize display-4 mb-3"><u>Le trick :</u></div>
                 <div class="col-12 text-center">{{ trick.description }}</div>
             </div>
             <div class="col-12 row justify-content-center">
@@ -68,10 +69,11 @@
             </div>
             <div class="col-12 m-4 border border-bottom"></div>
             {% if is_granted('ROLE_USER') %}
-                <div class="col-12 row justify-content-center align-items-center">
+                <div id="comments" class="col-12 row justify-content-center align-items-center">
                     <div class="col-12 col-md-6 justify-content-center align_items-center text-center border-bottom">
                         {{ form_start(form) }}
-                        {{ form_widget(form) }}
+                        {{ form_widget(form.content) }}
+                        <input type="submit" class="btn btn-secondary m-3" value="Envoyer">
                         {{ form_end(form) }}
                     </div>
                 </div>

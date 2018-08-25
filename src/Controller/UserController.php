@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $user = $this->getUser();
 
-        if ($user->getPicture()) {
+        if (null != $user->getPicture()) {
             $pictureService->delete($user->getPicture());
         }
 

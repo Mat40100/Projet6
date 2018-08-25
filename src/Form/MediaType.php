@@ -15,9 +15,11 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('file', FileType::class ,array(
-                'label' => 'Photo en jpg ou png'
+                'label' => 'Photo en jpg ou png',
             ))
-            ->add('alt', TextType::class)
+            ->add('alt', TextType::class, array(
+                'required' => true,
+            ))
         ;
     }
 

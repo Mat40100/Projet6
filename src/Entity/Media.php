@@ -25,7 +25,8 @@ class Media
     private $identif;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=150, nullable=false)
+     * @Assert\NotNull()
      */
     private $alt;
 

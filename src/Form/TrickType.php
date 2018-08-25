@@ -20,17 +20,6 @@ class TrickType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
-                $trick = $event->getData();
-                $form = $event->getForm();
-
-                if($trick || null != $trick->getId()) {
-                    $field = $form->get('medias');         // get the field
-                    $options = $field->getConfig()->getOptions();            // get the options
-                    $options['required'] = false ;           // change the label
-                    $form->add('medias', CollectionType::class, $options); // replace the field
-                }
-            })
             ->add('name', TextType::class, array('label' => 'Nom de la figure'))
             ->add('description', TextareaType::class, array('label' => 'Description de la figure'))
             ->add('medias', CollectionType::class, array(
@@ -52,6 +41,17 @@ class TrickType extends AbstractType
                 'expanded' => true,
                 'by_reference' => false,
             ))
+            ->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+                $trick = $event->getData();
+                $form = $event->getForm();
+
+                if($trick || null != $trick->getId()) {
+                    $field = $form->get('medias');
+                    $options = $field->getConfig()->getOptions();            // get the options
+                    $options['required'] = false ;           // change the label
+                    $form->add('medias', CollectionType::class, $options);
+                }
+            })
         ;
     }
 

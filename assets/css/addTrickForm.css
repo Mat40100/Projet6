@@ -10,9 +10,20 @@ legend{
     height:40px;
 }
 
-#trick_medias fieldset, #trick_videos fieldset{
-    background-color: #999999;
+.btn-danger{
+    width: 110px;
+}
+
+#medias fieldset, #videos fieldset{
     border-radius: 25px;
     margin: 0.5rem;
-    padding: 1rem;
+}
+
+#medias{
+    border-bottom: black 1px solid;
+    border-top: black 1px solid;
+}
+
+#videos{
+    border-bottom: black 1px solid;
 }

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var $container = $('div#trick_medias');
+    var $container = $('div#medias');
     let index = $container.find(':input').length;
 
     $('#add_media').click(function (e) {
@@ -13,8 +13,11 @@ $(document).ready(function () {
         $container.find("legend").each(function () {
             $(this).hide();
         });
-        $container.children("fieldset").each(function(){
+        $container.children(".media").each(function(){
             addDeleteLink($(this));
+            var allInputs = $(this).find(":input:file");
+            allInputs.parent("div").hide();
+            $(this).find('label').hide();
         });
     }
 
@@ -40,7 +43,7 @@ $(document).ready(function () {
     }
 
     function addDeleteLink($prototype) {
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+        var $deleteLink = $('<a href="#" class="btn btn-danger ml-4 mr-4">Supprimer</a>');
 
         $prototype.append($deleteLink);
 
@@ -54,7 +57,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    var $container = $('div#trick_videos');
+    var $container = $('div#videos');
     let index = $container.find(':input').length;
 
     $('#add_videos').click(function (e) {
@@ -68,7 +71,7 @@ $(document).ready(function () {
         $container.find("legend").each(function () {
             $(this).hide();
         });
-        $container.children("fieldset").each(function(){
+        $container.children(".video").each(function(){
             addDeleteLink($(this));
         });
     }
@@ -77,7 +80,7 @@ $(document).ready(function () {
         try {
             var template = $container.attr('data-prototype')
                 .replace("__name__label__", '')
-                .replace("trick_videos___name__",'trick_videos_'+ index )
+                .replace("trick_videos___name__",'trick_videos_'+ index)
                 .replace("trick_videos___name___url",'trick_videos_url" placeholder="Url"'+ index )
                 .replace("[__name__]",'['+index+']')
                 .replace("[__name__]",'['+index+']')
@@ -109,3 +112,10 @@ $(document).ready(function () {
     }
 });
 
+$(document).ready(function(){
+   var $videos = $('div#trick_videos');
+   var $medias = $('div#trick_medias');
+
+   $medias.parent("fieldset").hide();
+   $videos.parent("fieldset").hide();
+});

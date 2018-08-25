@@ -11,6 +11,16 @@
     <body class="p-0 m-0 row justify-content-center align-items-center">
         {% block menu %}
             {% include('trick/menu.html.twig') %}
+            {% for label,messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="col-12 flashBag alert alert-{{ label }} alert-dismissible fade show text-center">
+                        {{message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
         {% endblock %}
 
         {% block body %}
