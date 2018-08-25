@@ -1,98 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ trick.Name }}{% endblock %}
-
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('build/trick.css') }}" />
-    <link rel="stylesheet" href="{{ asset('build/buttons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('build/addTrickForm.css') }}" />
 {% endblock %}
 
-
 {% block body %}
-    <section class="row col-9 justify-content-center align-items-center p-0 m-0 mb-5">
-        <div class="col-12 undermenu d-none d-lg-block"></div>
-        {% include('flash.html.twig') %}
-        <div class="col-12 row align-self-baseline justify-content-center p-0">
-            <div class="img-fluid col-12 img-trick-main row justify-content-center align-items-center"
-                 style="
-                         background-image: url('{{ asset(trick.hasMainMedia) }}');
-                         background-repeat: no-repeat;
-                         background-size: cover;
-                         ">
-                {{ form_start(form) }}
-                <div class="col-12 text-center">{{ form_row(form.name) }}</div>
+    <section class="row justify-content-center align-items-lg-center m-0">
+        {{ form_start(form) }}
+        <div class="col-12 row justify-content-center m-0 p-0">
+            <div class="col-8 text-center">
+                {{ form_row(form.name) }}
             </div>
-            <div class="col-12 row m-3 justify-content-center align-items-center">
-                <a id="seeMediaList" class="col-12 text-center d-lg-none" href="#">See medias</a>
-                <div id="mediasList" class="d-none row col-12 justify-content-center align-items-center">
-                    <h4>Liens multimédias : {# @TODO #}</h4>
-                    <ul>
-                        {% for media in trick.medias %}
-                            <li>
-                                <a class="col-auto" href="{{  asset(media.url) }}">{{ media.alt }}</a>
-                                <a href="{{ path('app_media_mediadel', {'media':media.id }) }}"><i class="far fa-trash-alt"></i></a>
-                            </li>
-                        {% endfor %}
-                        {% for video in trick.videos %}
-                            <li>
-                                <a class="col-auto" href="{{ video.url }}">{{ video.type }}</a>
-                                <a href="{{ path('app_media_videodel', {'video':video.id }) }}"><i class="far fa-trash-alt"></i></a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+
+            <div class="col-8 text-center">
+                {{ form_row(form.description) }}
+            </div>
+
+            <div class="col-12 row row justify-content-center">
+                <div class="col-12 col-lg-6 row justify-content-center">
+                    <div class="col-12 text-center">
+                        {{ form_row(form.medias) }}
+                    </div>
+                    <a href="#" id="add_media" class="add-btn btn btn-outline-primary col-6 m-2">Ajouter un media</a>
                 </div>
-                <div class="col-12 d-none d-lg-flex row justify-content-around align-items-center">
-                    {% for mediaField in form.medias %}
-                    <div class="img-fluid col-3 row justify-content-center m-3">
-                            <img class="vignettes" src="{{ asset(mediaField.vars.data.url) }}" alt="{{ mediaField.vars.data.alt }}">
-                            <div class="col-12 row justify-content-center">
-                                <a class="m-1" href="{{ path('app_media_mediadel', {'media':mediaField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
-                                <a class="m-1" href="{{ path('app_trick_thisismainmedia', {'media':mediaField.vars.data.id}) }}"><i class="far fa-image"></i></a>
-                            </div>
-                            {{ form_row(mediaField.children.alt) }}
-                            {{ form_row(mediaField.children.file) }}
+                <div class="col-12 col-lg-6 row justify-content-center">
+                    <div class="col-12 text-center">
+                        {{ form_row(form.videos) }}
                     </div>
-                    {% endfor %}
-                    <a href="#" id="add_media" class="add-btn btn btn-outline-primary">Ajouter un media</a>
-
-                    <div id="videos" class="col-12 row" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
-                        {% for videoField in form.videos %}
-                            <div class="img-fluid col-3 row justify-content-center m-3 video">
-                                <iframe class='vignettes' width='100%' height='100%' src='{{ videoField.vars.data.embedUrl }}'  frameborder='0'  allowfullscreen></iframe>
-
-                                {{ form_errors(videoField) }}
-                                {{ form_widget(videoField) }}
-
-                                <div class="col-12 row justify-content-center">
-                                    <a href="{{ path('app_media_videodel', {'video':videoField.vars.data.id }) }}"><i class="far fa-trash-alt"></i></a>
-                                </div>
-                            </div>
-                        {% endfor %}
-                        <a href="#" id="add_videos" class="add-btn btn btn-outline-primary">Ajouter une vidéo</a>
+                    <a href="#" id="add_videos" class="add-btn btn btn-outline-primary col-6 m-2">Ajouter une vidéo</a>
+                </div>
+                <div class="col-12 col-lg-6 row justify-content-center">
+                    <div class="col-12 text-center">
+                        {{ form_row(form.categories) }}
                     </div>
-
                 </div>
             </div>
-            <div class="col-12 row justify-content-center align-items-center p-5">
-                <div class="col-12 text-center">{{ form_row(form.description) }}</div>
+            <div class="col-12 row justify-content-center mb-5">
+                <input type="submit" class="btn btn-outline-secondary" value="Envoyer">
             </div>
-            {{ form(form.categories) }}
-            <div class="col-12 row justify-content-center">
-                <div class="col-auto border rounded m-2">Auteur : {{ trick.author.username }}</div>
-                <div class="col-auto border rounded m-2">Date de création : {{ trick.date|date("d/m/Y h:i")}}</div>
-                {% if trick.dateLastMod is defined %}
-                    <div class="col-auto border rounded m-2">Dernière modification : {{ trick.dateLastMod|date("d/m/Y") }}</div>
-                {% endif %}
-            </div>
-            <div class="col-12 m-4 border border-bottom"></div>
-            <input class="m-3" type="submit" value="Valider">
-
-            </div>
-            {{ form_end(form) }}
+        </div>
+        {{ form_end(form) }}
     </section>
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="{{ asset('build/view.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('build/modify_form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('build/form.js') }}">   </script>
 {% endblock %}

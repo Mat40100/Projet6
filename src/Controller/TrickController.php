@@ -224,7 +224,7 @@ class TrickController extends Controller
         $tricksNumber = count($tricks);
         $numberToLoad = $numberToLoad + 5;
 
-        if ($numberToLoad >= $tricksNumber) {
+        if ($numberToLoad >= $tricksNumber-1) {
             $numberToLoad = $tricksNumber;
             $tricksLeft = false;
         }

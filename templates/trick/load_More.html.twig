@@ -5,7 +5,7 @@
     {% endif %}
 
     {% for trick in tricks %}
-        <div class="col-12 col-sm-8 col-md-5 col-lg-3 col-xl-2 p-4 row mb-4 m-xl-1">
+        <div class="col-10 col-sm-8 col-md-5 col-lg-3 col-xl-2 p-4 row mb-4 m-xl-1">
             <a href="{{ path('app_trick_view', {'trick':trick.id,'slug':trick.name|slugify}) }}" class="col-12 tricks row justify-content-center align-items-center p-0 rounded">
                 <div class="col-12 img-trick m-0 p-0"
                      style=" background-image: url('{{ asset(trick.hasMainMedia) }}');
@@ -22,3 +22,10 @@
 
     {% include('trick/loadMoreButton.html.twig') %}
 
+    {% block js %}
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        {% include('trick/indexAjax.html.twig') %}
+        <script type="text/javascript" src="{{ asset('build/indexJs.js') }}"></script>
+    {% endblock %}

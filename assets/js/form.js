@@ -9,16 +9,19 @@ $(document).ready(function () {
         return false;
     });
 
-    if (index != 0) {
-        $container.children('div').each(function () {
+    if (index > 0) {
+        $container.find("legend").each(function () {
+            $(this).hide();
+        });
+        $container.children("fieldset").each(function(){
             addDeleteLink($(this));
-        })
+        });
     }
 
     function addMediaForm($container) {
         try {
             var template = $container.attr('data-prototype')
-                .replace(/__name__label__/, '')
+                .replace("__name__label__", '')
                 .replace("[__name__]",'['+index+']')
                 .replace("[__name__]",'['+index+']')
             ;
@@ -61,26 +64,27 @@ $(document).ready(function () {
         return false;
     });
 
-    if (index != 0) {
-
-        $container.children('div').each(function () {
+    if (index > 0) {
+        $container.find("legend").each(function () {
+            $(this).hide();
+        });
+        $container.children("fieldset").each(function(){
             addDeleteLink($(this));
-        })
+        });
     }
 
     function addVideoForm($container) {
         try {
             var template = $container.attr('data-prototype')
-                .replace(/__name__label__/, '')
-                .replace(/trick_videos___name__/,'trick_videos_'+ index )
-                .replace(/trick_videos___name___url/,'trick_videos_url" placeholder="Url"'+ index )
+                .replace("__name__label__", '')
+                .replace("trick_videos___name__",'trick_videos_'+ index )
+                .replace("trick_videos___name___url",'trick_videos_url" placeholder="Url"'+ index )
                 .replace("[__name__]",'['+index+']')
                 .replace("[__name__]",'['+index+']')
             ;
         } catch (e) {
             console.log("Problem", e)
         }
-
 
         var $prototype = $(template);
 

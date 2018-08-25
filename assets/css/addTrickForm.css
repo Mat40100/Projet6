@@ -1,3 +1,18 @@
+section{
+    width:auto!important;
+}
+
+legend{
+    font-size: x-large!important;
+}
+
 .btn{
     height:40px;
+}
+
+#trick_medias fieldset, #trick_videos fieldset{
+    background-color: #999999;
+    border-radius: 25px;
+    margin: 0.5rem;
+    padding: 1rem;
 }

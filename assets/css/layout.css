@@ -9,9 +9,13 @@ section{
     padding-top: 56px!important;
 }
 
+input{
+    text-align: center;
+}
+
 .row{
-    margin:0px;
-    padding:0px;
+    margin: 0px!important;
+    padding:0px!important;
 }
 
 .menu{

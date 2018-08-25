@@ -7,10 +7,14 @@
 .tricks{
     height:210px;
     border:black 1px solid;
+    transition-duration: 1s,1s;
 }
 .tricks:hover{
     background-color:#007bff;
     text-decoration: none;
+    transform: scale(1.2);
+    transition-duration: 1s,1s;
+    transition-property: all, background-color;
 }
 
 .tricks:hover > div > .trick-name{
