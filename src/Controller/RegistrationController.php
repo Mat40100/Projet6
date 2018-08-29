@@ -55,7 +55,7 @@ class RegistrationController extends Controller
      * @Template()
      * @Route("/recovery")
      */
-    public function passwordForgotten(Request $request, \Swift_Mailer $mailer, UserService $userService)
+    public function passwordForgotten(Request $request, UserService $userService)
     {
         $form = $this->createForm(RecoveryType::class);
         $repo = $this->getDoctrine()->getRepository(User::class);

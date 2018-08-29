@@ -2,6 +2,19 @@ $(document).ready(function () {
     var $container = $('div#medias');
     let index = $container.find(':input').length;
 
+    function addDeleteLink($prototype) {
+        var $deleteLink = $('<a href="#" class="btn btn-danger ml-4 mr-4">Supprimer</a>');
+
+        $prototype.append($deleteLink);
+
+        $deleteLink.click(function (e) {
+            $prototype.remove();
+
+            e.preventDefault();
+            return false;
+        });
+    }
+
     function addMediaForm($container) {
         try {
             var template = $container.attr('data-prototype')
@@ -20,19 +33,6 @@ $(document).ready(function () {
         $container.append($prototype);
 
         index++;
-    }
-
-    function addDeleteLink($prototype) {
-        var $deleteLink = $('<a href="#" class="btn btn-danger ml-4 mr-4">Supprimer</a>');
-
-        $prototype.append($deleteLink);
-
-        $deleteLink.click(function (e) {
-            $prototype.remove();
-
-            e.preventDefault();
-            return false;
-        });
     }
 
     $('#add_media').click(function (e) {
@@ -59,6 +59,19 @@ $(document).ready(function () {
     var $container = $('div#videos');
     let index = $container.find(':input').length;
 
+    function addDeleteLink($prototype) {
+        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+        $prototype.append($deleteLink);
+
+        $deleteLink.click(function (e) {
+            $prototype.remove();
+
+            e.preventDefault();
+            return false;
+        });
+    }
+
     function addVideoForm($container) {
         try {
             var template = $container.attr('data-prototype')
@@ -80,19 +93,6 @@ $(document).ready(function () {
         $container.append($prototype);
 
         index++;
-    }
-
-    function addDeleteLink($prototype) {
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-
-        $prototype.append($deleteLink);
-
-        $deleteLink.click(function (e) {
-            $prototype.remove();
-
-            e.preventDefault();
-            return false;
-        });
     }
 
     $('#add_videos').click(function (e) {
