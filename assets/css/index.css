@@ -74,6 +74,7 @@
 @media all and (min-width: 996px){
     #Landpage{
         height: calc(100vh - 56px);
+        margin-top: 56px!important;
     }
 
     .main-img{

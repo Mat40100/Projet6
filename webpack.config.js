@@ -21,7 +21,6 @@ Encore
     .addEntry('form', './assets/js/form.js')
     .addEntry('view','./assets/js/view.js')
     .addEntry('login', './assets/css/login.css')
-    .addEntry('ajax','./assets/js/ajaxLp.js')
     .addEntry('indexJs', './assets/js/index.js')
 
     // uncomment if you use Sass/SCSS files
