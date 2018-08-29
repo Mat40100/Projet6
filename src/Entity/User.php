@@ -337,6 +337,8 @@ class User implements UserInterface, \Serializable
 
     public function hasPicture()
     {
-        return ($this->getPicture()) ? $this->getPicture()->getUrl() : Picture::getDefault();
+        $pic = new Picture();
+
+        return ($this->getPicture()) ? $this->getPicture()->getUrl() : $pic->getDefault();
     }
 }

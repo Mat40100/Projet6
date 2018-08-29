@@ -14,16 +14,16 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class MediaService
 {
-    private $em;
+    private $entityManager;
 
     /**
      * MediaService constructor.
      *
-     * @param EntityManagerInterface $em
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->em = $em;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -33,8 +33,8 @@ class MediaService
      */
     public function mediaAdd(Media $media)
     {
-        $this->em->persist($media);
-        $this->em->flush();
+        $this->entityManager->persist($media);
+        $this->entityManager->flush();
 
         return true;
     }
@@ -46,8 +46,8 @@ class MediaService
      */
     public function videoAdd(MediaVideo $mediaVideo)
     {
-        $this->em->persist($mediaVideo);
-        $this->em->flush();
+        $this->entityManager->persist($mediaVideo);
+        $this->entityManager->flush();
 
         return true;
     }
@@ -62,7 +62,7 @@ class MediaService
         $trick = $media->getTrick();
 
         $trick->removeMedia($media);
-        $this->em->flush();
+        $this->entityManager->flush();
 
         return true;
     }
@@ -77,7 +77,7 @@ class MediaService
         $trick = $mediaVideo->getTrick();
 
         $trick->removeVideo($mediaVideo);
-        $this->em->flush();
+        $this->entityManager->flush();
 
         return true;
     }

@@ -13,16 +13,16 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class PictureService
 {
-    private $em;
+    private $entityManager;
 
     /**
      * PictureService constructor.
      *
-     * @param EntityManagerInterface $em
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->em = $em;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -30,9 +30,9 @@ class PictureService
      */
     public function save(Picture $picture)
     {
-        $this->em->persist($picture);
+        $this->entityManager->persist($picture);
 
-        $this->em->flush();
+        $this->entityManager->flush();
     }
 
     /**
@@ -40,8 +40,8 @@ class PictureService
      */
     public function delete(Picture $picture)
     {
-        $this->em->remove($picture);
+        $this->entityManager->remove($picture);
 
-        $this->em->flush();
+        $this->entityManager->flush();
     }
 }

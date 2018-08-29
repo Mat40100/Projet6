@@ -22,7 +22,7 @@ class VideosFixtures extends Fixture implements DependentFixtureInterface
               'https://www.youtube.com/watch?v=G9qlTInKbNE',
           );
 
-        foreach ($tricks as $key => $value) {
+        foreach ($tricks as $value) {
             for ($i = 0; $i <= 2; ++$i) {
                 $rand = rand(0, 4);
                 $video = new MediaVideo();

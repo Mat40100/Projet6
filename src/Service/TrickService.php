@@ -15,16 +15,16 @@ use Doctrine\ORM\EntityRepository;
 
 class TrickService
 {
-    private $em;
+    private $entityManager;
 
     /**
      * TrickService constructor.
      *
-     * @param EntityManagerInterface $em
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->em = $em;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -37,8 +37,8 @@ class TrickService
     {
         $trick->setDate(new \DateTime());
         $trick->setAuthor($user);
-        $this->em->persist($trick);
-        $this->em->flush();
+        $this->entityManager->persist($trick);
+        $this->entityManager->flush();
 
         return true;
     }
@@ -50,8 +50,8 @@ class TrickService
      */
     public function remove(Trick $trick)
     {
-        $this->em->remove($trick);
-        $this->em->flush();
+        $this->entityManager->remove($trick);
+        $this->entityManager->flush();
 
         return true;
     }
@@ -62,8 +62,8 @@ class TrickService
     public function update(Trick $trick)
     {
         $trick->setDateLastMod(new \DateTime());
-        $this->em->persist($trick);
-        $this->em->flush();
+        $this->entityManager->persist($trick);
+        $this->entityManager->flush();
 
         return true;
     }

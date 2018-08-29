@@ -82,32 +82,32 @@ class MediaVideo
 
     private function youtubeId($url)
     {
-        $tableaux = explode('=', $url);  // découpe l’url en deux  avec le signe ‘=’
+        $tableaux = explode('=', $url);
 
-        $this->setVideoId($tableaux[1]);  // ajoute l’identifiant à l’attribut identif
-        $this->setType('youtube');  // signale qu’il s’agit d’une video youtube et l’inscrit dans l’attribut $type
+        $this->setVideoId($tableaux[1]);
+        $this->setType('youtube');
     }
 
     private function dailymotionId($url)
     {
-        $cas = explode('/', $url); // On sépare la première partie de l'url des 2 autres
+        $cas = explode('/', $url);
 
-        $idb = $cas[4];  // On récupère la partie qui nous intéressent
+        $idb = $cas[4];
 
-        $bp = explode('_', $idb);  // On sépare l'identifiant du reste
+        $urlTable = explode('_', $idb);
 
-        $id = $bp[0]; // On récupère l'identifiant
+        $id = $urlTable[0];
 
-        $this->setVideoId($id);  // ajoute l’identifiant à l’attribut identif
+        $this->setVideoId($id);
 
-        $this->setType('dailymotion'); // signale qu’il s’agit d’une video dailymotion et l’inscrit dans l’attribut $type
+        $this->setType('dailymotion');
     }
 
     public function extractIdentif($url)
     {
-        if (preg_match('#^(http|https)://www.youtube.com/#', $url)) {  // Si c’est une url Youtube on execute la fonction correspondante
+        if (preg_match('#^(http|https)://www.youtube.com/#', $url)) {
             $this->youtubeId($url);
-        } elseif ((preg_match('#^(http|https)://www.dailymotion.com/#', $url))) { // Si c’est une url Dailymotion on execute la fonction correspondante
+        } elseif ((preg_match('#^(http|https)://www.dailymotion.com/#', $url))) {
             $this->dailymotionId($url);
         }
     }
@@ -138,19 +138,19 @@ class MediaVideo
 
     public function getEmbedUrl()
     {
-        $control = $this->getType();  // on récupère le type de la vidéo
-        $id = strip_tags($this->getVideoId()); // on récupère son identifiant
+        $control = $this->getType();
+        $tags = strip_tags($this->getVideoId());
 
         if ('youtube' == $control) {
-            $embed = 'https://www.youtube.com/embed/'.$id;
+            $embed = 'https://www.youtube.com/embed/'.$tags;
 
             return $embed;
         } elseif ('dailymotion' == $control) {
-            $embed = 'https://www.dailymotion.com/embed/video/'.$id;
+            $embed = 'https://www.dailymotion.com/embed/video/'.$tags;
 
             return $embed;
         } elseif ('vimeo' == $control) {
-            $embed = 'https://player.vimeo.com/video/'.$id;
+            $embed = 'https://player.vimeo.com/video/'.$tags;
 
             return $embed;
         }

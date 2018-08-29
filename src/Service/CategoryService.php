@@ -12,13 +12,15 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CategoryService
 {
-    public function __construct(EntityManagerInterface $em)
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->em = $em;
+        $this->entityManager = $entityManager;
     }
 
     public function getAllCategories()
     {
-        return $this->em->getRepository('App:Category')->findAll();
+        return $this->entityManager->getRepository('App:Category')->findAll();
     }
 }

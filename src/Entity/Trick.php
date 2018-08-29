@@ -286,7 +286,9 @@ class Trick
     {
         $medias = $this->getMedias();
         if (empty($medias->toArray())) {
-            return Media::getDefault();
+            $media = new Media();
+
+            return $media->getDefault();
         }
 
         $selected = $medias->get(array_rand($medias->toArray()), 1);

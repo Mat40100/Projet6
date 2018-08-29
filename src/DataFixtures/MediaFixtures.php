@@ -14,7 +14,7 @@ class MediaFixtures extends Fixture implements DependentFixtureInterface
     {
         $tricks = $manager->getRepository(Trick::class)->findAll();
 
-        foreach ($tricks as $key => $value) {
+        foreach ($tricks as $value) {
             for ($i = 0; $i <= 2; ++$i) {
                 $rand = rand(1, 7);
                 $media = new Media();

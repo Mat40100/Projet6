@@ -130,7 +130,7 @@ class Picture
         return $this;
     }
 
-    public static function getDefault()
+    public function getDefault()
     {
         return 'uploads/pic/default-user.png';
     }

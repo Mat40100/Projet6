@@ -9,14 +9,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserService
 {
-    private $em;
+    private $entityManager;
     private $passwordEncoder;
     private $mailer;
     private $twig;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, \Swift_Mailer $mailer, \Twig_Environment $twig)
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager, \Swift_Mailer $mailer, \Twig_Environment $twig)
     {
-        $this->em = $em;
+        $this->entityManager = $entityManager;
         $this->passwordEncoder = $passwordEncoder;
         $this->mailer = $mailer;
         $this->twig = $twig;
@@ -32,8 +32,8 @@ class UserService
         $user = $this->EncodePassword($user);
         $user->setRoles('ROLE_USER');
 
-        $this->em->persist($user);
-        $this->em->flush();
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
 
         return true;
     }
@@ -61,7 +61,7 @@ class UserService
     public function updateUser($user)
     {
         $user = $this->EncodePassword($user);
-        $this->em->flush();
+        $this->entityManager->flush();
 
         return true;
     }

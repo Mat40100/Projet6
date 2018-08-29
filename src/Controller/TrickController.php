@@ -63,7 +63,7 @@ class TrickController extends Controller
      */
     public function view(Request $request, Trick $trick)
     {
-        $em = $this->getDoctrine()->getManager();
+        $manager = $this->getDoctrine()->getManager();
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
@@ -72,8 +72,8 @@ class TrickController extends Controller
             if ($form->isSubmitted() && $form->isValid()) {
                 $comment->setAuthor($this->getUser());
                 $trick->addComment($comment);
-                $em->persist($trick);
-                $em->flush();
+                $manager->persist($trick);
+                $manager->flush();
 
                 $comment = new Comment();
                 $form = $this->createForm(CommentType::class, $comment);
@@ -195,9 +195,7 @@ class TrickController extends Controller
 
         $trick ->setMainMedia($media);
 
-        if (!$trickService->update($trick)) {
-            $this->addFlash('warning', 'Un problème est survenu pendant la modification de la tête d\'affiche.'.$trick->getMainMedia());
-        } else {
+        if ($trickService->update($trick)) {
             $this->addFlash('success', 'Modification enregistrée !');
         }
 
