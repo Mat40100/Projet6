@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\Trick;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,6 +14,7 @@ class TrickFixtures extends Fixture
     {
         $users = $manager->getRepository(User::class)->findBy([], array());
         $userCount = count($users);
+        $categories = $manager->getRepository(Category::class)->findAll();
 
         $listTrick = array(
             '180' => 'saut avec une rotation d\'un demi-tour (souvent abrégé par le sens de rotation. Par exemple on dit qu\'on réalise un back(side) pour dire un 180° backside)',
@@ -45,6 +47,8 @@ class TrickFixtures extends Fixture
             $trick->setName($key);
             $trick->setDescription($value);
             $trick->setDate(new \DateTime());
+            $category = array_rand($categories);
+            $trick->addCategory($categories[$category]);
 
             $manager->persist($trick);
         }
@@ -54,6 +58,6 @@ class TrickFixtures extends Fixture
 
     public function getDependencies()
     {
-        return array(UserFixtures::class);
+        return array(UserFixtures::class, CategoryFixtures::class);
     }
 }

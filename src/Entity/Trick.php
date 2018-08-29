@@ -49,6 +49,7 @@ class Trick
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Media")
+     * @ORM\JoinColumn(name="main_media_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $mainMedia;
 

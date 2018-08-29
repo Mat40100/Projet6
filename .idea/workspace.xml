@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c46d3bdc-3bb7-4d23-9f20-0387050d5907" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/CategoryFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Trick.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Trick.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +35,17 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="projet6: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
     </expand>
     <select />
   </component>
@@ -50,10 +64,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="SCHEMA:projet6" value="1" />
           <entry key="css" value="32" />
-          <entry key="js" value="28" />
+          <entry key="js" value="29" />
           <entry key="json" value="2" />
-          <entry key="php" value="142" />
+          <entry key="php" value="154" />
           <entry key="twig" value="126" />
           <entry key="yaml" value="4" />
         </counts>
@@ -62,18 +77,19 @@
         <counts>
           <entry key="CSS" value="32" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="28" />
-          <entry key="PHP" value="142" />
+          <entry key="JavaScript" value="29" />
+          <entry key="PHP" value="154" />
           <entry key="Twig" value="126" />
+          <entry key="UML" value="1" />
           <entry key="YAML" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="1788" />
-          <entry key="dummy" value="3" />
-          <entry key="js" value="1693" />
-          <entry key="php" value="5905" />
+          <entry key="dummy" value="11" />
+          <entry key="js" value="1699" />
+          <entry key="php" value="6461" />
           <entry key="twig" value="6827" />
           <entry key="txt" value="55" />
           <entry key="yaml" value="46" />
@@ -82,9 +98,9 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1789" />
-          <entry key="JavaScript" value="1692" />
-          <entry key="PHP" value="5905" />
-          <entry key="PLAIN_TEXT" value="58" />
+          <entry key="JavaScript" value="1698" />
+          <entry key="PHP" value="6461" />
+          <entry key="PLAIN_TEXT" value="66" />
           <entry key="Twig" value="6827" />
           <entry key="YAML" value="46" />
         </counts>
@@ -104,59 +120,23 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/MediaService.php">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Trick.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+            <state relative-caret-position="391">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/PictureService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="30" column="42" lean-forward="true" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/TrickService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/UserService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Category.php">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
+        <entry file="file://$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-162">
-              <caret line="65" column="66" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="66" />
+            <state relative-caret-position="374">
+              <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+              <folding>
+                <element signature="e#36#60#0#PHP" expanded="true" />
+              </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Comment.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1122" />
           </provider>
         </entry>
       </file>
@@ -196,8 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/build/modify_form.js" />
-        <option value="$PROJECT_DIR$/src/Controller/MediaController.php" />
         <option value="$PROJECT_DIR$/assets/css/buttons.css" />
         <option value="$PROJECT_DIR$/src/Form/TrickTypeModify.php" />
         <option value="$PROJECT_DIR$/assets/js/modify_form.js" />
@@ -232,11 +210,9 @@
         <option value="$PROJECT_DIR$/templates/registration/password_forgotten.html.twig" />
         <option value="$PROJECT_DIR$/assets/css/index.css" />
         <option value="$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig" />
-        <option value="$PROJECT_DIR$/assets/js/form.js" />
         <option value="$PROJECT_DIR$/src/DataFixtures/MediaFixtures.php" />
         <option value="$PROJECT_DIR$/src/DataFixtures/VideosFixtures.php" />
         <option value="$PROJECT_DIR$/src/Entity/Media.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Trick.php" />
         <option value="$PROJECT_DIR$/src/Entity/Picture.php" />
         <option value="$PROJECT_DIR$/src/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/Controller/TrickController.php" />
@@ -247,6 +223,10 @@
         <option value="$PROJECT_DIR$/src/Service/TrickService.php" />
         <option value="$PROJECT_DIR$/src/Service/UserService.php" />
         <option value="$PROJECT_DIR$/src/Controller/RegistrationController.php" />
+        <option value="$PROJECT_DIR$/assets/js/form.js" />
+        <option value="$PROJECT_DIR$/src/Entity/Trick.php" />
+        <option value="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" />
+        <option value="$PROJECT_DIR$/src/DataFixtures/CategoryFixtures.php" />
       </list>
     </option>
   </component>
@@ -652,12 +632,12 @@
       <workItem from="1535202875087" duration="14420000" />
       <workItem from="1535299133961" duration="444000" />
       <workItem from="1535522094198" duration="8000" />
-      <workItem from="1535522121136" duration="13050000" />
+      <workItem from="1535522121136" duration="15497000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339102000" />
+    <option name="totallyTimeSpent" value="341549000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -672,7 +652,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.18869936" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.18869936" />
       <window_info id="Structure" order="1" sideWeight="0.125" side_tool="true" weight="0.18443497" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -687,12 +667,12 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.329718" />
       <window_info anchor="bottom" id="Database Console" order="10" sideWeight="0.49946696" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.36034116" side_tool="true" weight="0.2570499" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.63965887" visible="true" weight="0.2570499" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.63965887" visible="true" weight="0.2570499" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32897604" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.141258" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.141258" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.18869936" />
@@ -751,13 +731,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/security/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-57" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/comment/index.html.twig" />
-    <entry file="file://$PROJECT_DIR$/templates/registration/SuscribeMail.html.twig" />
     <entry file="file://$PROJECT_DIR$/templates/flash.html.twig" />
     <entry file="file://$PROJECT_DIR$/var/cache/dev/twig/b3/b3effdcdb65016372c4b552ef480ee0b0663f603f5978597776fbd5a90fdd3a1.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -939,31 +912,7 @@
     <entry file="file://$PROJECT_DIR$/src/Form/TrickTypeModify.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/MediaController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/MediaFixtures.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/VideosFixtures.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
@@ -973,24 +922,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Media.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="162" column="10" selection-start-line="162" selection-start-column="10" selection-end-line="162" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Picture.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="132" column="10" selection-start-line="132" selection-start-column="10" selection-end-line="132" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Trick.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="289" column="12" selection-start-line="289" selection-start-column="12" selection-end-line="289" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1008,13 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/MediaVideo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="155" column="9" lean-forward="true" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/MediaService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1025,7 +953,7 @@
     <entry file="file://$PROJECT_DIR$/src/Service/PictureService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
-          <caret line="30" column="42" lean-forward="true" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1053,8 +981,131 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
+        <state relative-caret-position="42">
           <caret line="65" column="66" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/3ec3a261-55d5-4f20-b4b9-06d3e54adf90.SCHEMA:projet6">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>3ec3a261-55d5-4f20-b4b9-06d3e54adf90.SCHEMA:projet6</OriginalElement>
+          <nodes>
+            <node x="364.5" y="402.0">3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.comment</node>
+            <node x="208.50000000000003" y="413.0">3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.media</node>
+            <node x="185.50000000000003" y="190.0">3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.trick</node>
+            <node x="34.50000000000003" y="435.5">3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.blog_trick_category</node>
+            <node x="0.0" y="234.0">3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.category</node>
+            <node x="284.125" y="0.0">3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.user</node>
+            <node x="0.0" y="587.0">3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.migration_versions</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.comment" target="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.trick">
+              <point x="-35.75" y="-70.0" />
+              <point x="400.25" y="377.0" />
+              <point x="337.16666666666663" y="377.0" />
+              <point x="60.66666666666663" y="81.0" />
+            </edge>
+            <edge source="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.media" target="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.trick">
+              <point x="0.0" y="-59.0" />
+              <point x="0.0" y="81.0" />
+            </edge>
+            <edge source="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.comment" target="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.user">
+              <point x="35.75" y="-70.0" />
+              <point x="471.75" y="165.0" />
+              <point x="419.125" y="165.0" />
+              <point x="45.0" y="70.0" />
+            </edge>
+            <edge source="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.blog_trick_category" target="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.trick">
+              <point x="38.5" y="-36.5" />
+              <point x="150.00000000000003" y="377.0" />
+              <point x="215.83333333333337" y="377.0" />
+              <point x="-60.66666666666666" y="81.0" />
+            </edge>
+            <edge source="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.trick" target="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.user">
+              <point x="0.0" y="-81.0" />
+              <point x="276.5" y="165.0" />
+              <point x="329.125" y="165.0" />
+              <point x="-45.0" y="70.0" />
+            </edge>
+            <edge source="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.blog_trick_category" target="3ec3a261-55d5-4f20-b4b9-06d3e54adf90.TABLE:projet6.category">
+              <point x="-38.5" y="-36.5" />
+              <point x="0.0" y="37.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.9635258358662614" x="-149.20662460567826" y="229.0851735015773" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Media.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="34" column="37" selection-start-line="34" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/MediaFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" column="32" selection-start-line="14" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/VideosFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/UserFixtures.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/MediaVideo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2377">
+          <caret line="155" column="9" lean-forward="true" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Trick.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/CategoryFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#36#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+          <folding>
+            <element signature="e#36#60#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
