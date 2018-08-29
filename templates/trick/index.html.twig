@@ -7,9 +7,10 @@
 {% endblock %}
 
 {% block body %}
-    <section id="Landpage" class="align-items-center row" style="background-image: url('{{ asset('uploads/img/Landpage.jpg') }}')">
-        <h1 class="col-12 text-center text-light">As smooth as the Snow</h1>
-        <a class="position-absolute d-flex arrow justify-content-center align-items-center" href="#Tricks"><i class="fas fa-arrow-down"></i></a>
+    <section id="Landpage" class="justify-content-center align-items-center row">
+        <img class="main-img" src="{{ asset('uploads/img/Landpage.jpg') }}">
+        <h1 class="position-absolute text-center text-light">As smooth as the Snow</h1>
+        <a class="d-flex arrow justify-content-center align-items-center" href="#Tricks"><i class="fas fa-arrow-down"></i></a>
     </section>
     <section id ="Tricks" class="row justify-content-center">
         {% include('trick/load_More.html.twig') %}

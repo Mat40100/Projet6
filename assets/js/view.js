@@ -6,11 +6,11 @@ $(document).ready(function () {
 
         if (hidden === true) {
             $("#mediasList").addClass('d-flex').addClass('flex-column').removeClass('d-none');
-            $("#seeMediaList").text('Hide Medias');
+            $("#seeMediaList").text('Cacher les images et les vidéos');
             hidden = false;
         } else {
             $('#mediasList').removeClass('d-flex').removeClass('flex-column').addClass('d-none');
-            $("#seeMediaList").text('See Medias');
+            $("#seeMediaList").text('Voir les images et les vidéos');
             hidden = true;
         }
 

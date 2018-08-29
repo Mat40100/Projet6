@@ -96,7 +96,7 @@ class TrickController extends Controller
         $trick = new Trick();
 
         $form = $this->createForm(TrickType::class, $trick);
-                $repo = $this->getDoctrine()->getRepository(Trick::class);
+        $repo = $this->getDoctrine()->getRepository(Trick::class);
 
 
         if ($request->isMethod('POST')) {
@@ -116,7 +116,8 @@ class TrickController extends Controller
 
                     return $this->redirectToRoute(
                         'app_trick_view',
-                        array('trick' => $trick->getId(), 'slug' => $trick->getName()));
+                        array('trick' => $trick->getId(), 'slug' => $trick->getName())
+                    );
                 }
             }
         }
@@ -167,13 +168,14 @@ class TrickController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-               if ($trickService->update($trick)) {
-                   $this->addFlash('success', 'La modification de ' . $trick->getName() . ' est bien enregistrée!');
+                if ($trickService->update($trick)) {
+                    $this->addFlash('success', 'La modification de ' . $trick->getName() . ' est bien enregistrée!');
 
-                   return $this->redirectToRoute(
+                    return $this->redirectToRoute(
                        'app_trick_view',
-                       array('trick' => $trick->getId(), 'slug' => $trick->getName()));
-               }
+                       array('trick' => $trick->getId(), 'slug' => $trick->getName())
+                   );
+                }
             }
         }
 
@@ -193,9 +195,9 @@ class TrickController extends Controller
 
         $trick ->setMainMedia($media);
 
-        if(!$trickService->update($trick)) {
+        if (!$trickService->update($trick)) {
             $this->addFlash('warning', 'Un problème est survenu pendant la modification de la tête d\'affiche.'.$trick->getMainMedia());
-        }else {
+        } else {
             $this->addFlash('success', 'Modification enregistrée !');
         }
 

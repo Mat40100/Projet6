@@ -13,11 +13,14 @@ section{
 }
 .img-trick-main{
     min-height:250px;
+    max-height: 250px;
+    width: -webkit-fill-available;
 }
 
 .user-link{
     top:0px;
     right:0px;
+    z-index: 1;
 }
 
 .vignettes{

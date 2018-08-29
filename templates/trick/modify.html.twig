@@ -6,53 +6,52 @@
 {% endblock %}
 
 {% block body %}
-    <section class="row col-9 justify-content-center align-items-lg-center m-0">
+    <section class="row col-11 col-lg-9 justify-content-center align-items-lg-center m-0">
         {{ form_start(form) }}
         <div class="col-12 row justify-content-center m-0 p-0">
-            <div class="img-fluid col-12 img-trick-main row justify-content-center align-items-center"
-                 style="
-                         background-image: url('{{ asset(trick.hasMainMedia) }}');{#TODO#}
-                         background-repeat: no-repeat;
-                         background-size: cover;
-                         background-position: center;
-                         ">
-                <div class="col-8 text-center">
+            <div class="img-fluid col-12  row justify-content-center align-items-center">
+                <img class="img-trick-main" src="{{ asset(trick.hasMainMedia)  }}">
+                <div class="position-absolute text-center">
                     {{ form_row(form.name) }}
                 </div>
             </div>
 
-
-            <div id="medias" class="col-12 row justify-content-center align-items-center text-center" data-prototype='{{ form_row(form.medias.vars.prototype)|e('html_attr') }}'>
-                <p class="col-12 pt-1" style="font-size:x-large!important">Images</p>
-                <a href="#" id="add_media" class="add-btn btn btn-outline-primary col-8 col-md-4 col-xl-2 m-2">Ajouter un media</a>
-                {% for media in form.medias %}
-                    <div class="media img-fluid col-3 row justify-content-center m-3">
-                        <img class="vignettes" src="{{ asset(media.vars.data.url) }}" alt="{{ media.vars.data.alt }}">
-                        <div class="col-8 p-0 m-0">
-                            {{ form_row(media) }}
+            <div class="col-12 row m-3 justify-content-center align-items-center">
+                <a id="seeMediaList" class="col-12 text-center d-lg-none" href="#">Voir les images et vidéos</a>
+                <div id="mediasList" class="d-none d-lg-flex row col-12 justify-content-center align-items-center p-0 m-0">
+                    <div id="medias" class="col-12 row justify-content-center align-items-center text-center" data-prototype='{{ form_row(form.medias.vars.prototype)|e('html_attr') }}'>
+                        <div class="col-12 text-center">
+                            <a href="#" id="add_media" class="add-btn btn btn-outline-primary col-auto m-2">Ajouter une image</a>
                         </div>
-                        {% if form.vars.data.mainmedia is same as(media.vars.data.url) %}
-                            <p class="col-12 p-0 m-0">En-tête actuelle</p>
-                        {% else %}
-                            <a class="col-12 p-0 m-0" href="{{ path('app_trick_thisismainmedia', {'media':media.vars.data.id} ) }}">Choisir comme en-tête</a>
-                        {% endif %}
+                        {% for media in form.medias %}
+                            <div class="media img-fluid col-8 col-lg-3 row justify-content-center m-3">
+                                <img class="vignettes" src="{{ asset(media.vars.data.url) }}" alt="{{ media.vars.data.alt }}">
+                                <div class="col-8 p-0 m-0">
+                                    {{ form_row(media) }}
+                                </div>
+                                {% if form.vars.data.mainmedia is same as(media.vars.data.url) %}
+                                    <p class="col-12 p-0 m-0">En-tête actuelle</p>
+                                {% else %}
+                                    <a class="col-12 p-0 m-0" href="{{ path('app_trick_thisismainmedia', {'media':media.vars.data.id} ) }}">Choisir comme en-tête</a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
 
-
-            <div id="videos" class="col-12 row justify-content-center align-items-center text-center" data-prototype='{{ form_row(form.videos.vars.prototype)|e('html_attr') }}'>
-                {{ form_label(form.videos) }}
-                <a href="#" id="add_videos" class="add-btn btn btn-outline-primary col-8 col-md-4 col-xl-2 m-2">Ajouter une vidéo</a>
-                {% for video in form.videos %}
-                    <div class="video img-fluid col-3 row justify-content-center p-3 m-3">
-                        <iframe class='vignettes col-auto' width='100%' height='100%' src='{{ video.vars.data.embedUrl }}'  frameborder='0'  allowfullscreen></iframe>
-                        {{ form_row(video) }}
+                    <div id="videos" class="col-12 row justify-content-center align-items-center text-center" data-prototype='{{ form_row(form.videos.vars.prototype)|e('html_attr') }}'>
+                        {{ form_label(form.videos) }}
+                        <div class="col-12 text-center">
+                            <a href="#" id="add_videos" class="add-btn btn btn-outline-primary col-auto m-2">Ajouter une vidéo</a>
+                        </div>
+                        {% for video in form.videos %}
+                            <div class="video img-fluid col-8 col-lg-3 row justify-content-center p-3 m-3">
+                                <iframe class='vignettes col-auto' width='100%' height='100%' src='{{ video.vars.data.embedUrl }}'  frameborder='0'  allowfullscreen></iframe>
+                                {{ form_row(video) }}
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-
-
 
             <div class="col-8 text-center">
                 {{ form_row(form.description) }}
@@ -66,7 +65,8 @@
                 </div>
             </div>
             <div class="col-12 row justify-content-center mb-5">
-                <input type="submit" class="btn btn-outline-secondary" value="Envoyer">
+                <input type="submit" class="btn btn-outline-primary m-2" value="Sauvegarder">
+                <a href="{{ path('app_trick_delete', {'trick':trick.id,'slug':trick.name|slugify}) }}" class="btn btn-outline-danger m-2">Supprimer</a>
             </div>
         </div>
         {{ form_end(form) }}
@@ -76,5 +76,6 @@
 {% form_theme form _self %}
 
 {% block js %}
-    <script type="text/javascript" src="{{ asset('build/form.js') }}">   </script>
+    <script type="text/javascript" src="{{ asset('build/form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('build/view.js') }}"></script>
 {% endblock %}

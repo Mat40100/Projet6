@@ -22,7 +22,10 @@ class MediaVideo
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=155)
-     * @Assert\Regex("/^https:\/\/www\.(youtube|dailymotion)\.com/")
+     * @Assert\Regex(
+     *     pattern="/^https:\/\/www\.(youtube|dailymotion)\.com/",
+     *     message="Le format de la vidéo n'est pas correct."
+     * )
      */
     private $url;
 

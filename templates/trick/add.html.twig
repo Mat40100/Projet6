@@ -17,19 +17,27 @@
             </div>
 
             <div class="col-12 row row justify-content-center">
-                <div class="col-12 col-lg-6 row justify-content-center">
-                    <div class="col-12 text-center">
-                        {{ form_row(form.medias) }}
+                <div class="col-12 row justify-content-center">
+                    <div class="col-12 row text-center">
+                        <div id="medias" class="col-12 row justify-content-center align-items-center text-center" data-prototype='{{ form_row(form.medias.vars.prototype)|e('html_attr') }}'>
+                            <a href="#" id="add_media" class="add-btn btn btn-outline-primary col-auto m-2">Ajouter un media</a>
+                            <div class="col-12 justify-content-center align-items-center">
+                                {{ form_row(form.medias) }}
+                            </div>
+                        </div>
                     </div>
-                    <a href="#" id="add_media" class="add-btn btn btn-outline-primary col-6 m-2">Ajouter un media</a>
                 </div>
-                <div class="col-12 col-lg-6 row justify-content-center">
-                    <div class="col-12 text-center">
-                        {{ form_row(form.videos) }}
+                <div class="col-12 row justify-content-center">
+                    <div class="col-12 row text-center">
+                        <div id="videos" class="col-12 row justify-content-center align-items-center text-center" data-prototype='{{ form_row(form.videos.vars.prototype)|e('html_attr') }}'>
+                            <a href="#" id="add_videos" class="add-btn btn btn-outline-primary col-auto m-2">Ajouter une vidéo</a>
+                            <div class="col-12 justify-content-center align-items-center">
+                                {{ form_row(form.videos) }}
+                            </div>
+                        </div>
                     </div>
-                    <a href="#" id="add_videos" class="add-btn btn btn-outline-primary col-6 m-2">Ajouter une vidéo</a>
                 </div>
-                <div class="col-12 col-lg-6 row justify-content-center">
+                <div class="col-12 row justify-content-center">
                     <div class="col-12 text-center">
                         {{ form_row(form.categories) }}
                     </div>

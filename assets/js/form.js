@@ -2,25 +2,6 @@ $(document).ready(function () {
     var $container = $('div#medias');
     let index = $container.find(':input').length;
 
-    $('#add_media').click(function (e) {
-        addMediaForm($container);
-
-        e.preventDefault();
-        return false;
-    });
-
-    if (index > 0) {
-        $container.find("legend").each(function () {
-            $(this).hide();
-        });
-        $container.children(".media").each(function(){
-            addDeleteLink($(this));
-            var allInputs = $(this).find(":input:file");
-            allInputs.parent("div").hide();
-            $(this).find('label').hide();
-        });
-    }
-
     function addMediaForm($container) {
         try {
             var template = $container.attr('data-prototype')
@@ -28,12 +9,11 @@ $(document).ready(function () {
                 .replace("[__name__]",'['+index+']')
                 .replace("[__name__]",'['+index+']')
             ;
+            var $prototype = $(template);
+
         } catch (e) {
             console.log("YO", e)
         }
-
-
-        var $prototype = $(template);
 
         addDeleteLink($prototype);
 
@@ -54,14 +34,9 @@ $(document).ready(function () {
             return false;
         });
     }
-});
 
-$(document).ready(function () {
-    var $container = $('div#videos');
-    let index = $container.find(':input').length;
-
-    $('#add_videos').click(function (e) {
-        addVideoForm($container);
+    $('#add_media').click(function (e) {
+        addMediaForm($container);
 
         e.preventDefault();
         return false;
@@ -71,10 +46,18 @@ $(document).ready(function () {
         $container.find("legend").each(function () {
             $(this).hide();
         });
-        $container.children(".video").each(function(){
+        $container.children(".media").each(function(){
             addDeleteLink($(this));
+            var allInputs = $(this).find(":input:file");
+            allInputs.parent("div").hide();
+            $(this).find('label').hide();
         });
     }
+});
+
+$(document).ready(function () {
+    var $container = $('div#videos');
+    let index = $container.find(':input').length;
 
     function addVideoForm($container) {
         try {
@@ -85,11 +68,12 @@ $(document).ready(function () {
                 .replace("[__name__]",'['+index+']')
                 .replace("[__name__]",'['+index+']')
             ;
+
+            var $prototype = $(template);
+
         } catch (e) {
             console.log("Problem", e)
         }
-
-        var $prototype = $(template);
 
         addDeleteLink($prototype);
 
@@ -108,6 +92,22 @@ $(document).ready(function () {
 
             e.preventDefault();
             return false;
+        });
+    }
+
+    $('#add_videos').click(function (e) {
+        addVideoForm($container);
+
+        e.preventDefault();
+        return false;
+    });
+
+    if (index > 0) {
+        $container.find("legend").each(function () {
+            $(this).hide();
+        });
+        $container.children(".video").each(function(){
+            addDeleteLink($(this));
         });
     }
 });

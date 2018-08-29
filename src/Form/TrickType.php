@@ -34,18 +34,18 @@ class TrickType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
             ))
-            ->add('categories' , EntityType::class, array(
+            ->add('categories', EntityType::class, array(
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
                 'by_reference' => false,
             ))
-            ->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $trick = $event->getData();
                 $form = $event->getForm();
 
-                if($trick || null != $trick->getId()) {
+                if ($trick || null != $trick->getId()) {
                     $field = $form->get('medias');
                     $options = $field->getConfig()->getOptions();            // get the options
                     $options['required'] = false ;           // change the label
@@ -53,6 +53,9 @@ class TrickType extends AbstractType
                 }
             })
         ;
+        $attr = $builder->getAttribute('attr');
+        $attr['class'] = $attr['class'].' col-12 row';
+        $builder->setAttribute('attr', $attr);
     }
 
     public function configureOptions(OptionsResolver $resolver)
