@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/Entity/MediaVideo.php" line="21" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c46d3bdc-3bb7-4d23-9f20-0387050d5907" name="Default" comment="" />
+    <list default="true" id="c46d3bdc-3bb7-4d23-9f20-0387050d5907" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +51,7 @@
     <session id="1587251088">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.10" value="5" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
@@ -68,7 +70,7 @@
           <entry key="js" value="31" />
           <entry key="json" value="2" />
           <entry key="php" value="159" />
-          <entry key="twig" value="130" />
+          <entry key="twig" value="131" />
           <entry key="yaml" value="5" />
         </counts>
       </usages-collector>
@@ -80,7 +82,7 @@
           <entry key="JavaScript" value="31" />
           <entry key="PHP" value="159" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Twig" value="130" />
+          <entry key="Twig" value="131" />
           <entry key="UML" value="1" />
           <entry key="YAML" value="5" />
         </counts>
@@ -92,7 +94,7 @@
           <entry key="env" value="94" />
           <entry key="js" value="1699" />
           <entry key="php" value="6512" />
-          <entry key="twig" value="6865" />
+          <entry key="twig" value="6891" />
           <entry key="txt" value="55" />
           <entry key="yaml" value="112" />
         </counts>
@@ -104,7 +106,7 @@
           <entry key="JavaScript" value="1698" />
           <entry key="PHP" value="6512" />
           <entry key="PLAIN_TEXT" value="66" />
-          <entry key="Twig" value="6865" />
+          <entry key="Twig" value="6891" />
           <entry key="YAML" value="112" />
         </counts>
       </usages-collector>
@@ -132,6 +134,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
               <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/trick/indexAjax.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -199,15 +210,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="493">
               <caret line="29" selection-start-line="29" selection-end-line="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/css/index.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
-              <caret line="86" column="7" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -293,12 +295,12 @@
         <option value="$PROJECT_DIR$/src/Entity/Trick.php" />
         <option value="$PROJECT_DIR$/src/DataFixtures/CategoryFixtures.php" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/templates/trick/indexAjax.html.twig" />
         <option value="$PROJECT_DIR$/assets/css/index.css" />
         <option value="$PROJECT_DIR$/config/packages/doctrine.yaml" />
         <option value="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/templates/trick/indexAjax.html.twig" />
       </list>
     </option>
   </component>
@@ -421,8 +423,8 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-1169" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="681" />
     <option name="y" value="-8" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -439,6 +441,17 @@
             <path>
               <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
               <item name="projet6" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="trick" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
@@ -640,12 +653,12 @@
       <workItem from="1535522094198" duration="8000" />
       <workItem from="1535522121136" duration="17686000" />
       <workItem from="1535546369961" duration="2003000" />
-      <workItem from="1535618998167" duration="6559000" />
+      <workItem from="1535618998167" duration="7253000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="352300000" />
+    <option name="totallyTimeSpent" value="352994000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -657,9 +670,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.19296375" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.19296375" />
       <window_info id="Structure" order="1" sideWeight="0.125" side_tool="true" weight="0.18443497" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -674,7 +688,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.329718" />
       <window_info anchor="bottom" id="Database Console" order="10" sideWeight="0.49946696" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.3608742" side_tool="true" visible="true" weight="0.2570499" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.6391258" visible="true" weight="0.2570499" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.6391258" visible="true" weight="0.2570499" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32897604" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1026,13 +1040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/trick/indexAjax.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/trick/load_More.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1102,6 +1109,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/trick/indexAjax.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
         </state>
       </provider>
     </entry>
