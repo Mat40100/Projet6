@@ -233,7 +233,7 @@ class TrickController extends Controller
 
         return [
             'tricks' => $tricks,
-            'number' => $numberToLoad,
+            'loaded' => $numberToLoad,
             'tricksLeft' => $tricksLeft,
         ];
     }
