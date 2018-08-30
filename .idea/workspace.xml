@@ -4,7 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/Entity/MediaVideo.php" line="21" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c46d3bdc-3bb7-4d23-9f20-0387050d5907" name="Default" comment="" />
+    <list default="true" id="c46d3bdc-3bb7-4d23-9f20-0387050d5907" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +16,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <executablePath>composer</executablePath>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -48,60 +52,63 @@
     <session id="1587251088">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.10" value="5" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.8" value="3" />
+          <entry key="project.open.time.8" value="5" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="SCHEMA:projet6" value="1" />
           <entry key="css" value="33" />
+          <entry key="dist" value="1" />
           <entry key="env" value="1" />
+          <entry key="gitignore" value="1" />
           <entry key="js" value="31" />
           <entry key="json" value="2" />
           <entry key="php" value="154" />
           <entry key="twig" value="130" />
-          <entry key="yaml" value="4" />
+          <entry key="yaml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key=".env file" value="1" />
+          <entry key=".env file" value="2" />
           <entry key="CSS" value="33" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="31" />
           <entry key="PHP" value="154" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="Twig" value="130" />
           <entry key="UML" value="1" />
-          <entry key="YAML" value="4" />
+          <entry key="YAML" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="1819" />
           <entry key="dummy" value="11" />
-          <entry key="env" value="4" />
+          <entry key="env" value="63" />
           <entry key="js" value="1699" />
           <entry key="php" value="6490" />
           <entry key="twig" value="6865" />
           <entry key="txt" value="55" />
-          <entry key="yaml" value="46" />
+          <entry key="yaml" value="112" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key=".env file" value="4" />
+          <entry key=".env file" value="63" />
           <entry key="CSS" value="1820" />
           <entry key="JavaScript" value="1698" />
           <entry key="PHP" value="6490" />
           <entry key="PLAIN_TEXT" value="66" />
           <entry key="Twig" value="6865" />
-          <entry key="YAML" value="46" />
+          <entry key="YAML" value="112" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
@@ -114,23 +121,47 @@
           <entry key="git.branch.checkout.local" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.php.composer.actions">
+        <counts>
+          <entry key="updateAll_from_ProjectViewPopup" value="1" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state>
+              <caret selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.env.dist">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/packages/doctrine.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
+            <state relative-caret-position="1462">
               <caret line="86" column="7" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="7" />
             </state>
           </provider>
@@ -172,7 +203,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Form/TrickTypeModify.php" />
         <option value="$PROJECT_DIR$/assets/js/modify_form.js" />
         <option value="$PROJECT_DIR$/config/packages/framework.yaml" />
         <option value="$PROJECT_DIR$/src/Form/CategoryType.php" />
@@ -219,10 +249,11 @@
         <option value="$PROJECT_DIR$/src/Entity/Trick.php" />
         <option value="$PROJECT_DIR$/src/DataFixtures/CategoryFixtures.php" />
         <option value="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/templates/trick/indexAjax.html.twig" />
         <option value="$PROJECT_DIR$/assets/css/index.css" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/config/packages/doctrine.yaml" />
       </list>
     </option>
   </component>
@@ -354,6 +385,84 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="DataFixtures" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="registration" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet6" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="trick" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -426,90 +535,6 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="projet6" type="cbb8eebc:String" user="projet6" />
               <item name="var" type="cbb8eebc:String" user="var" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="DataFixtures" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Form" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="registration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet6" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="trick" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projet6" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -628,12 +653,14 @@
       <workItem from="1535202875087" duration="14420000" />
       <workItem from="1535299133961" duration="444000" />
       <workItem from="1535522094198" duration="8000" />
-      <workItem from="1535522121136" duration="16992000" />
+      <workItem from="1535522121136" duration="17686000" />
+      <workItem from="1535546369961" duration="2003000" />
+      <workItem from="1535618998167" duration="1331000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="343044000" />
+    <option name="totallyTimeSpent" value="347072000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -647,7 +674,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.18869936" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.19296375" />
       <window_info id="Structure" order="1" sideWeight="0.125" side_tool="true" weight="0.18443497" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -662,35 +689,35 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.329718" />
       <window_info anchor="bottom" id="Database Console" order="10" sideWeight="0.49946696" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.36034116" side_tool="true" weight="0.2570499" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.63965887" visible="true" weight="0.2570499" />
-      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32897604" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.141258" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.18869936" />
-      <window_info id="Structure" order="1" sideWeight="0.125" side_tool="true" weight="0.18443497" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49253732" weight="0.3275488" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.5804904" weight="0.329718" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.329718" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.329718" />
-      <window_info anchor="bottom" id="Database Console" order="10" sideWeight="0.49946696" weight="0.32897604" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.36034116" side_tool="true" weight="0.2570499" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.63965887" visible="true" weight="0.2570499" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.63965887" weight="0.2570499" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32897604" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" weight="0.141258" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.19296375" />
+      <window_info id="Structure" order="1" sideWeight="0.125" side_tool="true" weight="0.18443497" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49253732" weight="0.3275488" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.5804904" weight="0.329718" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.329718" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.329718" />
+      <window_info anchor="bottom" id="Database Console" order="10" sideWeight="0.49946696" weight="0.32897604" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.36034116" side_tool="true" weight="0.2570499" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.63965887" visible="true" weight="0.2570499" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32897604" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.141258" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -726,23 +753,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Form/MediaVideoType.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/MediaType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/build/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="859" column="31" selection-start-line="859" selection-start-column="31" selection-end-line="859" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/build/form.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3853">
@@ -861,9 +871,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/TrickTypeModify.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/TrickTypeModify.php" />
     <entry file="file://$PROJECT_DIR$/src/Controller/MediaController.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -994,12 +1002,13 @@
               <point x="0.0" y="37.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.9635258358662614" x="-149.20662460567826" y="229.0851735015773" />
+          <settings layout="Hierarchic Group" zoom="0.9635258358662614" x="-149.0" y="229.0" />
           <SelectedNodes />
           <Categories>
             <Category>Key columns</Category>
             <Category>Columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -1048,9 +1057,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
           <caret line="47" column="43" lean-forward="true" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
-          <folding>
-            <element signature="e#36#60#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1061,16 +1067,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/ajaxLp.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/ajaxLp.js" />
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1101,8 +1098,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
+        <state relative-caret-position="1462">
           <caret line="86" column="7" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/doctrine.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.dist">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
         </state>
       </provider>
     </entry>
