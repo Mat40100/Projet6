@@ -1,0 +1,17 @@
+{
+  "build/view.js": "/build/view.js",
+  "build/form.js": "/build/form.js",
+  "build/trick.js": "/build/trick.js",
+  "build/trick.css": "/build/trick.css",
+  "build/login.js": "/build/login.js",
+  "build/login.css": "/build/login.css",
+  "build/layout.js": "/build/layout.js",
+  "build/layout.css": "/build/layout.css",
+  "build/index.js": "/build/index.js",
+  "build/index.css": "/build/index.css",
+  "build/addTrickForm.js": "/build/addTrickForm.js",
+  "build/addTrickForm.css": "/build/addTrickForm.css",
+  "build/account.js": "/build/account.js",
+  "build/account.css": "/build/account.css",
+  "build/indexJs.js": "/build/indexJs.js"
+}

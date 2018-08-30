@@ -1,0 +1,9 @@
+.user-picture{
+    height:200px;
+    width:200px;
+}
+
+section{
+    height:calc(100vh - 24px);
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hc3NldHMvY3NzL2FjY291bnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYTtJQUNiLFlBQVk7Q0FDZjs7QUFFRDtJQUNJLDBCQUEwQiIsImZpbGUiOiJhY2NvdW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi51c2VyLXBpY3R1cmV7XHJcbiAgICBoZWlnaHQ6MjAwcHg7XHJcbiAgICB3aWR0aDoyMDBweDtcclxufVxyXG5cclxuc2VjdGlvbntcclxuICAgIGhlaWdodDpjYWxjKDEwMHZoIC0gMjRweCk7XHJcbn1cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gLi9hc3NldHMvY3NzL2FjY291bnQuY3NzIl0sInNvdXJjZVJvb3QiOiIifQ==*/
