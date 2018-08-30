@@ -8,28 +8,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+$(function() {
+    $('#loadMore').click(function() {
 
-$(document).ready(function () {
-    $(function() {
-        $('#loadMore').click(function() {
+        var tricksNumber = $('.Trick').length;
 
-            var tricksNumber = $('.Trick').length;
-
-            $.ajax({
-                url : '/loadMore',
-                type: 'GET',
-                data: {
-                    tricksNumber: tricksNumber
-                },
-                success : function(code_html, statut){
-                    $('#Tricks').html(code_html);
-                    tricksNumber = tricksNumber + 5;
-                },
-                error : function(resultat, statut, erreur){
-                    console.log(resultat);
-                    console.log("Ajax error");
-                }
-            });
-        })
-    });
+        $.ajax({
+            url : '/loadMore',
+            type: 'GET',
+            data: {
+                tricksNumber: tricksNumber
+            },
+            success : function(code_html, statut){
+                $('#Tricks').html(code_html);
+                tricksNumber = tricksNumber + 5;
+            },
+            error : function(resultat, statut, erreur){
+                console.log(resultat);
+                console.log("Ajax error");
+            }
+        });
+    })
 });

@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c46d3bdc-3bb7-4d23-9f20-0387050d5907" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/account.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/account.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/account.js" afterDir="false" />
@@ -19,14 +18,9 @@
       <change beforePath="$PROJECT_DIR$/public/build/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/layout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/trick.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/trick.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/trick.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/trick.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TrickController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TrickController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/trick/indexAjax.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/trick/load_More.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/trick/load_More.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +109,7 @@
           <entry key="css" value="1819" />
           <entry key="dummy" value="11" />
           <entry key="env" value="94" />
-          <entry key="js" value="1846" />
+          <entry key="js" value="1847" />
           <entry key="php" value="6529" />
           <entry key="twig" value="6916" />
           <entry key="txt" value="55" />
@@ -126,7 +120,7 @@
         <counts>
           <entry key=".env file" value="94" />
           <entry key="CSS" value="1820" />
-          <entry key="JavaScript" value="1845" />
+          <entry key="JavaScript" value="1846" />
           <entry key="PHP" value="6529" />
           <entry key="PLAIN_TEXT" value="66" />
           <entry key="Twig" value="6916" />
@@ -155,7 +149,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/TrickController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3638">
+            <state relative-caret-position="552">
               <caret line="235" column="38" selection-start-line="235" selection-start-column="38" selection-end-line="235" selection-end-column="38" />
             </state>
           </provider>
@@ -164,8 +158,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+            <state relative-caret-position="518">
+              <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -173,8 +167,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/trick/load_More.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+            <state relative-caret-position="442">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -694,7 +688,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="355252000" />
+    <option name="totallyTimeSpent" value="355426000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -707,6 +701,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.875" visible="true" weight="0.19722815" />
       <window_info id="Structure" order="1" sideWeight="0.125" side_tool="true" weight="0.18443497" />
@@ -1089,9 +1084,7 @@
     <entry file="file://$PROJECT_DIR$/.env.dist">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/indexAjax.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/indexAjax.js" />
     <entry file="file://$PROJECT_DIR$/public/uploads/img/grey.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1102,19 +1095,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/trick/indexAjax.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/trick/indexAjax.html.twig" />
     <entry file="file://$PROJECT_DIR$/templates/trick/loadMoreButton.html.twig">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/TrickController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3638">
+        <state relative-caret-position="552">
           <caret line="235" column="38" selection-start-line="235" selection-start-column="38" selection-end-line="235" selection-end-column="38" />
         </state>
       </provider>
@@ -1135,15 +1122,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/trick/load_More.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        <state relative-caret-position="442">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        <state relative-caret-position="518">
+          <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
         </state>
       </provider>
     </entry>
