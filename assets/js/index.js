@@ -17,7 +17,6 @@ $(document).ready(function () {
 
             $.ajax({
                 url : '/loadMore',
-                dataType : 'html',
                 type: 'GET',
                 data: {
                     tricksNumber: tricksNumber
