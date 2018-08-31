@@ -9,6 +9,6 @@ How to install it :
 - Unpack it on your server via FTP by exemple.
 - Create the db, by hands, or via Doctrine create DB
 - Set data via fixtures : "php bin/console doctrine:fixtures:load --append"
-- Create account, and change your account right in DB.
+- Create account
 
 
