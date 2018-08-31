@@ -63,15 +63,20 @@ class RegistrationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $userService->isUserExists($repo, $form->getData()['username']);
+            $user = new User();
+            $user->setEmail($form->getData()['email']);
 
-            if (null === $user) {
-                $this->addFlash('warning', 'Cet utilisateur n\'éxiste pas');
+            if (!$userService->isUserExists($repo, $user)) {
+                if (null === $user) {
+                    $this->addFlash('warning', 'Cet utilisateur n\'éxiste pas');
 
-                return [
-                    'form' => $form->createView(),
-                ];
+                    return [
+                        'form' => $form->createView(),
+                    ];
+                }
             }
+
+            $user = $repo->findOneBy(['email' => $user->getEmail()]);
 
             if ($userService->sendRecoveryMail($user)) {
                 $this->addFlash('success', 'Un e-mail pour creer un nouveau mot de passe a été envoyé !');
