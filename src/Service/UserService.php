@@ -68,17 +68,23 @@ class UserService
 
     /**
      * @param EntityRepository $repo
-     * @param $data
+     * @param User $user
+     * @return bool
      */
-    public function isUserExists(EntityRepository $repo, $data)
+    public function isUserExists(EntityRepository $repo, User $user)
     {
-        $user = $repo->findOneBy(['username' => $data]) ?: null;
+        $bool = $repo->findOneBy(['username' => $user->getUsername()]) ?: null;
 
-        if (null === $user) {
-            $user = $repo->findOneBy(['email' => $data]) ?: null;
+        if (null === $bool) {
+            $bool = $repo->findOneBy(['email' => $user->getEmail()]) ?: null;
         }
 
-        return $user;
+        if (null === $bool) {
+
+            return false;
+        }
+
+        return true;
     }
 
     /**

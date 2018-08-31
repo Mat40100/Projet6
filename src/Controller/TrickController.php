@@ -206,7 +206,6 @@ class TrickController extends Controller
 
     /**
      * @Route("loadMore")
-     * @Template()
      */
     public function loadMore(Request $request)
     {
@@ -231,10 +230,10 @@ class TrickController extends Controller
 
         $tricks = array_slice($tricks, 0, $numberToLoad);
 
-        return [
+        return $this->render('trick/load_More.html.twig', array(
             'tricks' => $tricks,
             'loaded' => $numberToLoad,
             'tricksLeft' => $tricksLeft,
-        ];
+        ));
     }
 }
