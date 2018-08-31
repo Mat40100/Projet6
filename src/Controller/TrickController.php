@@ -7,13 +7,10 @@ use App\Entity\Comment;
 use App\Entity\Media;
 use App\Entity\MediaVideo;
 use App\Entity\Trick;
-use App\Form\CategoryType;
 use App\Form\CommentType;
 use App\Form\MediaType;
 use App\Form\MediaVideoType;
-use App\Form\ModifyTrickFormType;
 use App\Form\TrickType;
-use App\Form\TrickTypeModify;
 use App\Service\CategoryService;
 use App\Service\MediaService;
 use App\Service\TrickService;
@@ -104,7 +101,7 @@ class TrickController extends Controller
 
             if ($form->isValid()) {
                 if ($trickService->isExists($repo, $trick)) {
-                    $this->addFlash('warning', 'Ce trick '.$trick->getName().' est déjà existant');
+                    $this->addFlash('warning', 'Ce trick ' . $trick->getName() . ' est déjà existant');
 
                     return array(
                         'form' => $form->createView(),
@@ -112,7 +109,7 @@ class TrickController extends Controller
                 }
 
                 if ($trickService->add($this->getUser(), $trick)) {
-                    $this->addFlash('success', 'Votre nouveau Trick '.$trick->getName().' est bien enregistré!');
+                    $this->addFlash('success', 'Votre nouveau Trick ' . $trick->getName() . ' est bien enregistré!');
 
                     return $this->redirectToRoute(
                         'app_trick_view',
@@ -144,7 +141,7 @@ class TrickController extends Controller
 
         if ($request->isMethod('POST')) {
             $trickServices->remove($trick);
-            $this->addFlash('success', $trick->getName().' a été supprimé!');
+            $this->addFlash('success', $trick->getName() . ' a été supprimé!');
 
             return $this->redirectToRoute('app_trick_index');
         }
@@ -172,9 +169,9 @@ class TrickController extends Controller
                     $this->addFlash('success', 'La modification de ' . $trick->getName() . ' est bien enregistrée!');
 
                     return $this->redirectToRoute(
-                       'app_trick_view',
-                       array('trick' => $trick->getId(), 'slug' => $trick->getName())
-                   );
+                        'app_trick_view',
+                        array('trick' => $trick->getId(), 'slug' => $trick->getName())
+                    );
                 }
             }
         }
@@ -193,7 +190,7 @@ class TrickController extends Controller
     {
         $trick = $media->getTrick();
 
-        $trick ->setMainMedia($media);
+        $trick->setMainMedia($media);
 
         if ($trickService->update($trick)) {
             $this->addFlash('success', 'Modification enregistrée !');
@@ -223,7 +220,7 @@ class TrickController extends Controller
         $tricksNumber = count($tricks);
         $numberToLoad = $numberToLoad + 5;
 
-        if ($numberToLoad >= $tricksNumber-1) {
+        if ($numberToLoad >= $tricksNumber - 1) {
             $numberToLoad = $tricksNumber;
             $tricksLeft = false;
         }
