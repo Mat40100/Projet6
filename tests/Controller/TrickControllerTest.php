@@ -10,7 +10,7 @@ class TrickControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', 'http://127.0.0.1:8000/');
+        $client->request('GET', '/');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
@@ -19,7 +19,7 @@ class TrickControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', 'http://127.0.0.1:8000/view/503-Aerial');
+        $client->request('GET', '/view/503-Aerial');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

@@ -34,8 +34,8 @@ class TrickServiceTest extends TestCase
 
         $trickService = new TrickService($entityManager);
 
-        $this->assertEquals(true , $trickService->isExists($repo, $trick));
-        $this->assertEquals(false , $trickService->isExists($repo, $trick));
+        $this->assertSame(true , $trickService->isExists($repo, $trick));
+        $this->assertSame(false , $trickService->isExists($repo, $trick));
 
     }
 }
