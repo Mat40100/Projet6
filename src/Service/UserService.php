@@ -29,7 +29,7 @@ class UserService
      */
     public function createUser(User $user)
     {
-        $user = $this->EncodePassword($user);
+        $user = $this->encodePassword($this->passwordEncoder, $user);
         $user->setRoles('ROLE_USER');
 
         $this->entityManager->persist($user);
@@ -39,15 +39,13 @@ class UserService
     }
 
     /**
-     * Encode password for user sent in.
-     *
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @param User $user
-     *
      * @return User
      */
-    public function EncodePassword(User $user)
+    public function encodePassword(UserPasswordEncoderInterface $passwordEncoder, User $user)
     {
-        $password = $this->passwordEncoder->encodePassword($user, $user->getPlainPassword());
+        $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
         $user->setPassword($password);
 
         return $user;
@@ -60,7 +58,7 @@ class UserService
      */
     public function updateUser($user)
     {
-        $user = $this->EncodePassword($user);
+        $user = $this->encodePassword($this->passwordEncoder,$user);
         $this->entityManager->flush();
 
         return true;
@@ -112,4 +110,70 @@ class UserService
 
         return true;
     }
+
+    /**
+     * @return EntityManagerInterface
+     */
+    public function getEntityManager(): EntityManagerInterface
+    {
+        return $this->entityManager;
+    }
+
+    /**
+     * @param EntityManagerInterface $entityManager
+     */
+    public function setEntityManager(EntityManagerInterface $entityManager): void
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
+     * @return UserPasswordEncoderInterface
+     */
+    public function getPasswordEncoder(): UserPasswordEncoderInterface
+    {
+        return $this->passwordEncoder;
+    }
+
+    /**
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
+    public function setPasswordEncoder($passwordEncoder): void
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
+    /**
+     * @return \Swift_Mailer
+     */
+    public function getMailer(): \Swift_Mailer
+    {
+        return $this->mailer;
+    }
+
+    /**
+     * @param \Swift_Mailer $mailer
+     */
+    public function setMailer(\Swift_Mailer $mailer): void
+    {
+        $this->mailer = $mailer;
+    }
+
+    /**
+     * @return \Twig_Environment
+     */
+    public function getTwig(): \Twig_Environment
+    {
+        return $this->twig;
+    }
+
+    /**
+     * @param \Twig_Environment $twig
+     */
+    public function setTwig(\Twig_Environment $twig): void
+    {
+        $this->twig = $twig;
+    }
+
+
 }

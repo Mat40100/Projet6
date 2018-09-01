@@ -79,5 +79,7 @@ class TrickService
         if ($repo->findOneBy(['name' => $trick->getName()])) {
             return true;
         }
+
+        return false;
     }
 }

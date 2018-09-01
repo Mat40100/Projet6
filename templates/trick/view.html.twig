@@ -19,10 +19,10 @@
                     <a href="{{ path('app_trick_modify', {'trick' : trick.id}) }}"><i class="fas fa-pencil-alt"></i></a>
                 </div>
                 {%  endif %}
-                <div class="position-absolute text-center display-2">{{ trick.name }}</div>
+                <div id="trickName" class="position-absolute text-center display-2">{{ trick.name }}</div>
             </div>
             <div class="col-12 row m-3 justify-content-center align-items-center">
-                <a id="seeMediaList" class="col-12 text-center d-lg-none" href="#">See medias</a>
+                <a id="seeMediaList" class="col-12 text-center d-lg-none" href="#">Voir les photos et les images</a>
                 <div id="mediasList" class="d-none row col-12 justify-content-center align-items-center">
                     <h2><u>Liens multimédias :</u></h2>
                     <ul>
